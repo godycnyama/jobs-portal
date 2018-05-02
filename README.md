@@ -7,7 +7,7 @@ The back-end api is based on hapi.js, a node.js based framework.MongoDB is used 
 
 #How to use it
 
-Install bower and npm on your computer.
+Install bower , npm and MongoDB on your computer.
 
 Clone or download the project at `https://github/godycnyama/jobs-portal.git` to a local directory
 
@@ -19,7 +19,7 @@ cd to jobs-portal/api directory.
 
 run `npm install` to install the back-end api project dependencies.
 
-make sure mongodb is running on your computer.
+make sure mongodb is properly configured and running on your computer.
 
 run `npm start` to start the  back-end api.
 
