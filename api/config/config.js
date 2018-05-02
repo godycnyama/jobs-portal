@@ -2,7 +2,7 @@
 
 module.exports = {
   ENCR_KEY: "",
-  DB_CONNECTION_STRING: "",
+  DB_CONNECTION_STRING: "mongodb://127.0.0.1/testDB",
   payfast: {
       MERCHANT_ID: "",
       MERCHANT_KEY: "",
