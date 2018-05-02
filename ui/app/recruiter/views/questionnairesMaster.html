@@ -1,0 +1,49 @@
+﻿<div class="container" data-ng-controller="QuestionnairesController">
+    <div class="col-sm-10">
+        <h1>Questionnaires</h1>
+        <a class="btn btn-primary" ui-sref="recruiters.Master"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a>  
+        <a class="btn btn-primary" ui-sref="recruiter.createQuestionnaire"><span class="glyphicon glyphicon-plus"></span> Create Questionnaire</a>
+        <hr />
+        <h1>Search for Questionnaires</h1>
+        <div class="row">          
+            <div class=" col-sm-2">
+                <div class="form-group">
+                    <label for="searchOption" class="control-label">Search By</label>                  
+                    <select class="form-control" name="searchOption" data-ng-model="selectedSearchBy"
+                                data-ng-options="searchOption for searchOption in searchByOptions"></select>                   
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="searchTerm" class="control-label">Enter Search Term</label>
+                <input type="text" class="form-control" id="searchTerm" data-ng-model="searchTerm" placeholder="Enter Search Term" />
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="search()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <table class="table-bordered">
+                    <tr class="well">
+                        <td>Questionnaire ID</td>
+                        <td><b>Questionnaire REF</b></td>
+                        <td><b>Questionnaire Title</b></td>
+                        <td />
+                    </tr>
+                    <tr ng-repeat="questionnaire in questionnaires">
+                        <td>questionaire.questionnaireID</td>
+                        <td>questionaire.questionnaireREF</td>
+                        <td>questionaire.title</td>
+                        <td><button>View Questionnaire</button></td>
+                        <td><button>Add to JobAd</button></td>
+                    </tr>
+                </table>
+                <br />
+                <a class="btn btn-primary" ui-sref="recruiters.jobAds.jobAdsMaster"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+            </div>
+        </div>        
+    </div>    
+</div>
+

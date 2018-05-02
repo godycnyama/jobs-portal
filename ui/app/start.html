@@ -1,0 +1,56 @@
+﻿<div data-ng-controller="StartController" class="container"> 
+    <br />
+    <br /> 
+    <h2 class="text-center">Welcome to Jobmix.co.za, the South African jobs hub!</h2> 
+    <br />
+    <div class="row text-center">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2>Job Seekers</h2></div>
+                <div class="panel-body">
+                    <div>
+                        <a class="btn btn-primary" ui-sref="howitworks"> <span class="glyphicon glyphicon-info-sign"></span> How It Works</a>
+                    </div>
+                    <br />
+                    <a class="btn btn-primary" ui-sref="jobs.master"><span class="glyphicon glyphicon-search"></span> Search for jobs</a>
+                    <div>
+                        <h2>Sign in and apply for jobs</h2>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" ng-click="signIn()"> <span class="glyphicon glyphicon-log-in"></span> Sign In</a>
+                    </div>
+                    <div>
+                        <h2>Sign up for an account,add your CV and let recruiters find you</h2>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" ui-sref="auth.signupJobseeker0"> <span class="fa fa-user-plus"></span> Job Seeker Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2>Recruiters</h2></div>
+                <div class="panel-body">
+                    <div>
+                        <a class="btn btn-primary" ui-sref="howitworks"> <span class="glyphicon glyphicon-info-sign"></span> How It Works</a>
+                    </div>
+                    <br />
+                    <a class="btn btn-primary" ui-sref="advertPrices"><span class="glyphicon glyphicon-info-sign"></span> View job advertising prices</a>
+                    <div><h2>Sign in and post job ads</h2></div>
+                    <div>
+                        <a class="btn btn-primary" ng-click="signIn()"> <span class="glyphicon glyphicon-log-in"></span> Sign In</a>
+                    </div>
+                    <div>
+                        <h2>Sign up for an account and start posting job Ads</h2>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary"  ui-sref="auth.signupRecruiter0"> <span class="fa fa-user-plus"></span> Recruiter Sign Up</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

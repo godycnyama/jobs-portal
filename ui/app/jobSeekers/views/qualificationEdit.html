@@ -1,0 +1,245 @@
+﻿<div class="container" ng-controller="QualificationEditController">
+    <h1><span class="glyphicon glyphicon-edit"></span> Edit Qualification</h1>
+    <br />
+    <button ng-click="back()" class="btn btn-primary"> <span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+    <div class="row">
+        <div class="col-sm-8">
+            <hr />
+            <form name="qualificationForm" role="form">
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':qualificationForm.name.$touched && qualificationForm.name.$invalid, 'has-success has-feedback': qualificationForm.name.$dirty && qualificationForm.name.$valid}">
+                        <label for="name" class="control-label">Qualification Title</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-education"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="name"
+                                   ng-model="qualification.title"
+                                   placeholder="Enter title"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="qualificationForm.name.$dirty && qualificationForm.name.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="qualificationForm.name.$touched && qualificationForm.name.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>    
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="qualificationForm.name.$touched" ng-messages="qualificationForm.name.$error" ng-if="qualificationForm.name.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter qualification name</div>
+                            <div ng-message-exp="['minlength','maxlength']">Qualification name must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-3" ng-class="{'has-error has-feedback':qualificationForm.level.$touched && qualificationForm.level.$invalid, 'has-success has-feedback': qualificationForm.level.$dirty && qualificationForm.level.$valid}">
+                        <label for="level" class="control-label">Qualification Level</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-certificate"></span>
+                            </div>
+                            <select name="level" class="form-control" data-ng-model="qualification.level"
+                                    data-ng-options="level for level in levelOptions"
+                                    ng-required="true"><option value="">Select level</option></select>                           
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="qualificationForm.level.$touched" ng-messages="qualificationForm.level.$error" ng-if="qualificationForm.level.$touched" role="alert">
+                            <div ng-message="required">Please select qualification level</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':qualificationForm.institution.$touched && qualificationForm.institution.$invalid, 'has-success has-feedback': qualificationForm.institution.$dirty && qualificationForm.institution.$valid}">
+                        <label for="institution" class="control-label">Qualification Institution</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-institution"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="institution"
+                                   ng-model="qualification.institution"
+                                   placeholder="Enter institution"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="qualificationForm.institution.$dirty && qualificationForm.institution.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="qualificationForm.institution.$touched && qualificationForm.institution.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>    
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="qualificationForm.institution.$touched" ng-messages="qualificationForm.institution.$error" ng-if="qualificationForm.institution.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter qualification institution</div>
+                            <div ng-message-exp="['minlength','maxlength']">Qualification institution must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-3" ng-class="{'has-error has-feedback':qualificationForm.locationTown.$touched && qualificationForm.locationTown.$invalid, 'has-success has-feedback': qualificationForm.locationTown.$dirty && qualificationForm.locationTown.$valid}">
+                        <label for="locationTown" class="control-label">Location Town/City</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="locationTown"
+                                   ng-model="qualification.locationTown"
+                                   placeholder="Enter town/city"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="qualificationForm.locationTown.$dirty && qualificationForm.locationTown.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="qualificationForm.locationTown.$touched && qualificationForm.locationTown.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>    
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="qualificationForm.locationTown.$touched" ng-messages="qualificationForm.locationTown.$error" ng-if="qualificationForm.locationCountry.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter institution location town/city</div>
+                            <div ng-message-exp="['minlength','maxlength']">Town/City must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3" ng-class="{'has-error has-feedback':qualificationForm.locationCountry.$touched && qualificationForm.locationCountry.$invalid, 'has-success has-feedback': qualificationForm.locationCountry.$dirty && qualificationForm.locationCountry.$valid}">
+                        <label for="locationCountry" class="control-label">Country</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                            </div>
+                            <select name="locationCountry" class="form-control" data-ng-model="qualification.locationCountry"
+                                    data-ng-options="country for country in locationCountryOptions"
+                                    ng-required="true"><option value="">Select institution country</option></select>                             
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="qualificationForm.locationCountry.$touched" ng-messages="qualificationForm.locationCountry.$error" ng-if="qualificationForm.locationCountry.$touched" role="alert">
+                            <div ng-message="required">Please select institution country</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group" ng-class="{'has-error has-feedback':qualificationForm.monthStarted.$touched && qualificationForm.monthStarted.$invalid, 'has-success has-feedback': qualificationForm.monthStarted.$dirty && qualificationForm.monthStarted.$valid}">
+                            <label for="monthStarted" class="control-label">Start Month</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <select name="monthStarted" class="form-control" data-ng-model="qualification.startMonth"
+                                        data-ng-options="month for month in startMonthOptions"
+                                        ng-required="true"><option value="">Select start month</option></select>                                
+                            </div>
+                            <div class="help-block" ngfx-slide-in-left="qualificationForm.monthStarted.$touched" ng-messages="qualificationForm.monthStarted.$error" ng-if="qualificationForm.monthStarted.$touched" role="alert">
+                                <div ng-message="required">Please select month started</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" ng-class="{'has-error has-feedback':qualificationForm.startYear.$touched && qualificationForm.startYear.$invalid, 'has-success has-feedback': qualificationForm.startYear.$dirty && qualificationForm.startYear.$valid}">
+                            <label for="startYear" class="control-label">Start Year</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="startYear"
+                                       ng-model="qualification.startYear"
+                                       placeholder="Enter start year"                                     
+                                       ng-maxlength="4"                                     
+                                       ui-mask="9999"
+                                       ui-mask-placeholder
+                                       ui-mask-placeholder-char="_"
+                                       ng-trim />
+                                <span ng-if="qualificationForm.startYear.$dirty && qualificationForm.startYear.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="qualificationForm.startYear.$touched && qualificationForm.startYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>    
+                            </div>
+                            <div class="help-block" ngfx-slide-in-left="qualificationForm.startYear.$touched" ng-messages="qualificationForm.startYear.$error" ng-if="qualificationForm.startYear.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter start year</div>
+                                <div ng-message-exp="['maxlength']">Start year must be maximum of 4 characters</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group" ng-class="{'has-error has-feedback':qualificationForm.endMonth.$touched && qualificationForm.endMonth.$invalid, 'has-success has-feedback': qualificationForm.endMonth.$dirty && qualificationForm.endMonth.$valid}">
+                            <label for="endMonth" class="control-label">End Month</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <select name="endMonth" class="form-control" data-ng-model="qualification.endMonth"
+                                        data-ng-options="month for month in endMonthOptions"
+                                        ng-required="true"><option value="">Select end month</option></select>   
+                            </div>
+                            <div class="help-block" ngfx-slide-in-left="qualificationForm.endMonth.$touched" ng-messages="qualificationForm.endMonth.$error" ng-if="qualificationForm.endMonth.$touched" role="alert">
+                                <div ng-message="required">Please select month ended</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" ng-class="{'has-error has-feedback':qualificationForm.endYear.$touched && qualificationForm.endYear.$invalid, 'has-success has-feedback': qualificationForm.endYear.$dirty && qualificationForm.endYear.$valid}">
+                            <label for="endYear" class="control-label">End Year</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="endYear"
+                                       ng-model="qualification.endYear"
+                                       placeholder="Enter end year"                                      
+                                       ng-maxlength="4"                                    
+                                       ui-mask="9999"
+                                       ui-mask-placeholder
+                                       ui-mask-placeholder-char="_"
+                                       ng-trim />
+                                <span ng-if="qualificationForm.endYear.$dirty && qualificationForm.endYear.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="qualificationForm.endYear.$touched && qualificationForm.endYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>    
+                            </div>
+                            <div class="help-block" ngfx-slide-in-left="qualificationForm.endYear.$touched" ng-messages="qualificationForm.endYear.$error" ng-if="qualificationForm.endYear.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter end year</div>
+                                <div ng-message-exp="['maxlength']">End year must be a maximum of 4 characters</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':qualificationForm.status.$touched && qualificationForm.status.$invalid, 'has-success has-feedback': qualificationForm.status.$dirty && qualificationForm.status.$valid}">
+                        <label for="status" class="control-label">Status</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <select name="status" class="form-control" data-ng-model="qualification.status"
+                                    data-ng-options="status for status in statusOptions"
+                                    ng-required="true"><option value="">Select status</option></select>                              
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="qualificationForm.status.$touched" ng-messages="qualificationForm.status.$error" ng-if="qualificationForm.status.$touched" role="alert">
+                            <div ng-message="required">Please select qualification status</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':qualificationForm.majors.$touched && qualificationForm.majors.$invalid, 'has-success has-feedback': qualificationForm.majors.$dirty && qualificationForm.majors.$valid}">
+                        <label for="majors" class="control-label">Majors</label>                        
+                            <textarea name="majors"
+                                      class="form-control"
+                                      rows="5" cols="8"
+                                      ng-model="qualification.majors"
+                                      placeholder="Enter qualification majors"
+                                      ng-minlength="1"
+                                      ng-maxlength="500"
+                                      ng-required="true"
+                                      ng-trim></textarea>                                                 
+                        <div class="help-block" ngfx-slide-in-left="qualificationForm.majors.$touched" ng-messages="qualificationForm.majors.$error" ng-if="qualificationForm.majors.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter majors</div>
+                            <div ng-message-exp="['minlength','maxlength']">Majors must be between 1 and 500 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <button class="btn btn-primary" ng-disabled="qualificationForm.$invalid" ng-click="updateQualification()"> Update</button>
+                        <a class="btn btn-primary" ui-sref="profile.master"> Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

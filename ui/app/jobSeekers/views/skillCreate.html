@@ -1,0 +1,132 @@
+﻿<div class="container"  ng-controller="SkillController">
+    <h1><span class="fa fa-plus"></span> Add Skill</h1>
+    <br />
+    <button ng-click="back()" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+    <div class="row">
+        <div class="col-sm-8">
+            <hr />
+            <form  name="skillForm" role="form" novalidate>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':skillForm.description.$touched && skillForm.description.$invalid, 'has-success has-feedback': skillForm.description.$dirty && skillForm.description.$valid}">
+                        <label for="description" class="control-label">Skill Description</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="description"
+                                   ng-model="skill.description"
+                                   placeholder="Enter skill description"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="skillForm.description.$dirty && skillForm.description.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="skillForm.description.$touched && skillForm.description.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="skillForm.description.$touched" ng-messages="skillForm.description.$error" ng-if="skillForm.description.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter skill description</div>
+                                <div ng-message-exp="['minlength','maxlength']">Skill description must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>                  
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':skillForm.skillLevel.$touched && skillForm.skillLevel.$invalid, 'has-success has-feedback': skillForm.skillLevel.$dirty && skillForm.skillLevel.$valid}">
+                        <label for="skillLevel" class="control-label">Skill Level</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <select name="skillLevel" class="form-control" data-ng-model="skill.skillLevel"
+                                    data-ng-options="level for level in skillLevelOptions"
+                                    placeholder="Select skill level"
+                                    ng-required="true"><option value="">Select skill level</option></select>                           
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="skillForm.skillLevel.$touched" ng-messages="skillForm.skillLevel.$error" ng-if="skillForm.skillLevel.$touched" role="alert">
+                                <div ng-message="required">Please select skill level</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':skillForm.experience.$touched && skillForm.experience.$invalid, 'has-success has-feedback': skillForm.experience.$dirty && skillForm.experience.$valid}">
+                        <label for="experience" class="control-label">Experience</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <select name="experience" class="form-control" data-ng-model="skill.experience"
+                                    data-ng-options="experience for experience in experienceOptions"
+                                    placeholder ="Select skill experience"
+                                    ng-required="true"><option value="">Select experience</option></select>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="skillForm.experience.$touched" ng-messages="skillForm.experience.$error" ng-if="skillForm.experience.$touched" role="alert">
+                                <div ng-message="required">Please select skill experience</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <sh-checkbox label="Skill is currently used"
+                                     ng-model="skill.isCurrent"
+                                     checked-icon-class="fa fa-check-square-o"
+                                     un-checked-icon-class="fa fa-square-o">
+                        </sh-checkbox>
+                    </div>
+                </div>    
+                <div class="row" ng-show="skill.isCurrent === false">
+                    <div class="col-sm-3" ng-class="{'has-error has-feedback':skillForm.lastMonthUsed.$touched && skillForm.lastMonthUsed.$invalid, 'has-success has-feedback': skillForm.lastMonthUsed.$dirty && skillForm.lastMonthUsed.$valid}">
+                        <div class="form-group">
+                            <label for="lastMonthUsed" class="control-label">Last Month Used</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <select name="lastMonthUsed" class="form-control" data-ng-model="skill.lastDateUsedMonth"
+                                        data-ng-options="month for month in lastMonthOptions"
+                                        ><option value="">Select last month used</option></select>
+                            </div>
+                            <div class="help-block" ngfx-slide-in-left="skillForm.lastMonthUsed.$touched" ng-messages="skillForm.lastMonthUsed.$error" ng-if="skillForm.lastMonthUsed.$touched" role="alert">
+                                <div ng-message="required">Please select last month used</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-class="{'has-error has-feedback':skillForm.lastYearUsed.$touched && skillForm.lastYearUsed.$invalid, 'has-success has-feedback': skillForm.skillForm.lastYearUsed.$dirty && skillForm.skillForm.lastYearUsed.$valid}">
+                        <div class="form-group">
+                            <label for="lastYearUsed" class="control-label">Last Year Used</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="lastYearUsed"
+                                       ng-model="skill.lastDateUsedYear"
+                                       placeholder="Enter last year used"
+                                       ng-minlength="1"
+                                       ng-maxlength="4"
+                                       ui-mask="9999"
+                                       ui-mask-placeholder
+                                       ui-mask-placeholder-char="_"
+                                       ng-trim />
+                                <span ng-if="skillForm.lastYearUsed.$dirty && skillForm.lastYearUsed.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="skillForm.lastYearUsed.$touched && skillForm.lastYearUsed.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            </div>
+                            <div class="help-block" ngfx-slide-in-left="skillForm.lastYearUsed.$touched" ng-messages="skillForm.lastYearUsed.$error" ng-if="skillForm.lastYearUsed.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter year used</div>
+                                <div ng-message-exp="['minlength','maxlength']">Last year used must be between 1 and 4 characters long</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>             
+                <br />
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <button class="btn btn-primary" ng-disabled="skillForm.$invalid" ng-click="createSkill()"> Save</button>
+                        <a class="btn btn-primary" ui-sref="profile.master"> Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

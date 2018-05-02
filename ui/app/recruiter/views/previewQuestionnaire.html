@@ -1,0 +1,57 @@
+﻿<div class="container" ng-controller="SigninController">
+    <form role="form" name="signinForm" novalidate>
+        <div class="col-sm-8">
+            <h1><span class="glyphicon glyphicon-log-in"></span> Sign In</h1>
+            <hr />
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':signinForm.email.$touched && signinForm.email.$invalid}">
+                    <label for="email" class="control-label">Email</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-envelope"></span>
+                        </div>
+                        <input type="email"
+                               name="email"
+                               class="form-control"
+                               placeholder="Enter email"
+                               tabindex="1"
+                               data-ng-model="signin.email"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="signinForm.email.$touched" ng-messages="signinForm.email.$error" ng-if="signinForm.email.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="email">Please enter valid email</div>
+                        <div ng-message="required">Please enter email</div>
+                        <div ng-message-exp="['minlength','maxlength']">Email must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':signinForm.password.$touched && signinForm.password.$invalid}">
+                    <label for="password" class="control-label">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-unlock"></span>
+                        </div>
+                        <input type="password"
+                               name="password"
+                               class="form-control "
+                               placeholder="Enter password"
+                               tabindex="2"
+                               data-ng-model="signin.password"
+                               ng-required="true"
+                               ng-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,10}$/"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="signinForm.password.$touched" ng-messages="signinForm.password.$error" ng-if="signinForm.password.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter password</div>
+                        <div ng-message="pattern">Invalid password</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div></div>
+</div>

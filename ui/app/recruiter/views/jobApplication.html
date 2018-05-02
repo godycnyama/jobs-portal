@@ -1,0 +1,24 @@
+﻿<div class="container" ng-controller="JobApplicationController">
+        <div class="row">          
+            <div class="col-sm-8">
+                <br />
+                <div><button ng-click="back()" class="btn btn-primary">Back</button></div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Job Title:</strong></dt>
+                    <dd><strong>{{jobApplication.jobTitle}}</strong></dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Job REF:</strong></dt>
+                    <dd>{{jobApplication.jobAdREF}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-user"></span> <strong>Applicant Name: </strong></dt>
+                    <dd>{{jobApplication.firstName}} {{jobApplication.middleName}} {{jobApplication.lastName}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-calendar"></span> <strong>Date: </strong></dt>
+                    <dd>{{jobApplication.createdOn| date :  "fullDate"}}</dd>
+                </dl>
+                <button class="btn btn-primary" ng-click="viewProfile()"><span class="glyphicon glyphicon-new-window"></span> View Applicant Profile</button>
+                <hr />
+                <h5><strong>Cover Note</strong></h5>
+                <p>{{jobApplication.coverNote}}</p>             
+                <hr />
+            </div>
+        </div>   
+</div>

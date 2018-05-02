@@ -1,0 +1,736 @@
+﻿<div class="col-sm-8" ng-controller="SignupJobSeekerControllerx">
+            <form role="form" name="signupJobSeekerForm" novalidate>
+                <h1>Job Seeker Sign Up</h1>
+                <hr />
+                <v-accordion class="vAccordion--default">
+                    <v-pane>
+                        <v-pane-header>
+                            <span class="glyphicon glyphicon-log-in"></span>  Login Details
+                        </v-pane-header>
+                        <v-pane-content>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.username.$touched && signupJobSeekerForm.username.$invalid, 'has-success has-feedback': signupJobSeekerForm.username.$dirty && signupJobSeekerForm.username.$valid}">
+                                    <label for="username" class="control-label">Email</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-envelope"></span>
+                                        </div>
+                                        <input type="email"
+                                               name="username"
+                                               class="form-control "
+                                               placeholder="Enter email"
+                                               tabindex="1"
+                                               data-ng-model="signup.username"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-required="true"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.username.$dirty && signupJobSeekerForm.username.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.username.$touched && signupJobSeekerForm.username.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.username.$touched" ng-messages="signupJobSeekerForm.username.$error" ng-if="signupJobSeekerForm.username.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="email">Please enter valid email</div>
+                                        <div ng-message="required">Please enter email</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Email must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.password.$touched && signupJobSeekerForm.password.$invalid, 'has-success has-feedback': signupJobSeekerForm.password.$dirty && signupJobSeekerForm.password.$valid}">
+                                    <label for="password" class="control-label">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-lock"></span>
+                                        </div>
+                                        <input type="password"
+                                               name="password"
+                                               class="form-control "
+                                               placeholder="Enter password"
+                                               tabindex="2"
+                                               data-ng-model="signup.password"
+                                               ng-minlength="6"
+                                               ng-maxlength="10"
+                                               ng-required="true"
+                                               ng-pattern="/^([a-zA-Z0-9!?~@#$%^&*_]).{6,10}$/"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.password.$dirty && signupJobSeekerForm.password.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.password.$touched && signupJobSeekerForm.password.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div>Password can contain upper case letters (A-Z), lower case letters (a-z), digits (0-9), special characters (!?~@#$%^&*_), and must be between 6 to  10 characters in length</div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.password.$touched" ng-messages="signupJobSeekerForm.password.$error" ng-if="signupJobSeekerForm.password.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter password</div>
+                                        <div ng-message="pattern">Please enter valid password</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Please enter valid password</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.confirmPassword.$touched && signupJobSeekerForm.confirmPassword.$invalid, 'has-success has-feedback': signupJobSeekerForm.confirmPassword.$dirty && signupJobSeekerForm.confirmPasswordssword.$valid}">
+                                    <label for="confirmPassword" class="control-label">Confirm Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-lock"></span>
+                                        </div>
+                                        <input type="password"
+                                               name="confirmPassword"
+                                               class="form-control "
+                                               placeholder="Confirm password"
+                                               tabindex="3"
+                                               data-ng-model="confirmPassword"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-required="true"
+                                               match="signup.password"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.confirmPassword.$dirty && signupJobSeekerForm.confirmPassword.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.confirmPassword.$touched && signupJobSeekerForm.confirmPassword.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.confirmPassword.$touched" ng-messages="signupJobSeekerForm.confirmPassword.$error" ng-if="signupJobSeekerForm.confirmPassword.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please confirm password</div>
+                                        <div ng-message="match">Confirm password must be identical to password</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Confirm password must be between 6 and 10 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.passwordRecoveryEmail.$touched && signupJobSeekerForm.passwordRecoveryEmail.$invalid, 'has-success has-feedback': signupJobSeekerForm.passwordRecoveryEmail.$dirty && signupJobSeekerForm.passwordRecoveryEmail.$valid}">
+                                    <label for="passwordRecoveryEmail" class="control-label">Password Recovery Email</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-envelope"></span>
+                                        </div>
+                                        <input type="email" name="passwordRecoveryEmail"
+                                               class="form-control "
+                                               placeholder=" Enter Password Recovery Email"
+                                               tabindex="5"
+                                               data-ng-model="signup.passwordRecoveryEmail"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-required="true"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.passwordRecoveryEmail.$dirty && signupJobSeekerForm.passwordRecoveryEmail.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.passwordRecoveryEmail.$touched && signupJobSeekerForm.passwordRecoveryEmail.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.passwordRecoveryEmail.$touched" ng-messages="signupJobSeekerForm.passwordRecoveryEmail.$error" ng-if="signupJobSeekerForm.passwordRecoveryEmail.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="email">Please enter valid email</div>
+                                        <div ng-message="required">Please enter password recovery email</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Email must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error':signupJobSeekerForm.securityQuestions.$touched && signupJobSeekerForm.securityQuestions.$invalid}">
+                                    <label for="securityQuestions" class="control-label">Security Question</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                        </div>
+                                        <select name="securityQuestions"
+                                                class="form-control"
+                                                data-ng-model="signup.securityQuestion"
+                                                data-ng-options="securityQuestionOption for securityQuestionOption in securityQuestionOptions"
+                                                tabindex="7"
+                                                ng-required="true"><option value="">Choose security question</option></select>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.securityQuestions.$touched" ng-messages="signupJobSeekerForm.securityQuestions.$error" ng-if="signupJobSeekerForm.securityQuestions.$touched" role="alert">
+                                        <div ng-message="required">Please select security question</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.securityQuestionAnswer.$touched && signupJobSeekerForm.securityQuestionAnswer.$invalid, 'has-success has-feedback': signupJobSeekerForm.securityQuestionAnswer.$dirty && signupJobSeekerForm.securityQuestionAnswer.$valid}">
+                                    <label for="securityQuestionAnswer" class="control-label">Security Question Answer</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                        </div>
+                                        <input type="text"
+                                               name="securityQuestionAnswer"
+                                               class="form-control "
+                                               placeholder="Enter security question answer"
+                                               tabindex="6"
+                                               data-ng-model="signup.securityQuestionAnswer"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-required="true"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.securityQuestionAnswer.$dirty && signupJobSeekerForm.securityQuestionAnswer.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.securityQuestionAnswer.$touched && signupJobSeekerForm.securityQuestionAnswer.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.securityQuestionAnswer.$touched" ng-messages="signupJobSeekerForm.securityQuestionAnswer.$error" ng-if="signupJobSeekerForm.securityQuestionAnswer.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please security question answer</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Security question answer must be between 1 and 150 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </v-pane-content>
+                    </v-pane>
+                    <v-pane>
+                        <v-pane-header>
+                            <span class="fa fa-user"></span>  Personal Details
+                        </v-pane-header>
+                        <v-pane-content>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.firstName.$touched && signupJobSeekerForm.firstName.$invalid, 'has-success has-feedback': signupJobSeekerForm.firstName.$dirty && signupJobSeekerForm.firstName.$valid}">
+                                    <label for="firstName" class="control-label">First Name</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-user"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="firstName"
+                                               ng-model="signup.firstName"
+                                               placeholder="Enter first name"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-required="true"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.firstName.$dirty && signupJobSeekerForm.firstName.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.firstName.$touched && signupJobSeekerForm.firstName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.firstName.$touched" ng-messages="signupJobSeekerForm.firstName.$error" ng-if="signupJobSeekerForm.firstName.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter first name</div>
+                                        <div ng-message-exp="['minlength','maxlength']">First name must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.middleName.$touched && signupJobSeekerForm.middleName.$invalid, 'has-success has-feedback': signupJobSeekerForm.middleName.$dirty && signupJobSeekerForm.middleName.$valid}">
+                                    <label for="middleName" class="control-label">Middle Name (optional)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-user"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="middleName"
+                                               ng-model="signup.middleName"
+                                               placeholder="Enter middle name"
+                                               ng-maxlength="50"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.middleName.$dirty && signupJobSeekerForm.middleName.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.middleName.$touched && signupJobSeekerForm.middleName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.middleName.$touched" ng-messages="signupJobSeekerForm.middleName.$error" ng-if="signupJobSeekerForm.middleName.$touched" role="alert">
+                                        <div ng-message="maxlength">Middle name must be a maximum of 50 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.lastName.$touched && signupJobSeekerForm.lastName.$invalid, 'has-success has-feedback': signupJobSeekerForm.lastName.$dirty && signupJobSeekerForm.lastName.$valid}">
+                                    <label for="lastName" class="control-label">Last Name</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-user"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="lastName"
+                                               ng-model="signup.lastName"
+                                               placeholder="Enter last name"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-required="true"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.lastName.$dirty && signupJobSeekerForm.lastName.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.lastName.$touched && signupJobSeekerForm.lastName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.lastName.$touched" ng-messages="signupJobSeekerForm.lastName.$error" ng-if="signupJobSeekerForm.lastName.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter last name</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Last name must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-show="photoImage">
+                                    <div> <label for="logo" class="control-label">Photo</label></div>
+                                    <div><img name="logo" ng-src="{{signup.photo}}" class="vignetteA" /></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-show="photoImage">
+                                    <div> <label for="logo" class="control-label">Crop Photo</label></div>
+                                    <div style="width:200px;height:150px;overflow:hidden;background:#E4E4E4;">
+                                        <img-crop image="photoImage|ngfDataUrl" result-image="signup.photo" area-type="square"></img-crop>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <button class="btn btn-success" ng-model="photoImage" ngf-select ngf-pattern="'image/*'"><span class="glyphicon glyphicon-camera"></span> Select Photo</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.gender.$touched && signupJobSeekerForm.gender.$invalid, 'has-success has-feedback': signupJobSeekerForm.gender.$dirty && signupJobSeekerForm.gender.$valid}">
+                                    <label for="gender" class="control-label">Gender</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-venus"></span>
+                                        </div>
+                                        <select name="gender" class="form-control" data-ng-model="signup.gender"
+                                                data-ng-options="gender for gender in genderOptions"
+                                                ng-required="true"><option value="">Select gender</option></select>
+                                        <span ng-if="signupJobSeekerForm.gender.$dirty && signupJobSeekerForm.gender.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.gender.$touched && signupJobSeekerForm.gender.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.gender.$touched" ng-messages="signupJobSeekerForm.gender.$error" ng-if="signupJobSeekerForm.gender.$touched" role="alert">
+                                        <div ng-message="required">Please select gender</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.birthDate.$touched && signupJobSeekerForm.birthDate.$invalid, 'has-success has-feedback': signupJobSeekerForm.birthDate.$dirty && signupJobSeekerForm.birthDate.$valid}">
+                                    <label for="birthDate" class="control-label">Birth Date (DD-MM-YYYY)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btnCustom btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                        <input type="text" class="form-control"
+                                               name="birthDate"
+                                               datepicker-append-to-body="true"
+                                               uib-datepicker-popup="dd-MM-yyyy"
+                                               placeholder="Enter birth date"
+                                               ng-model="signup.birthDate"
+                                               datepicker-options="dateOptions"
+                                               ng-required="true"
+                                               close-text="Close"
+                                               is-open="datePickerOpened"
+                                               ng-focus="datePickerOpened=true" />
+                                        <span ng-if="signupJobSeekerForm.birthDate.$dirty && signupJobSeekerForm.birthDate.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.birthDate.$touched && signupJobSeekerForm.birthDate.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.birthDate.$touched" ng-messages="signupJobSeekerForm.birthDate.$error" ng-if="signupJobSeekerForm.birthDate.$touched" role="alert">
+                                        <div ng-message="required">Please enter birth date</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3" ng-class="{'has-error':signupJobSeekerForm.nationality.$touched && signupJobSeekerForm.nationality.$invalid}">
+                                    <label for="nationality" class="control-label">Nationality</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                        </div>
+                                        <select name="nationality" class="form-control" data-ng-model="signup.nationality"
+                                                data-ng-options="nationality for nationality in nationalityOptions"
+                                                ng-required="true"><option value="">Select Nationality</option></select>                            
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.nationality.$touched" ng-messages="signupJobSeekerForm.nationality.$error" ng-if="signupJobSeekerForm.nationality.$touched" role="alert">
+                                        <div ng-message="required">Please select nationality</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.profession.$touched && signupJobSeekerForm.profession.$invalid, 'has-success has-feedback': signupJobSeekerForm.profession.$dirty && signupJobSeekerForm.profession.$valid}">
+                                    <label for="profession" class="control-label">Profession</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="profession"
+                                               ng-model="signup.profession"
+                                               placeholder="Enter profession"
+                                               ng-minlength="1"
+                                               ng-maxlength="100"
+                                               ng-required="true"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.profession.$dirty && signupJobSeekerForm.profession.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.profession.$touched && signupJobSeekerForm.profession.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.profession.$touched" ng-messages="signupJobSeekerForm.profession.$error" ng-if="signupJobSeekerForm.profession.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter profession</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Profession must be between 1 and 100 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.mainQualification.$touched && signupJobSeekerForm.mainQualification.$invalid, 'has-success has-feedback': signupJobSeekerForm.mainQualification.$dirty && signupJobSeekerForm.mainQualification.$valid}">
+                                    <label for="mainQualification" class="control-label">Main Qualification</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-education"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="mainQualification"
+                                               ng-model="signup.mainQualification"
+                                               placeholder="Enter main qualification"
+                                               ng-minlength="1"
+                                               ng-maxlength="200"
+                                               ng-required="true"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.mainQualification.$dirty && signupJobSeekerForm.mainQualification.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.mainQualification.$touched && signupJobSeekerForm.mainQualification.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.mainQualification.$touched" ng-messages="signupJobSeekerForm.mainQualification.$error" ng-if="signupJobSeekerForm.mainQualification.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter main qualification</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Main qualification must be between 1 and 200 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error':signupJobSeekerForm.introduction.$touched && signupJobSeekerForm.introduction.$invalid}">
+                                    <label for="introduction" class="control-label">Introduction</label>
+                                    <textarea type="text"
+                                              class="form-control"
+                                              name="introduction"
+                                              rows="5" cols="8"
+                                              ng-model="signup.introduction"
+                                              placeholder="Enter introduction"
+                                              ng-minlength="1"
+                                              ng-maxlength="500"
+                                              ng-required="true"
+                                              ng-trim></textarea>                            
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.introduction.$touched" ng-messages="signupJobSeekerForm.introduction.$error" ng-if="signupJobSeekerForm.introduction.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter introduction</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Introduction must be between 1 and 500 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.homeTel.$touched && signupJobSeekerForm.homeTel.$invalid, 'has-success has-feedback': signupJobSeekerForm.homeTel.$dirty && signupJobSeekerForm.homeTel.$valid}">
+                                    <label for="homeTel" class="control-label">Home Tel (optional)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-earphone"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="homeTel"
+                                               ng-model="signup.homeTel"
+                                               placeholder="Enter home tel"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.homeTel.$dirty && signupJobSeekerForm.homeTel.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.homeTel.$touched && signupJobSeekerForm.homeTel.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.homeTel.$touched" ng-messages="signupJobSeekerForm.homeTel.$error" ng-if="signupJobSeekerForm.homeTel.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter home telephone number</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Home telephone number must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.workTel.$touched && signupJobSeekerForm.workTel.$invalid, 'has-success has-feedback': signupJobSeekerForm.workTel.$dirty && signupJobSeekerForm.workTel.$valid}">
+                                    <label for="workTel" class="control-label">Work Tel (optional)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-phone-alt"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="workTel"
+                                               ng-model="signup.workTel"
+                                               placeholder="Enter work tel"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.workTel.$dirty && signupJobSeekerForm.workTel.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.workTel.$touched && signupJobSeekerForm.workTel.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.workTel.$touched" ng-messages="signupJobSeekerForm.workTel.$error" ng-if="signupJobSeekerForm.workTel.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter work telephone number</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Work telephone number must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.mobile.$touched && signupJobSeekerForm.mobile.$invalid, 'has-success has-feedback': signupJobSeekerForm.mobile.$dirty && signupJobSeekerForm.mobile.$valid}">
+                                    <label for="mobile" class="control-label">Mobile (optional)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-phone"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="mobile"
+                                               ng-model="signup.mobile"
+                                               placeholder="Enter mobile tel"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.mobile.$dirty && signupJobSeekerForm.mobile.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.mobile.$touched && signupJobSeekerForm.mobile.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.mobile.$touched" ng-messages="signupJobSeekerForm.mobile.$error" ng-if="signupJobSeekerForm.mobile.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter mobile telephone number</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Mobile telephone number must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error':signupJobSeekerForm.address.$touched && signupJobSeekerForm.address.$invalid}">
+                                    <label for="address" class="control-label">Address</label>
+                                    <textarea type="text"
+                                              class="form-control"
+                                              name="address"
+                                              rows="5" cols="8"
+                                              ng-model="signup.address"
+                                              placeholder="Enter address"
+                                              ng-minlength="1"
+                                              ng-maxlength="150"
+                                              ng-required="true"
+                                              ng-trim></textarea>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.address.$touched" ng-messages="signupJobSeekerForm.address.$error" ng-if="signupJobSeekerForm.address.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter address</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Address must be between 1 and 150 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3" ng-class="{'has-error has-feedback':signupJobSeekerForm.currentLocationTown.$touched && signupJobSeekerForm.currentLocationTown.$invalid, 'has-success has-feedback': signupJobSeekerForm.currentLocationTown.$dirty && signupJobSeekerForm.currentLocationTown.$valid}">
+                                    <label for="currentLocationTown" class="control-label">Current Location Town</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-map-marker"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="currentLocationTown"
+                                               ng-model="signup.locationTown"
+                                               placeholder="Enter town/city"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-required="true"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.currentLocationTown.$dirty && signupJobSeekerForm.currentLocationTown.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.currentLocationTown.$touched && signupJobSeekerForm.currentLocationTown.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.currentLocationTown.$touched" ng-messages="signupJobSeekerForm.currentLocationTown.$error" ng-if="signupJobSeekerForm.currentLocationTown.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter current location town</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Current location town must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-3" ng-class="{'has-error':signupJobSeekerForm.currentLocationCountry.$touched && signupJobSeekerForm.currentLocationCountry.$invalid}">
+                                    <label for="currentLocationCountry" class="control-label">Current Location Country</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-map-marker"></span>
+                                        </div>
+                                        <select name="currentLocationCountry" class="form-control" data-ng-model="signup.locationCountry"
+                                                data-ng-options="currentLocationCountry for currentLocationCountry in locationCountryOptions"
+                                                ng-required="true"><option value="">Select location country</option></select>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.currentLocationCountry.$touched" ng-messages="signupJobSeekerForm.currentLocationCountry.$error" ng-if="signupJobSeekerForm.currentLocationCountry.$touched" role="alert">
+                                        <div ng-message="required">Please select current location country</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.linkedInProfile.$touched && signupJobSeekerForm.linkedInProfile.$invalid, 'has-success has-feedback': signupJobSeekerForm.linkedInProfile.$dirty && signupJobSeekerForm.linkedInProfile.$valid}">
+                                    <label for="linkedInProfile" class="control-label">LinkedIn Profile Address (optional)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="linkedInProfile"
+                                               ng-model="signup.linkedInProfile"
+                                               placeholder="Enter LinkedIn profile address"
+                                               ng-maxlength="150"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.linkedInProfile.$dirty && signupJobSeekerForm.linkedInProfile.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.linkedInProfile.$touched && signupJobSeekerForm.linkedInProfile.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.linkedInProfile.$touched" ng-messages="signupJobSeekerForm.linkedInProfile.$error" ng-if="signupJobSeekerForm.linkedInProfile.$touched" role="alert">
+                                        <div ng-message="maxlength">LinkedIN profile address must be a maximum of 150 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.website.$touched && signupJobSeekerForm.website.$invalid, 'has-success has-feedback': signupJobSeekerForm.website.$dirty && signupJobSeekerForm.website.$valid}">
+                                    <label for="website" class="control-label">Website (optional)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-globe"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="website"
+                                               ng-model="signup.website"
+                                               placeholder="Enter website"
+                                               ng-maxlength="150"
+                                               ng-trim />
+                                        <span ng-if="signupJobSeekerForm.website.$dirty && signupJobSeekerForm.website.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.website.$touched && signupJobSeekerForm.website.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.website.$touched" ng-messages="signupJobSeekerForm.website.$error" ng-if="signupJobSeekerForm.website.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="maxlength">Website must be a maximum of 150 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error':signupJobSeekerForm.professionalAffilitions.$touched && signupJobSeekerForm.professionalAffilitions.$invalid}">
+                                    <label for="professionalAffilitions" class="control-label">Professional Affiliations (optional)</label>
+                                    <textarea type="text"
+                                              class="form-control"
+                                              name="professionalAffilitions"
+                                              rows="5" cols="8"
+                                              ng-model="signup.professionalAffiliations"
+                                              placeholder="Enter professional affiliations"
+                                              ng-maxlength="200"
+                                              ng-trim></textarea>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.professionalAffilitions.$touched" ng-messages="signupJobSeekerForm.professionalAffilitions.$error" ng-if="signupJobSeekerForm.professionalAffilitions.$touched" role="alert">
+                                        <div ng-message="maxlength">Professional affilitions must be a maximum of 150 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error':signupJobSeekerForm.noticePeriod.$touched && signupJobSeekerForm.noticePeriod.$invalid}">
+                                    <label for="noticePeriod" class="control-label">Notice Period</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                        <select name="noticePeriod" class="form-control" data-ng-model="signup.noticePeriod"
+                                                data-ng-options="notice for notice in noticeOptions"
+                                                ng-required="true"><option value="">Select notice period</option></select>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.noticePeriod.$touched" ng-messages="signupJobSeekerForm.noticePeriod.$error" ng-if="signupJobSeekerForm.noticePeriod.$touched" role="alert">
+                                        <div ng-message="required">Please select notice period</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error':signupJobSeekerForm.currency.$touched && signupJobSeekerForm.currency.$invalid}">
+                                    <label for="currency" class="control-label">Required Salary Currency</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-money"></span>
+                                        </div>
+                                        <select name="currency" class="form-control" data-ng-model="signup.requiredSalaryCurrency"
+                                                data-ng-options="currency for currency in currencyOptions"
+                                                ng-required="true"><option value="">Select currency</option></select>                          
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.currency.$touched" ng-messages="signupJobSeekerForm.currency.$error" ng-if="signupJobSeekerForm.currency.$touched" role="alert">
+                                        <div ng-message="required">Please select required salary currency</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.requiredMinimumSalary.$touched && signupJobSeekerForm.requiredMinimumSalary.$invalid, 'has-success has-feedback': signupJobSeekerForm.requiredMinimumSalary.$dirty && signupJobSeekerForm.requiredMinimumSalary.$valid}">
+                                    <label for="requiredMinimumSalary" class="control-label">Required Minimum Salary</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-money"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="requiredMinimumSalary"
+                                               ng-model="signup.requiredMinimumSalary"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-required="true"
+                                               ng-trim
+                                               pformat
+                                               prefix=""
+                                               thousands=","
+                                               cents="." />
+                                        <span ng-if="signupJobSeekerForm.requiredMinimumSalary.$dirty && signupJobSeekerForm.requiredMinimumSalary.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.requiredMinimumSalary.$touched && signupJobSeekerForm.requiredMinimumSalary.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.requiredMinimumSalary.$touched" ng-messages="signupJobSeekerForm.requiredMinimumSalary.$error" ng-if="signupJobSeekerForm.requiredMinimumSalary.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter required minimum salary</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Minimum salary must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':signupJobSeekerForm.requiredMaximumSalary.$touched && signupJobSeekerForm.requiredMaximumSalary.$invalid, 'has-success has-feedback': signupJobSeekerForm.requiredMaximumSalary.$dirty && signupJobSeekerForm.requiredMaximumSalary.$valid}">
+                                    <label for="requiredMaximumSalary" class="control-label">Required Maximum Salary</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-money"></span>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="requiredMaximumSalary"
+                                               ng-model="signup.requiredMaximumSalary"
+                                               ng-minlength="1"
+                                               ng-maxlength="50"
+                                               ng-required="true"
+                                               ng-trim
+                                               pformat
+                                               prefix=""
+                                               thousands=","
+                                               cents="." />
+                                        <span ng-if="signupJobSeekerForm.requiredMaximumSalary.$dirty && signupJobSeekerForm.requiredMaximumSalary.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span ng-if="signupJobSeekerForm.requiredMaximumSalary.$touched && signupJobSeekerForm.requiredMaximumSalary.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                    </div>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.requiredMaximumSalary.$touched" ng-messages="signupJobSeekerForm.requiredMaximumSalary.$error" ng-if="signupJobSeekerForm.requiredMaximumSalary.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter required maximum salary</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Maximum salary must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error':signupJobSeekerForm.preferedJobTitles.$touched && signupJobSeekerForm.preferedJobTitles.$invalid}">
+                                    <label for="preferedJobTitles" class="control-label">Preferred Job Titles (Comma Separated e.g Accountant,(optional))</label>
+                                    <textarea type="text"
+                                              class="form-control"
+                                              name="preferedJobTitles"
+                                              rows="5" cols="8"
+                                              ng-model="signup.preferredJobTitles"
+                                              placeholder="Enter preferred job titles"
+                                              ng-minlength="1"
+                                              ng-maxlength="500"                                            
+                                              ng-trim></textarea>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.preferedJobTitles.$touched" ng-messages="signupJobSeekerForm.preferedJobTitles.$error" ng-if="signupJobSeekerForm.preferedJobTitles.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter preferred job titles</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Preferred job titles must be between 1 and 500 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error':signupJobSeekerForm.preferedJobTypes.$touched && signupJobSeekerForm.preferedJobTypes.$invalid}">
+                                    <label for="preferedJobTypes" class="control-label">Preferred Job Types (Comma Separated e.g Permanent,(optional))</label>
+                                    <textarea type="text"
+                                              class="form-control"
+                                              name="preferedJobTypes"
+                                              rows="5" cols="8"
+                                              ng-model="signup.preferredJobTypes"
+                                              placeholder="Enter preferred job types"
+                                              ng-minlength="1"
+                                              ng-maxlength="500"                                           
+                                              ng-trim></textarea>
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.preferedJobTypes.$touched" ng-messages="signupJobSeekerForm.preferedJobTypes.$error" ng-if="signupJobSeekerForm.preferedJobTypes.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter preferred job types</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Preferred job types must be between 1 and 500 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6" ng-class="{'has-error':signupJobSeekerForm.preferedJobLocations.$touched && signupJobSeekerForm.preferedJobLocations.$invalid}">
+                                    <label for="preferedJobLocations" class="control-label">Preferred Job Locations (Comma Separated e.g Pretoria South Africa,(optional) )</label>
+                                    <textarea type="text"
+                                              class="form-control"
+                                              name="preferedJobLocations"
+                                              rows="5" cols="8"
+                                              ng-model="signup.preferredJobLocations"
+                                              placeholder="Enter preferred job locations"
+                                              ng-minlength="1"
+                                              ng-maxlength="500"
+                                              ng-trim></textarea>                          
+                                    <div class="help-block" ngfx-slide-in-left="signupJobSeekerForm.preferedJobLocations.$touched" ng-messages="signupJobSeekerForm.preferedJobLocations.$error" ng-if="signupJobSeekerForm.preferedJobLocations.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter preferred job locations</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Preferred job locations must be between 1 and 500 characters long</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </v-pane-content>
+                    </v-pane>
+                </v-accordion>
+                <hr />
+                <p>By signing up, you agree to the <a ui-sref="auth.terms" style="color: #FFA500;">Terms of Use </a> and <a ui-sref="auth.privacy" style="color: #FFA500;">Jobmix.co.za's Privacy Policy</a>.</p>
+                <button class="btn btn-primary" ng-disabled="signupJobSeekerForm.$invalid" ng-click="save()">Sign Up</button>
+                <hr />
+            </form>
+</div>
+

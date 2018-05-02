@@ -1,0 +1,60 @@
+﻿<div class="container" ng-controller="JobController"> 
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="row">
+                <br />
+                <div><button ng-click="back()" class="btn btn-primary">Back</button></div>
+                <hr /> 
+                <div class="media">
+                    <div class="pull-left" href="#">
+                        <img ng-src="{{jobAd.company.companyLogo||'images/companyLogo.jpg'}}" alt="Company Logo" class="img-thumbnail" width="218" height="100" uib-tooltip="{{jobAd.company.introduction}}" />
+                        <p class="text-center"><span><strong>{{jobAd.company.companyName}}</strong></span></p>
+                        <p class="text-center"><button ng-click="aboutRecruiter(jobAd)" class="btn btn-primary">About {{jobAd.company.companyName}}</button></p>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading"><strong>{{jobAd.jobTitle}}</strong></h3>
+                        <dl class="dl-horizontal">
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Location</strong></dt>
+                            <dd>{{jobAd.jobLocationTown}} {{jobAd.jobLocationCountry}}</dd>
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Job Type</strong></dt>
+                            <dd>{{jobAd.jobType}} {{jobAd.jobLevel}} Position</dd>
+                            <dt style="text-align:left"><span class="fa fa-money"></span> <strong>Salary</strong></dt>
+                            <dd>{{jobAd.salaryCurrency}}{{jobAd.minimumSalary}}-{{jobAd.salaryCurrency}}{{jobAd.maximumSalary}} {{jobAd.salaryFrequency}} {{jobAd.renumerationType}}</dd>
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Job REF</strong></dt>
+                            <dd>{{jobAd.jobREF}}</dd>
+                            <dt style="text-align:left"><span class="fa fa-industry"></span> <strong>Sector</strong></dt>
+                            <dd>{{jobAd.companySector}}</dd>
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-calendar"></span> <strong>Posted by </strong></dt>
+                            <dd>{{jobAd.company.companyName}} on {{jobAd.createdOn| date :  "fullDate"}}</dd>
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-time"></span> <strong>Closing Date </strong></dt>
+                            <dd>{{jobAd.closingDate| date :  "fullDate"}}</dd>
+                        </dl>
+                        <h4 ng-if="jobAd.closed"><span class="label label-danger">Closed</span></h4>
+                        <hr />
+                        <h3><strong>Introduction</strong></h3>
+                        <p>{{jobAd.introduction}}</p>
+                        <h3><strong>Job Description</strong></h3>
+                        <p>{{jobAd.jobDescription}}</p>
+                        <hr />
+                        <h3><strong>Job Requirements</strong></h3>
+                        <p>{{jobAd.jobRequirements}}</p>
+                        <hr />
+                        <h3><strong>How to apply</strong></h3>
+                        <p ng-if="jobAd.applyOnline">Apply Online</p>
+                        <p ng-if="!jobAd.applyOnline">{{jobAd.howToApply}}</p>
+                        <p>Apply before {{jobAd.closingDate| date :  "fullDate"}}</p>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group" ng-hide="jobAd.closed">
+                                    <button ng-if="jobAd.applyOnline" ng-click="sendApplication()" class="btn btn-lg  btn-block btn-primary">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

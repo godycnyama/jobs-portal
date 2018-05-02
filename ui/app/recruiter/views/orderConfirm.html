@@ -1,0 +1,35 @@
+﻿<div class="container">
+    <h1>Check Out</h1>
+    <br />
+    <p><strong>Please review your order then click on "Place order" button</strong></p>
+    <br />
+    <a class="btn btn-primary" ui-sref="recruiters.createJobAd"><span class="glyphicon glyphicon-plus-sign"></span> Add Job Ad</a>
+    <h2>Your Order</h2>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="well">
+                    <td><b>JobAD ID</b></td>
+                    <td><b>JobAD REF</b></td>
+                    <td><b>Price</b></td>
+                    <td />
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="jobAd in jobAdsOrder">
+                    <td>jobAd.jobAdID</td>
+                    <td>jobAd.jobAdREF</td>
+                    <td>jobAd.price</td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>jobAdsOrder.total</strong></td>
+                </tr>
+            </tbody>     
+        </table>
+        <br />
+        <button>Place Order</button>
+    </div>
+</div>
+

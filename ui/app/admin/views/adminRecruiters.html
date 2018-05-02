@@ -1,0 +1,181 @@
+﻿<div class="container" data-ng-controller="AdminRecruitersController">
+    <h1>Manage Recruiters</h1>
+    <br />
+    <a class="btn btn-primary" ui-sref="admin.Master"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    <hr />
+    <form name="recruiters">
+        <h2>Search for Recruiters</h2>
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <label for="searchOption" class="control-label">Search By</label>
+                <select class="form-control" name="searchOption" data-ng-model="searchBy"
+                        data-ng-options="searchOption for searchOption in searchByOptions"></select>
+            </div>
+            <div class="form-group col-sm-1" ng-hide="searchBy==='RecruiterID'||searchBy==='Company Name'||searchBy==='Date'||searchBy==='Date Range'">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchRecruiters()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="searchBy==='RecruiterID'||searchBy==='Company Name'">
+            <div class="form-group col-sm-3" ng-class="{'has-error':recruiters.searchTerm.$touched && recruiters.searchTerm.$invalid}">
+                <label for="searchTerm" class="control-label">Enter {{searchBy}}</label>
+                <input type="text"
+                       class="form-control"
+                       name="searchTerm"
+                       data-ng-model="searchTerm"
+                       placeholder="Enter Search Term"
+                       ng-minlength="1"
+                       ng-maxlength="50"
+                       ng-required="true"
+                       ng-trim />
+                <div class="help-block" ng-messages="recruiters.searchTerm.$error" ng-if="recruiters.searchTerm.$touched" role="alert" ng-messages-multiple>
+                    <div ng-message="required">Please enter search term</div>
+                    <div ng-message-exp="['minlength','maxlength']">Search term must be between 1 and 50 characters long</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchJobAds()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="searchBy==='Date'">
+            <div class="form-group col-sm-2" ng-class="{'has-error':recruiters.date.$touched && recruiters.date.$invalid}">
+                <label for="date" class="control-label">Date</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="date"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="date"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="datePickerOpened"
+                           ng-focus="datePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="recruiters.date.$error" ng-if="recruiters.date.$touched" role="alert">
+                    <div ng-message="required">Please select date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchRecruiters()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="searchBy==='Date Range'">
+            <div class="form-group col-sm-2" ng-class="{'has-error':recruiters.fromDate.$touched && recruiters.fromDate.$invalid}">
+                <label for="fromDate" class="control-label">Date From</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="fromDate"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="dateFrom"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="fromDatePickerOpened"
+                           ng-focus="fromDatePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openFromDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="recruiters.fromDate.$error" ng-if="recruiters.fromDate.$touched" role="alert">
+                    <div ng-message="required">Please enter start date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-2" ng-class="{'has-error':recruiters.toDate.$touched && recruiters.toDate.$invalid}">
+                <label for="toDate" class="control-label">Date To</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="toDate"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="dateTo"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="toDatePickerOpened"
+                           ng-focus="toDatePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openToDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="recruiters.toDate.$error" ng-if="recruiters.toDate.$touched" role="alert">
+                    <div ng-message="required">Please enter start date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchRecruiters()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span>Display</span>
+                    </div>
+                    <select class="form-control" name="viewOption" data-ng-model="recruitersPerPage"
+                            data-ng-options="viewPerPageOption for viewPerPageOption in viewPerPageOptions"></select>
+                    <div class="input-group-addon">
+                        <span>Per Page</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <dir-pagination-controls on-page-change="getPage(newPageNumber)" max-size="5"></dir-pagination-controls>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <div dir-paginate="recruiter in recruiters | itemsPerPage: recruitersPerPage" total-items="totalRecruiters" current-page="pagination.current">
+        <hr />
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img ng-src="{{recruiter.companyLogo}}" alt="Company Logo" class="img-thumbnail" height="140" width="140" />
+            </a>
+            <div class="media-body">
+                <dl class="dl-horizontal">
+                    <dt style="text-align:left"><span class="fa fa-institution"></span> <strong>Company Name</strong></dt>
+                    <dd>{{recruiter.companyName}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Recruiter ID</strong></dt>
+                    <dd>{{recruiter._id}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Recruiter Type</strong></dt>
+                    <dd>{{recruiter.recruiterType}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-industry"></span> <strong>Company Sector</strong></dt>
+                    <dd>{{recruiter.companySector}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-calendar"></span> <strong>Year Founded</strong></dt>
+                    <dd>{{recruiter.yearFounded}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon fa fa-users"></span> <strong>Number of Employees</strong></dt>
+                    <dd>{{recruiter.numberOfemployees}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Company Introduction</strong></dt>
+                    <dd>{{recruiter.introduction}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Physical Address </strong></dt>
+                    <dd>{{recruiter.physicalAddress}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-envelope"></span> <strong>Postal Address</strong></dt>
+                    <dd> {{recruiter.postalAddress}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-phone-alt"></span> <strong>Tel</strong></dt>
+                    <dd>{{recruiter.tel}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-phone"></span> <strong>Mobile</strong></dt>
+                    <dd>{{recruiter.mobile}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-envelope"></span> <strong>Email</strong></dt>
+                    <dd>{{recruiter.email}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-fax"></span> <strong>Fax</strong></dt>
+                    <dd>{{recruiter.fax}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-globe"></span> <strong>Website</strong></dt>
+                    <dd>{{recruiter.website}}</dd>
+                </dl>
+                <button ng-click="deleteRecruiter(recruiter)" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span> Delete Recruiter</button>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>

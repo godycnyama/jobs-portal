@@ -1,0 +1,47 @@
+﻿<div class="container"  ng-controller="CVController">
+    <h1><span class="glyphicon glyphicon-file"></span> Upload CV</h1>
+    <br />
+    <button ng-click="back()" class="btn btn-primary"> <span class="glyphicon glyphicon-arrow-left"></span>Back</button>
+    <div class="row">
+        <div class="col-sm-8">
+            <hr />
+            <form name="attachCV" role="form" novalidate>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <button class="btn btn-success" ng-model="cvFile"
+                                name="file"
+                                ngf-max-size="2MB"
+                                ngf-select
+                                accept=".doc,.docx,.pdf"
+                                ngf-pattern=".doc,.docx,.pdf"
+                                ngf-model-invalid="errorFile">
+                            Select CV
+                        </button>
+                        <span>{{cvFile.name}}</span>
+                        <button class="btn btn-primary" ng-click="cvFile = null" ng-show="cvFile"><span class="glyphicon glyphicon-trash"></span> Remove</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <div class="progress" ng-show="cvFile.progress >= 0">
+                            <div class="progress-bar progress-bar-success" role="progressbar"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width:{{cvFile.progress}}%"
+                                 ng-bind="cvFile.progress + '%'">
+                            </div>
+                        </div>
+                        <span ng-show="cvFile.result">CV uploaded successfully!</span>
+                        <span class="err" ng-show="errorMessage">{{errorMessage}}</span>
+                    </div>                  
+                </div>
+                <div class="row">
+                    <div ng-disabled="!attachCV.$valid" class="form-group col-sm-6">
+                        <button type="submit" class="btn btn-primary" ng-click="uploadCV()"><span class="glyphicon glyphicon-upload"></span> Upload</button>
+                        <a class="btn btn-primary" ui-sref="profile.master"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+                    </div>
+                </div>
+                
+        </form>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,212 @@
+﻿<div class="container" data-ng-controller="AdminJobSeekerController">
+    <br />
+    <h1>Profile</h1>
+    <button class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+    <br />
+    <div class="text-center">
+        <img class="vignetteA" ng-src="{{jobSeeker.photo || 'images/user-avatar-placeholder.png' }}" alt="Photo" />
+    </div>
+    <h3 class="text-center">{{jobSeeker.firstName}} {{jobSeeker.middleName}} {{jobSeeker.lastName}} <small>{{jobSeeker.gender}} DOB {{jobSeeker.birthDate| date :  "dd/MM/yyyy"}}</small></h3>
+    <div ng-if="jobSeeker.profession" class="text-center"><span class="fa fa-id-card"></span> {{jobSeeker.profession}}</div>
+    <div ng-if="jobSeeker.mainQualification" class="text-center"><span class="glyphicon glyphicon-education"></span> {{jobSeeker.mainQualification}}</div>
+    <div ng-if="jobSeeker.homeTel" class="text-center"><span class="glyphicon glyphicon-earphone"></span> {{jobSeeker.homeTel}}</div>
+    <div ng-if="jobSeeker.workTel" class="text-center"><span class="glyphicon glyphicon-phone-alt"></span> {{jobSeeker.workTel}}</div>
+    <div ng-if="jobSeeker.mobile" class="text-center"><span class="glyphicon glyphicon-phone"></span> {{jobSeeker.mobile}}</div>
+    <div ng-if="jobSeeker.email" class="text-center"><span class="fa fa-envelope"></span> {{jobSeeker.email}}</div>
+    <div ng-if="jobSeeker.address" class="text-center"><span class="glyphicon glyphicon-map-marker"></span> {{jobSeeker.address}} | {{jobSeeker.locationTown}} {{jobSeeker.locationCountry}}</div>
+    <hr />
+    <h4 ng-if="jobSeeker.introduction" class="text-center">Introduction</h4>
+    <div ng-if="jobSeeker.introduction" class="text-center">{{jobSeeker.introduction}}</div>
+    <hr />
+    <v-accordion class="vAccordion--default">
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-user"></span>  Personal Details
+            </v-pane-header>
+            <v-pane-content>
+                <button class="btn btn-primary" ng-click="editPersonalDetail()"><span class="glyphicon glyphicon-edit"></span> Edit Personal Details</button> 
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>LinkedIn Profile</strong></dt>
+                    <dd>{{jobSeeker.linkedInProfile}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-globe"></span> <strong>Website</strong></dt>
+                    <dd>{{jobSeeker.website}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Professional Affiliations</strong></dt>
+                    <dd>{{jobSeeker.affiliations}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-calendar"></span> <strong>Notice Period</strong></dt>
+                    <dd>{{jobSeeker.noticePeriod}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-money"></span> <strong>Required Salary</strong></dt>
+                    <dd>{{jobSeeker.requiredSalary}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Preferred Job Titles</strong></dt>
+                    <dd>{{jobSeeker.preferredJobTitles}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Preferred Job Types</strong></dt>
+                    <dd>{{jobSeeker.preferredJobTypes}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Preferred Job Locations</strong></dt>
+                    <dd>{{jobSeeker.preferredJobLocations}}</dd>
+                </dl> 
+                <hr />          
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="glyphicon glyphicon-education"></span>  Education
+            </v-pane-header>
+            <v-pane-content>
+                <a class="btn btn-primary" ng-click="createQualification()"><span class="fa fa-plus"></span> Add Qualification</a>
+                <div ng-repeat="qualification in jobSeeker.qualifications">
+                    <hr />
+                    <div>
+                        <button class="btn btn-primary" ng-click="editQualification(qualification)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                        <button ng-click="deleteQualification(qualification)" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                    </div>
+                    <br />
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left"><strong>Qualification Title</strong></dt>
+                        <dd>{{qualification.title}}</dd>
+                        <dt style="text-align:left"><strong>Qualification Level</strong></dt>
+                        <dd>{{qualification.level}}</dd>
+                        <dt style="text-align:left"><strong>Duration and Status</strong></dt>
+                        <dd>{{qualification.startMonth}} {{qualification.startYear}}-{{qualification.endMonth}} {{qualification.endYear}}        {{qualification.status}}</dd>
+                        <dt style="text-align:left"> <strong>Institution</strong></dt>
+                        <dd>{{qualification.institution}}     {{qualification.country}}</dd>
+                        <dt style="text-align:left"><strong>Majors</strong></dt>
+                        <dd>{{qualification.majors}}</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-cogs"></span>  Skills
+            </v-pane-header>
+            <v-pane-content>
+                <a class="btn btn-primary" ui-sref="profile.skillCreate"><span class="fa fa-plus"></span> Add Skill</a>
+                <div ng-repeat="skill in jobSeeker.skills">
+                    <hr />
+                    <div>
+                        <a class="btn btn-primary" ng-click="editSkill(skill)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <button ng-click="deleteSkill(skill)" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                    </div>
+                    <br />
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left"><strong>Skill Description</strong></dt>
+                        <dd>{{skill.description}}</dd>
+                        <dt style="text-align:left"><strong>Skill Level</strong></dt>
+                        <dd>{{skill.skillLevel}}</dd>
+                        <dt style="text-align:left"><strong>Experience</strong></dt>
+                        <dd>{{skill.experience}}</dd>
+                        <dt style="text-align:left"> <strong>Last Date Used</strong></dt>
+                        <dd ng-hide="skill.isCurrent === true">{{skill.lastDateUsedMonth}} - {{skill.lastDateUsedYear}}</dd>
+                        <dd ng-show="skill.isCurrent === true">Current</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-archive"></span>  Work Experience
+            </v-pane-header>
+            <v-pane-content>
+                <a class="btn btn-primary" ui-sref="profile.employmentCreate"><span class="fa fa-plus"></span> Add Employment</a>
+                <div ng-repeat="employment in jobSeeker.employment">
+                    <hr />
+                    <div>
+                        <button class="btn btn-primary" ng-click="editEmployment(employment)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                        <button ng-click="deleteEmployment(employment)" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                    </div>
+                    <br />
+                    <div><span><strong>{{employment.jobTitle}}</strong></span></div>
+                    <div><span><strong>{{employment.companyName}}</strong></span></div>
+                    <div ng-show="employment.isCurrent === false"><span><strong>{{employment.startMonth}} {{employment.startYear}}-{{employment.endMonth}} {{employment.endYear}}</strong></span></div>
+                    <div ng-show="employment.isCurrent === true"><span><strong>{{employment.startMonth}} {{employment.startYear}}-Current</strong></span></div>
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left" ng-show="employment.isCurrent === false"><strong>Reasons for Leaving</strong></dt>
+                        <dd ng-show="employment.isCurrent === false">{{employment.reasonsForLeaving}}</dd>
+                        <dt style="text-align:left"><strong>Duties and Responsibilites</strong></dt>
+                        <dd>{{employment.duties}}</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-language"></span>  Languages
+            </v-pane-header>
+            <v-pane-content>
+                <a class="btn btn-primary" ui-sref="profile.languageCreate"> <span class="fa fa-plus"></span> Add Language</a>
+                <div ng-repeat="language in jobSeeker.languages">
+                    <hr />
+                    <div>
+                        <button class="btn btn-primary" ng-click="editLanguage(language)"> <span class="glyphicon glyphicon-edit"></span> Edit</button>
+                        <button ng-click="deleteLanguage(language)" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                    </div>
+                    <br />
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left"><strong>Language Name</strong></dt>
+                        <dd>{{language.languageName}}</dd>
+                        <dt style="text-align:left"><strong>Spoken Ability</strong></dt>
+                        <dd>{{language.spokenAbility}}</dd>
+                        <dt style="text-align:left"><strong>Written Ability</strong></dt>
+                        <dd>{{language.writtenAbility}}</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-address-book"></span>  Referees
+            </v-pane-header>
+            <v-pane-content>
+                <a class="btn btn-primary" ui-sref="profile.refereeCreate"> <span class="fa fa-plus"></span> Add Referee</a>
+                <div ng-repeat="referee in jobSeeker.referees">
+                    <hr />
+                    <div>
+                        <button class="btn btn-primary" ng-click="editReferee(referee)"> <span class="glyphicon glyphicon-edit"></span> Edit</button>
+                        <button ng-click="deleteReferee(referee)" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                    </div>
+                    <br />
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left"><strong>Name</strong></dt>
+                        <dd>{{referee.fullName}}</dd>
+                        <dt style="text-align:left"><strong>Title</strong></dt>
+                        <dd>{{referee.title}}</dd>
+                        <dt style="text-align:left"><strong>Organisation Name</strong></dt>
+                        <dd>{{referee.organisationName}}</dd>
+                        <dt style="text-align:left"><strong>Tel</strong></dt>
+                        <dd>{{referee.tel}}</dd>
+                        <dt style="text-align:left"><strong>Cell</strong></dt>
+                        <dd>{{referee.cell}}</dd>
+                        <dt style="text-align:left"><strong>Email</strong></dt>
+                        <dd>{{referee.refereeEmail}}</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-file"></span>  CV
+            </v-pane-header>
+            <v-pane-content>
+                <hr />
+                <a ng-hide="jobSeeker.cv.fileName" class="btn btn-primary" ui-sref="profile.cv"> <span class="glyphicon glyphicon-paperclip"></span> Attach CV</a>
+                <span ng-show="jobSeeker.cv.fileName">
+                    <strong>{{jobSeeker.cv.fileName}}</strong>
+                </span>
+                <button ng-show="jobSeeker.cv.fileName" class="btn btn-primary" ng-click="downloadCV()"><span class="glyphicon glyphicon-download"></span> Download</button>
+                <button ng-show="jobSeeker.cv.fileName" class="btn btn-primary" ng-click="deleteCV()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                <hr />
+            </v-pane-content>
+        </v-pane>
+    </v-accordion>
+</div>

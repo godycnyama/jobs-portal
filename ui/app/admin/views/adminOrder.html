@@ -1,0 +1,24 @@
+﻿<div class="container" data-ng-controller="AdminOrderController">
+    <h1>Order# {{order._id}}</h1>
+    <br />
+    <button class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+    <button class="btn btn-primary" ng-click="markOrderPaid()">Mark order as paid</button>
+    <button class="btn btn-primary" ng-click="deleteOrder()">Delete Order</button>
+    <hr />
+    <table class="table table-bordered">
+        <thead>
+            <tr class="well">
+                <td><b>JobAdID</b></td>
+                <td><b>JobREF</b></td>
+                <td><b>Job Title</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="jobAd in order.orderDetails">
+                <td>{{ jobAd.jobAdID }}</td>
+                <td>{{ jobAd.jobREF }}</td>
+                <td>{{ jobAd.jobTitle }}</td>
+            </tr>
+        </tbody>     
+    </table>
+</div>

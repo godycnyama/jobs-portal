@@ -1,0 +1,28 @@
+﻿<div class="container" ng-controller="CheckOutSearchOrderController">
+    <h1>Check Out</h1>
+    <br />
+    <a class="btn btn-primary" ui-sref="recruiters.jobAdsMaster"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    <p><strong>Please review your order then click on "Place Order" button to pay.Jobmix payments are processed through PayFast Payment Gateway</strong></p>
+    <br />   
+    <h2>Your Order</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h2><span class="glyphicon glyphicon-shopping-cart"></span> CV Search Order {{order._id}}</h2></div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left"><strong>Order Number:</strong></dt>
+                        <dd>{{order._id}}</dd>
+                        <dt style="text-align:left"><strong>Description:</strong></dt>
+                        <dd>CV seacrh for {{order.months}} month(s)</dd>                       
+                    </dl>      
+                    <div>
+                        <button class="btn btn-primary" ng-click="edit()">Edit Order</button>
+                        <button class="btn btn-primary" ng-click="pay()">Place Order</button>
+                        <button class="btn btn-primary" ng-click="paymentNotify()">Payment Notify</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿<div class="container" data-ng-controller="OrdersAddToController" ng-init="loadOrders()">
+    <h1>Select order to add Job Ad to</h1>
+    <br />
+    <button class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+    <button class="btn btn-primary" ng-click="loadOrders()">Load orders</button>
+    <button ng-if="mode" class="btn btn-primary" ng-click="createJobAdAddToNewOrder()">Create job Ad & Add to new order</button>
+    <button ng-if="!mode  && !edit" class="btn btn-primary" ng-click="addExistingJobAdToNewOrder()">Add job Ad {{jobAd.jobREF}} to new order</button>
+    <button ng-if="edit" class="btn btn-primary" ng-click="updateJobAdAddToNewOrder()">Update Job Ad {{jobAd.jobREF}} & Add to new order</button>
+    <hr />
+    <form name="orders">           
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span>Display</span>
+                    </div>
+                    <select class="form-control" name="viewOption" data-ng-model="ordersPerPage"
+                            data-ng-options="viewPerPageOption for viewPerPageOption in viewPerPageOptions"></select>
+                    <div class="input-group-addon">
+                        <span>Per Page</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <dir-pagination-controls on-page-change="getPage(newPageNumber)" max-size="5"></dir-pagination-controls>
+            </div>
+        </div>
+    </form>   
+    <hr />
+    <table class="table table-bordered" ng-show="orders != null">
+        <thead>
+            <tr class="well">
+                <td><b>OrderID</b></td>
+                <td><b>Job Ads Total</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr dir-paginate="order in orders | itemsPerPage: ordersPerPage" total-items="totalOrders" current-page="pagination.current">
+                <td>{{ order._id }}</td>
+                <td>{{ order.orderDetails.length }}</td>
+                <td><button class="btn btn-primary" ng-click="viewOrder(order)">View Order</button></td>
+                <td ng-if="mode && !edit"><button class="btn btn-primary" ng-click="createJobAdAddToExistingOrder(order)">Create job Ad & Add to Order# {{order._id}}</button></td>
+                <td ng-if="!mode && !edit"><button class="btn btn-primary" ng-click="addExistingJobAdToExistingOrder(order)">Add job Ad {{jobAd.jobREF}} to Order# {{order._id}}</button></td>
+                <td ng-if="edit"><button class="btn btn-primary" ng-click="updateJobAdAddToExistingOrder(order)">Update  job Ad {{jobAd.jobREF}} & Add to Order# {{order._id}}</button></td>
+            </tr>
+        </tbody>    
+    </table>
+</div>

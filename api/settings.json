@@ -1,0 +1,15 @@
+﻿{  
+    "dbConnectionString": "",
+    "merchant_id": "",
+    "merchant_key": "",
+    "return_url": "",
+    "cancel_url": "",
+    "notify_url": "",
+    "pass_phrase": "",
+    "validationURL": "https://www.payfast.co.za/eng/query/validate",
+    "encr_key": "bnmTYgdwup359032HswNF",
+    "mailgun_key": "nafdge2GLq2",
+    "email_domain": "jobmix.com",
+    "sending_email": "godycnyama@yahoo.co.uk"
+
+}

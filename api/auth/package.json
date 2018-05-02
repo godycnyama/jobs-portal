@@ -1,0 +1,6 @@
+﻿{
+  "name": "auth",
+  "version": "0.0.1",
+  "description": "Authorization plugin",
+   "main": "index.js"
+ }

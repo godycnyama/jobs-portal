@@ -1,0 +1,139 @@
+﻿<div class="container" data-ng-controller="RecruiterOrdersController" ng-init="init()">
+    <h1>Manage Orders</h1>
+    <br />
+    <button class="btn btn-primary" ng-click="createOrder()" > <span class="glyphicon glyphicon-plus"></span> Create new order</button>
+    <hr />
+    <form name="ordersForm">
+        <h2>Search for Orders</h2>       
+        <div class="row">
+            <div class="form-group col-sm-2">              
+                    <label for="searchOption" class="control-label">Search By</label>
+                    <select class="form-control" name="searchOption" data-ng-model="searchBy"
+                                data-ng-options="searchOption for searchOption in searchByOptions" ng-change="clearOrders()"></select>                                
+            </div>
+            <div class="form-group col-sm-1" ng-hide="searchBy==='Date'||searchBy==='Date Range'">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchOrders()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>            
+        </div>
+        <div class="row" ng-show="searchBy==='Date'">
+            <div class="form-group col-sm-2" ng-class="{'has-error':ordersForm.date.$touched && ordersForm.date.$invalid}">
+                <label for="date" class="control-label">Date</label>
+                <div class="input-group">                  
+                    <input type="text" class="form-control"
+                           name="date"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="date"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="datePickerOpened"
+                           ng-focus="datePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="ordersForm.date.$error" ng-if="ordersForm.date.$touched" role="alert">
+                    <div ng-message="required">Please select date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchOrders()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="searchBy==='Date Range'">
+            <div class="form-group col-sm-2" ng-class="{'has-error':ordersForm.fromDate.$touched && ordersForm.fromDate.$invalid}">
+                <label for="fromDate" class="control-label">Date From</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="fromDate"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="dateFrom"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="fromDatePickerOpened"
+                           ng-focus="fromDatePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openFromDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="ordersForm.fromDate.$error" ng-if="ordersForm.fromDate.$touched" role="alert">
+                    <div ng-message="required">Please enter start date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-2" ng-class="{'has-error':ordersForm.toDate.$touched && ordersForm.toDate.$invalid}">
+                <label for="toDate" class="control-label">Date To</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="toDate"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="dateTo"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="toDatePickerOpened"
+                           ng-focus="toDatePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openToDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="ordersForm.toDate.$error" ng-if="ordersForm.toDate.$touched" role="alert">
+                    <div ng-message="required">Please enter start date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px" >
+                    <button type="button" class="btn btn-primary" ng-click="searchOrders()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>               
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span>Display</span>
+                    </div>
+                    <select class="form-control" name="viewOption" data-ng-model="ordersPerPage"
+                            data-ng-options="viewPerPageOption for viewPerPageOption in viewPerPageOptions"></select>
+                    <div class="input-group-addon">
+                        <span>Per Page</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <dir-pagination-controls on-page-change="getPage(newPageNumber)" max-size="5"></dir-pagination-controls>
+            </div>
+        </div>
+    </form>   
+    <hr />
+    <table class="table table-bordered" ng-show="!isEmpty()">
+        <thead>
+            <tr class="well">
+                <td><b>OrderID</b></td>
+                <td><b>Payment Status</b></td>
+                <td><b>Total (R)</b></td>
+                <td><b>Total Order Items</b></td>
+                <td><b>Created On</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr dir-paginate="order in orders | itemsPerPage: ordersPerPage" total-items="totalOrders" current-page="pagination.current">
+                <td>{{ order._id }}</td>
+                <td><span ng-if="order.paid">Paid</span><span ng-if="!order.paid">Not Paid</span></td>
+                <td>{{ order.total }}</td>
+                <td>{{ order.orderDetails.length }}</td>
+                <td>{{order.createdOn| date :  "dd/MM/yyyy"}}</td>
+                <td><button class="btn btn-primary" ng-click="viewOrder(order)">View Order</button></td>
+                <td ng-if="!order.paid"><button class="btn btn-primary" ng-click="proceedCheckOut(order)">Proceed to checkout</button></td>
+                <td ng-if="!order.paid"><button class="btn btn-primary" ng-click="deleteOrder(order)">Delete Order</button></td>
+            </tr>
+        </tbody>     
+    </table>
+</div>

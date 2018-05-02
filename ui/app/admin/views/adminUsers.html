@@ -1,0 +1,154 @@
+<div class="container" data-ng-controller="AdminUsersController">
+    <h1>Manage Users</h1>
+    <br />
+    <a class="btn btn-primary" ui-sref="admin.Master"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    <hr />
+    <form name="usersForm">
+        <h2>Search for Users</h2>       
+        <div class="row">
+            <div class="form-group col-sm-2">              
+                    <label for="searchOption" class="control-label">Search By</label>
+                    <select class="form-control" name="searchOption" data-ng-model="searchBy"
+                                data-ng-options="searchOption for searchOption in searchByOptions"></select>                                
+            </div>
+            <div class="form-group col-sm-1" ng-hide="searchBy==='UserID'||searchBy==='Email'||searchBy==='Date'||searchBy==='Date Range'">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchUsers()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>            
+        </div>
+        <div class="row" ng-show="searchBy==='UserID'||searchBy==='Email'">
+            <div class="form-group col-sm-3" ng-class="{'has-error':usersForm.searchTerm.$touched && usersForm.searchTerm.$invalid}">
+                <label for="searchTerm" class="control-label">Enter {{searchBy}}</label>
+                <input type="text"
+                       class="form-control"
+                       name="searchTerm"
+                       data-ng-model="searchTerm"
+                       placeholder="Enter Search Term"
+                       ng-minlength="1"
+                       ng-maxlength="50"
+                       ng-required="true"
+                       ng-trim />
+                <div class="help-block" ng-messages="usersForm.searchTerm.$error" ng-if="usersForm.searchTerm.$touched" role="alert" ng-messages-multiple>
+                    <div ng-message="required">Please enter search term</div>
+                    <div ng-message-exp="['minlength','maxlength']">Search term must be between 1 and 50 characters long</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchUsers()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="searchBy==='Date'">
+            <div class="form-group col-sm-2" ng-class="{'has-error':usersForm.date.$touched && usersForm.date.$invalid}">
+                <label for="date" class="control-label">Date</label>
+                <div class="input-group">                  
+                    <input type="text" class="form-control"
+                           name="date"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="date"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="datePickerOpened"
+                           ng-focus="datePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="usersForm.date.$error" ng-if="usersForm.date.$touched" role="alert">
+                    <div ng-message="required">Please select date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchUsers()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="searchBy==='Date Range'">
+            <div class="form-group col-sm-2" ng-class="{'has-error':usersForm.fromDate.$touched && usersForms.fromDate.$invalid}">
+                <label for="fromDate" class="control-label">Date From</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="fromDate"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="dateFrom"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="fromDatePickerOpened"
+                           ng-focus="fromDatePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openFromDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="usersForm.fromDate.$error" ng-if="usersForm.fromDate.$touched" role="alert">
+                    <div ng-message="required">Please enter start date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-2" ng-class="{'has-error':usersForm.toDate.$touched && usersForm.toDate.$invalid}">
+                <label for="toDate" class="control-label">Date To</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="toDate"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="dateTo"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="toDatePickerOpened"
+                           ng-focus="toDatePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openToDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="usersForm.toDate.$error" ng-if="usersForm.toDate.$touched" role="alert">
+                    <div ng-message="required">Please enter start date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px" >
+                    <button type="button" class="btn btn-primary" ng-click="searchUsers()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>               
+            </div>
+        </div>
+    </form>    
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span>Display</span>
+                </div>
+                <select class="form-control" name="viewOption" data-ng-model="usersPerPage"
+                        data-ng-options="viewPerPageOption for viewPerPageOption in viewPerPageOptions"></select>
+                <div class="input-group-addon">
+                    <span>Per Page</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <dir-pagination-controls on-page-change="getPage(newPageNumber)" max-size="5"></dir-pagination-controls>
+        </div>
+    </div> 
+    <hr />
+    <table class="table-bordered" ng-hide="isEmpty()">
+        <tr class="well">
+            <td><b>User</b></td>
+            <td><b>UserID</b></td>
+            <td><b>Role</b></td>
+            <td><b>Created On</b></td>
+        </tr>
+        <tr dir-paginate="user in users | itemsPerPage: usersPerPage" total-items="totalUsers" current-page="pagination.current">
+            <td>{{ user.email }}</td>
+            <td>{{ user._id }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{user.createdOn}}</td>
+            <td><button class="btn btn-primary" ng-click="deleteUser(user)">Delete User</button></td>
+        </tr>
+    </table>
+</div>

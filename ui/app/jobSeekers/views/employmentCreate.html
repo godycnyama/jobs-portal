@@ -1,0 +1,300 @@
+﻿<div class="container"  ng-controller="EmploymentController">
+    <h1><span class="fa fa-plus"></span> Add Employment</h1>
+    <br />
+    <button ng-click="back()" class="btn btn-primary"> <span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+    <div class="row">
+        <div class="col-sm-8">
+            <hr />
+            <form name="employmentForm" role="form"> 
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':employmentForm.title.$touched && employmentForm.title.$invalid, 'has-success has-feedback': employmentForm.title.$dirty && employmentForm.title.$valid}">
+                        <label for="title" class="control-label">Job Title</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="title"
+                                   ng-model="employment.jobTitle"
+                                   placeholder="Enter job title"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="employmentForm.title.$dirty && employmentForm.title.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="employmentForm.title.$touched && employmentForm.title.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="employmentForm.title.$touched" ng-messages="employmentForm.title.$error" ng-if="employmentForm.title.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter job title</div>
+                                <div ng-message-exp="['minlength','maxlength']">Job title must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':employmentForm.jobLevel.$touched && employmentForm.jobLevel.$invalid, 'has-success has-feedback': employmentForm.jobLevel.$dirty && employmentForm.jobLevel.$valid}">
+                        <label for="jobLevel" class="control-label">Job Level</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <select name="jobLevel" class="form-control" data-ng-model="employment.jobLevel"
+                                    data-ng-options="level for level in jobLevelOptions"
+                                    ng-required="true"><option value="">Select job level</option></select>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="employmentForm.jobLevel.$touched" ng-messages="employmentForm.jobLevel.$error" ng-if="employmentForm.jobLevel.$touched" role="alert">
+                                <div ng-message="required">Please select job level</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':employmentForm.jobType.$touched && employmentForm.jobType.$invalid, 'has-success has-feedback': employmentForm.jobType.$dirty && employmentForm.jobType.$valid}">
+                        <label for="jobType" class="control-label">Job Type</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <select name="jobType" class="form-control" 
+                                    data-ng-model="employment.jobType"
+                                    data-ng-options="type for type in jobTypeOptions"
+                                    ng-required="true"><option value="">Select job type</option></select>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="employmentForm.jobType.$touched" ng-messages="employmentForm.jobType.$error" ng-if="employmentForm.jobType.$touched" role="alert">
+                                <div ng-message="required">Please select job type</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':employmentForm.companyName.$touched && employmentForm.companyName.$invalid, 'has-success has-feedback': employmentForm.companyName.$dirty && employmentForm.companyName.$valid}">
+                        <label for="companyName" class="control-label">Company Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-institution"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="companyName"
+                                   ng-model="employment.companyName"
+                                   placeholder="Enter company name"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="employmentForm.companyName.$dirty && employmentForm.companyName.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="employmentForm.companyName.$touched && employmentForm.companyName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="employmentForm.companyName.$touched" ng-messages="employmentForm.companyName.$error" ng-if="employmentForm.companyName.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter company name</div>
+                                <div ng-message-exp="['minlength','maxlength']">Company name must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':employmentForm.companySector.$touched && employmentForm.companySector.$invalid, 'has-success has-feedback': employmentForm.companySector.$dirty && employmentForm.companySector.$valid}">
+                        <label for="companySector" class="control-label">Company Sector</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-industry"></span>
+                            </div>
+                            <select name="companySector" class="form-control" data-ng-model="employment.companySector"
+                                    data-ng-options="sector for sector in companySectorOptions"
+                                    ng-required="true"><option value="">Select company sector</option></select>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="employmentForm.companySector.$touched" ng-messages="employmentForm.companySector.$error" ng-if="employmentForm.companySector.$touched" role="alert">
+                                <div ng-message="required">Please select company sector</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" ng-class="{'has-error has-feedback':employmentForm.locationTown.$touched && employmentForm.locationTown.$invalid, 'has-success has-feedback': employmentForm.locationTown.$dirty && employmentForm.locationTown.$valid}">
+                        <div class="form-group">
+                            <label for="locationTown" class="control-label">Town/City</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="locationTown"
+                                       ng-model="employment.locationTown"
+                                       placeholder="Enter location town"
+                                       ng-minlength="1"
+                                       ng-maxlength="50"
+                                       ng-required="true"
+                                       ng-trim />
+                                <span ng-if="employmentForm.locationTown.$dirty && employmentForm.locationTown.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="employmentForm.locationTown.$touched && employmentForm.locationTown.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="employmentForm.locationTown.$touched" ng-messages="employmentForm.locationTown.$error" ng-if="employmentForm.locationTown.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter company location town/city</div>
+                                    <div ng-message-exp="['minlength','maxlength']">Town/City must be between 1 and 50 characters long</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-sm-3" ng-class="{'has-error has-feedback':employmentForm.locationCountry.$touched && employmentForm.locationCountry.$invalid, 'has-success has-feedback': employmentForm.locationCountry.$dirty && employmentForm.locationCountry.$valid}">
+                        <div class="form-group">
+                            <label for="locationCountry" class="control-label">Country</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                </div>
+                                <select name="locationCountry" class="form-control" data-ng-model="employment.locationCountry"
+                                        data-ng-options="location for location in locationCountryOptions"
+                                        ng-required="true"><option value="">Select location country</option></select>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="employmentForm.locationCountry.$touched" ng-messages="employmentForm.locationCountry.$error" ng-if="employmentForm.locationCountry.$touched" role="alert">
+                                    <div ng-message="required">Please select company location country</div>
+                                </div>
+                            </div>
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="col-sm-3" ng-class="{'has-error has-feedback':employmentForm.startMonth.$touched && employmentForm.startMonth.$invalid, 'has-success has-feedback': employmentForm.startMonth.$dirty && employmentForm.startMonth.$valid}">
+                        <div class="form-group">
+                            <label for="startMonth" class="control-label">Start Month</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <select name="startMonth" class="form-control" data-ng-model="employment.startMonth"
+                                        data-ng-options="month for month in startMonthOptions"
+                                        ng-required="true"><option value="">Select start month</option></select>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="employmentForm.startMonth.$touched" ng-messages="employmentForm.startMonth.$error" ng-if="employmentForm.startMonth.$touched" role="alert">
+                                    <div ng-message="required">Please select start month</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-sm-3" ng-class="{'has-error has-feedback':employmentForm.startYear.$touched && employmentForm.startYear.$invalid, 'has-success has-feedback': employmentForm.startYear.$dirty && employmentForm.startYear.$valid}">
+                        <div class="form-group">
+                            <label for="startYear" class="control-label">Start Year</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="startYear"
+                                       ng-model="employment.startYear"
+                                       placeholder="Enter start year"
+                                       ng-minlength="1"
+                                       ng-maxlength="50"
+                                       ng-required="true"
+                                       ui-mask="9999"
+                                       ui-mask-placeholder
+                                       ui-mask-placeholder-char="_"
+                                       ng-trim />
+                                <span ng-if="employmentForm.startYear.$dirty && employmentForm.startYear.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="employmentForm.startYear.$touched && employmentForm.startYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="employmentForm.startYear.$touched" ng-messages="employmentForm.startYear.$error" ng-if="employmentForm.startYear.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter start year</div>
+                                    <div ng-message-exp="['minlength','maxlength']">Start year must be between 1 and 50 characters long</div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <sh-checkbox label="Is current job"
+                                     ng-model="employment.isCurrent"
+                                     checked-icon-class="fa fa-check-square-o"
+                                     un-checked-icon-class="fa fa-square-o">
+                        </sh-checkbox>
+                    </div>
+                </div>
+                <div class="row" ng-show="employment.isCurrent === false">
+                    <div class="col-sm-3" ng-class="{'has-error has-feedback':employmentForm.endMonth.$touched && employmentForm.endMonth.$invalid, 'has-success has-feedback': employmentForm.endMonth.$dirty && employmentForm.endMonth.$valid}">
+                        <div class="form-group">
+                            <label for="endMonth" class="control-label">End Month</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>                       
+                                <select name="endMonth" class="form-control" data-ng-model="employment.endMonth"
+                                        data-ng-options="month for month in endMonthOptions"
+                                        ><option value="">Select end month</option></select>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="employmentForm.endMonth.$touched" ng-messages="employmentForm.endMonth.$error" ng-if="employmentForm.endMonth.$touched" role="alert">
+                                    <div ng-message="required">Please select end month</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" ng-class="{'has-error has-feedback':employmentForm.endYear.$touched && employmentForm.endYear.$invalid, 'has-success has-feedback': employmentForm.endYear.$dirty && employmentForm.endYear.$valid}">
+                            <label for="endYear" class="control-label">End Year</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="endYear"
+                                       ng-model="employment.endYear"
+                                       placeholder="Enter end year"                                      
+                                       ng-maxlength="50"
+                                       ui-mask="9999"
+                                       ui-mask-placeholder
+                                       ui-mask-placeholder-char="_"                                                                           
+                                       ng-trim />
+                                <span ng-if="employmentForm.endYear.$dirty && employmentForm.endYear.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="employmentForm.endYear.$touched && employmentForm.endYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="employmentForm.endYear.$touched" ng-messages="employmentForm.endYear.$error" ng-if="employmentForm.endYear.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter end year</div>
+                                    <div ng-message-exp="['maxlength']">End year must be between 0 and 50 characters long</div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':employmentForm.duties.$touched && employmentForm.duties.$invalid, 'has-success has-feedback': employmentForm.duties.$dirty && employmentForm.duties.$valid}">
+                        <label for="duties" class="control-label">Duties</label>                      
+                            <textarea name="duties"
+                                      class="form-control"
+                                      rows="5" cols="8"
+                                      ng-model="employment.duties"
+                                      placeholder="Enter duties"
+                                      ng-minlength="1"
+                                      ng-maxlength="50"
+                                      ng-required="true"
+                                      ng-trim></textarea>                       
+                            <div class="help-block" ngfx-slide-in-left="employmentForm.duties.$touched" ng-messages="employmentForm.duties.$error" ng-if="employmentForm.duties.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter duties</div>
+                                <div ng-message-exp="['minlength','maxlength']">Duties must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>                             
+                <div class="row" ng-show="employment.isCurrent === false">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':employmentForm.reasons.$touched && employmentForm.reasons.$invalid, 'has-success has-feedback': employmentForm.reasons.$dirty && employmentForm.reasons.$valid}">
+                        <label for="reasons" class="control-label">Reasons for Leaving</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="reasons"
+                                   ng-model="employment.reasonsForLeaving"
+                                   placeholder="Enter reasons for leaving"                                 
+                                   ng-maxlength="50"
+                                   ng-trim />
+                            <span ng-if="employmentForm.reasons.$dirty && employmentForm.reasons.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="employmentForm.reasons.$touched && employmentForm.reasons.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="employmentForm.reasons.$touched" ng-messages="employmentForm.reasons.$error" ng-if="employmentForm.reasons.$touched" role="alert" ng-messages-multiple>                                
+                                <div ng-message-exp="['maxlength']">Reasons must be between 0 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>                  
+                <br />
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <button class="btn btn-primary" ng-disabled="employmentForm.$invalid" ng-click="createEmploymentRecord()"> Save</button>
+                        <a class="btn btn-primary" ui-sref="profile.master"> Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿<div class="checkbox">
+    <label><input id="isMultipleChoice" class="checkbox" type="checkbox" ng-model="isMultipleChoice" />Is Multiple Choice</label>
+</div>
+<div id="multipleChoiceAnswers">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerA" class="control-label">Answer A</label>
+                <input type="text" class="form-control" id="answerA" ng-model="answerA" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerAscore" class="control-label">Score</label>
+                <select id="answerAscore" class="form-control" data-ng-model="selectedAnswerAscore"
+                        data-ng-options="answerAscore for answerAscore in answerAscoreOptions"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerB" class="control-label">Answer B</label>
+                <input type="text" class="form-control" id="answerB" ng-model="answerB" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerBscore" class="control-label">Score</label>
+                <select id="answerBscore" class="form-control" data-ng-model="selectedAnswerBscore"
+                        data-ng-options="answerBscore for answerBscore in answerBscoreOptions"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerC" class="control-label">Answer C</label>
+                <input type="text" class="form-control" id="answerC" ng-model="answerC" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerCscore" class="control-label">Score</label>
+                <select id="answerCscore" class="form-control" data-ng-model="selectedAnswerCscore"
+                        data-ng-options="answerCscore for answerCscore in answerCscoreOptions"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerD" class="control-label">Answer D</label>
+                <input type="text" class="form-control" id="answerD" ng-model="answerD" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerDscore" class="control-label">Score</label>
+                <select id="answerDscore" class="form-control" data-ng-model="selectedAnswerDscore"
+                        data-ng-options="answerDscore for answerDscore in answerDscoreOptions"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerE" class="control-label">Answer E</label>
+                <input type="text" class="form-control" id="answerE" ng-model="answerE" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group-sm">
+                <label for="answerEscore" class="control-label">Score</label>
+                <select id="answerEscore" class="form-control" data-ng-model="selectedAnswerEscore"
+                        data-ng-options="answerEscore for answerEscore in answerEscoreOptions"></select>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿<div class="container"  ng-controller="CreateQuestionnaireController">
+    <h1>Create Questionaire</h1>
+    <a class="btn btn-primary" ui-sref="recruiter.questionnairesMaster"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a>  
+    <hr />
+    <form name="createQuestionnaire">
+        <div class="row">
+            <div class="col-sm-9">
+                <hr />
+                <div class="row">
+                    <div class="form-group  col-sm-6" ng-class="{'has-error':createQuestionnaire.questionnaireREF.$touched && createQuestionnaire.questionnaireREF.$invalid}">
+                        <label for="questionnaireREF" class="control-label">Questionnaire REF</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="questionnaireREF"
+                                   data-ng-model="questionnaire.questionnaireREF"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="createQuestionnaire.questionnaireREF.$touched" ng-messages="createQuestionnaire.questionnaireREF.$error" ng-if="createJobAd.questionnaireREF.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter questionnaire ref</div>
+                            <div ng-message-exp="['minlength','maxlength']">Questionnaire ref must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                </div>           
+                
+                <button class="btn btn-primary" ng-click="createQuestionnaire()"><span class="fa fa-plus"></span> Create Questionnaire</button>
+            </div>
+        </div>
+    </form>
+</div>

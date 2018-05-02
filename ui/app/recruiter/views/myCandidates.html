@@ -1,0 +1,242 @@
+﻿    <div class="container" data-ng-controller="MyCandidatesController">
+        <h1>My Candidates</h1>
+        <a class="btn btn-primary" ui-sref="recruiter.candidates"> Add CVs</a> 
+        <hr />
+        <form name="searchForm">
+            <div class="row">
+                <div class=" col-sm-2">
+                    <div class="form-group">
+                        <label for="searchOption" class="control-label">Search By</label>
+                        <select class="form-control" name="searchOption" data-ng-model="searchBy"
+                                data-ng-options="searchOption for searchOption in searchByOptions"></select>
+                    </div>
+                </div>
+                <div class="form-group col-sm-3" ng-hide="searchBy==='All'||searchBy==='Advanced Search'">
+                    <label for="searchTerm" class="control-label">Enter {{searchBy}}</label>
+                    <input type="text" class="form-control" id="searchTerm" data-ng-model="searchTerm" placeholder="Enter Search Term" />
+                </div>
+                <div class="form-group col-sm-1" ng-hide="searchBy==='Advanced Search'">
+                    <div style="margin-top:25px">
+                        <button type="button" class="btn btn-primary" ng-click="searchCandidates()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="searchBy==='Advanced Search'">
+                <div class="form-group col-sm-3" ng-class="{'has-error':searchForm.qualification.$touched && searchForm.qualification.$invalid}">
+                    <label for="qualification" class="control-label">Qualification</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               class="form-control"
+                               name="qualification"
+                               ng-model="searchTerms.qualification"
+                               placeholder="Enter qualification"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="searchForm.qualification.$error" ng-if="searchForm.qualification.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter qualification</div>
+                        <div ng-message-exp="['minlength','maxlength']">Qualification must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-3" ng-class="{'has-error':searchForm.skill.$touched && searchForm.skill.$invalid}">
+                    <label for="skill" class="control-label">Skill</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               class="form-control"
+                               name="skill"
+                               ng-model="searchTerms.skill"
+                                placeholder="Enter skill"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="searchForm.skill.$error" ng-if="searchForm.skill.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter skill</div>
+                        <div ng-message-exp="['minlength','maxlength']">Skill must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="searchBy==='Advanced Search'">
+                <div class="form-group col-sm-3" ng-class="{'has-error':searchForm.profession.$touched && searchForm.profession.$invalid}">
+                    <label for="profession" class="control-label">Profession</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               class="form-control"
+                               name="profession"
+                               ng-model="searchTerms.profession"
+                                placeholder="Enter profession"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="searchForm.profession.$error" ng-if="searchForm.profession.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter profession</div>
+                        <div ng-message-exp="['minlength','maxlength']">Profession must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-3" ng-class="{'has-error':searchForm.preferedJobTitles.$touched && searchForm.preferedJobTitles.$invalid}">
+                    <label for="preferedJobTitles" class="control-label">Prefered Job Titles</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               class="form-control"
+                               name="preferedJobTitles"
+                               ng-model="searchTerms.preferedJobTitles"
+                                placeholder="Enter prefered job titles
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="searchForm.preferedJobTitles.$error" ng-if="searchForm.preferedJobTitles.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter prefered job titles</div>
+                        <div ng-message-exp="['minlength','maxlength']">Prefered Job Titles must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="searchBy==='Advanced Search'">
+                <div class="form-group col-sm-3" ng-class="{'has-error':searchForm.preferedJobTypes.$touched && searchForm.preferedJobTypes.$invalid}">
+                    <label for="preferedJobTypes" class="control-label">Prefered Job Types</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               class="form-control"
+                               name="preferedJobTypes"
+                               ng-model="searchTerms.preferedJobTypes"
+                               placeholder="Enter prefered job types"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="searchForm.preferedJobTypes.$error" ng-if="searchForm.preferedJobTypes.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter prefered job types</div>
+                        <div ng-message-exp="['minlength','maxlength']">Prefered Job Types must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-3" ng-class="{'has-error':searchForm.preferedJobLocations.$touched && searchForm.preferedJobLocations.$invalid}">
+                    <label for="preferedJobLocations" class="control-label">Prefered Job Locations</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               class="form-control"
+                               name="preferedJobLocations"
+                               ng-model="searchTerms.preferedJobLocations"
+                               placeholder="Enter prefered job locations"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="searchForm.preferedJobLocations.$error" ng-if="searchForm.preferedJobLocations.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter prefered job locations</div>
+                        <div ng-message-exp="['minlength','maxlength']">Prefered Job Locations must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="searchBy==='Advanced Search'">
+                <div class="form-group col-sm-3" ng-class="{'has-error':searchForm.locationTown.$touched && searchForm.locationTown.$invalid}">
+                    <label for="locationTown" class="control-label">Location Town</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               class="form-control"
+                               name="locationTown"
+                               ng-model="searchTerms.locationTown"
+                               placeholder="Enter location town"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="searchForm.locationTown.$error" ng-if="searchForm.locationTown.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter location town</div>
+                        <div ng-message-exp="['minlength','maxlength']">Location town must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-3" ng-class="{'has-error':searchForm.locationCountry.$touched && searchForm.locationCountry.$invalid}">
+                    <label for="locationCountry" class="control-label">Location Country</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               class="form-control"
+                               name="locationCountry"
+                               ng-model="searchTerms.locationCountry"
+                               placeholder="Enter location country"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="searchForm.locationCountry.$error" ng-if="searchForm.locationCountry.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter location country</div>
+                        <div ng-message-exp="['minlength','maxlength']">Location country must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-1">
+                    <div style="margin-top:25px">
+                        <button type="button" class="btn btn-primary" ng-click="searchCandidates()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span>Display</span>
+                        </div>
+                        <select class="form-control" name="viewOption" data-ng-model="candidatesPerPage"
+                                data-ng-options="viewPerPageOption for viewPerPageOption in viewPerPageOptions"></select>
+                        <div class="input-group-addon">
+                            <span>Per Page</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">                  
+                     <dir-pagination-controls on-page-change="getPage(newPageNumber)"  max-size="5"></dir-pagination-controls>  
+                </div>
+            </div>
+        </form>
+        <hr />
+        <div class="row" ng-show="!isEmpty()">
+            <div class="media" dir-paginate = "candidate in candidates | itemsPerPage: candidatesPerPage" total-items="totalCandidates" current-page="pagination.current">
+                <a class="pull-left" href="#">
+                    <img alt="Photo" class="vignetteA" ng-src="{{candidate.candidateID.photo||'images/user-avatar-placeholder.png'}}" />
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">{{candidate.candidateID.firstName}} {{candidate.candidateID.middleName}} {{candidate.candidateID.lastName}} <small>{{candidate.candidateID.gender}} DOB {{candidate.candidateID.birthDate| date :  "dd/MM/yyyy"}}</small></h4>
+                    <div ng-if="candidate.candidateID.profession"><span class="glyphicon glyphicon-wrench"></span> {{candidate.candidateID.profession}}</div>
+                    <div ng-if="candidate.candidateID.mainQualification"><span class="glyphicon glyphicon-education"></span> {{candidate.candidateID.mainQualification}}</div>
+                    <div ng-if="candidate.candidateID.homeTel"><span class="glyphicon glyphicon-earphone"></span> {{candidate.candidateID.homeTel}}</div>
+                    <div ng-if="candidate.candidateID.mobile"><span class="glyphicon glyphicon-phone"></span> {{candidate.candidateID.mobile}}</div>
+                    <div ng-if="candidate.candidateID.email"><span class="fa fa-envelope"></span> {{candidate.candidateID.email}}</div>
+                    <button class="btn btn-primary" ng-click="viewProfile(candidate.candidateID)">View Profile</button>
+                    <button class="btn btn-primary" ng-click="deleteCV(candidate.candidateID)">Delete CV</button>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>

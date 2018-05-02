@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+<head>
+    <title>JobsApp</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css" />
+    <link rel="stylesheet" href="lib/styles/styles.css" />
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">JobsApp</a>
+            <a href="#" data-activates="mobile-menu" class="button-collapse" data-sidenav="left" data-closeonclick="false" data-menuwidth="500"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a ui-sref="jobs.master">Jobs</a></li>
+                <li><a ui-sref="profile.master">Job Seekers</a></li>
+                <li><a ui-sref="recruiters">Recruiters</a></li>
+                <li><a ui-sref="auth.temp">Sign In|Register</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-menu">
+                <li><a ui-sref="jobs.master">Jobs</a></li>
+                <li><a ui-sref="profile.master">Job Seekers</a></li>
+                <li><a ui-sref="recruiters">Recruiters</a></li>
+                <li><a ui-sref="auth.temp">Sign In|Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-materialize/src/angular-materialize.js"></script>   
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-socket-io/socket.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-patternfly/dist/angular-patternfly.min.js"></script>
+    <script type="text/javascript" src="bower_components/api-check/dist/api-check.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-formly/dist/formly.min.js"></script>
+    <script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="bower_components/restangular/dist/restangular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="bower_components/v-accordion/dist/v-accordion.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signupController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signinController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordChangeController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordResetController.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/jobs.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/jobAd.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/jobApply.js"></script>
+    <script type="text/javascript" src="app/jobs/services/jobsService.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordChangeController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordResetController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/recruiterSignupController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signinController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signupController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/attachmentsController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/educationController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/employmentController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/languagesController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/personalDetailController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/profileController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/skillsController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/vaccordionController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/services/jobSeekerService.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/jobAdsRESTservice.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/jobAdsService.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/recruitersController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/jobAdsController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/jobAdController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/previewJobAdController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/checkOutController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/candidatesController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/questionnairesController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/questionnaireController.js"></script>
+    <script type="text/javascript" src="app/mainApp.js"></script>
+</body>
+</html>

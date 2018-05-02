@@ -1,0 +1,149 @@
+﻿<div class="container" ng-controller="SetPriceController">
+    <form role="form" name="setPriceForm" novalidate>
+        <div class="col-sm-8">
+            <h1>Set Price</h1>
+            <hr />
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':setPriceForm.itemCategory.$touched && setPriceForm.itemCategory.$invalid}">
+                    <label for="itemCategory" class="control-label">Set Price For</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <select name="itemCategory" class="form-control" data-ng-model="item.category"
+                                data-ng-options="category for category in categories"
+                                ng-required="true"></select>
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="setPriceForm.itemCategory.$touched" ng-messages="setPriceForm.itemCategory.$error" ng-if="createJobAd.jobLevel.$touched" role="alert">
+                        <div ng-message="required">Please select category</div>
+                    </div>
+                </div>
+            </div>         
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':setPriceForm.itemCode.$touched && setPriceForm.itemCode.$invalid}">
+                    <label for="itemCode" class="control-label">Item Code</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               name="itemCode"
+                               class="form-control"
+                               placeholder="Enter item code"
+                               tabindex="1"
+                               data-ng-model="item.itemCode"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="setPriceForm.itemCode.$touched" ng-messages="setPriceForm.itemCode.$error" ng-if="setPriceForm.itemCode.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter item code</div>
+                        <div ng-message-exp="['minlength','maxlength']">Item code must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':setPriceForm.description.$touched && setPriceForm.description.$invalid}">
+                    <label for="description" class="control-label">Description</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               name="description"
+                               class="form-control "
+                               placeholder="Enter description"
+                               tabindex="2"
+                               data-ng-model="item.description"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="setPriceForm.description.$touched" ng-messages="setPriceForm.description.$error" ng-if="setPriceForm.description.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter description</div>
+                        <div ng-message-exp="['minlength','maxlength']">Description must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="item.category === 'Job Ad'" ngfx-slide-in-left="item.category === 'Job Ad'" ngfx-slide-out-right="item.category === 'CV Search'">
+                <div class="form-group col-sm-6" ng-class="{'has-error':setPriceForm.minimumAds.$touched && setPriceForm.minimumAds.$invalid}">
+                    <label for="minimumAds" class="control-label">Minimum Number of Job Ads</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               name="minimumAds"
+                               class="form-control "
+                               placeholder="Enter minimum number of job ads"
+                               tabindex="3"
+                               data-ng-model="item.minimumJobAds"
+                               ui-number-mask="0" />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="setPriceForm.minimumAds.$touched" ng-messages="setPriceForm.minimumAds.$error" ng-if="setPriceForm.price.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter minimum number of job ads</div>                       
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="item.category === 'Job Ad'" ngfx-slide-in-left="item.category === 'Job Ad'" ngfx-slide-out-right="item.category === 'CV Search'">
+                <div class="form-group col-sm-6" ng-class="{'has-error':setPriceForm.maximumAds.$touched && setPriceForm.maximumAds.$invalid}">
+                    <label for="maximumAds" class="control-label">Maximum Number of Job Ads</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               name="maximumAds"
+                               class="form-control "
+                               placeholder="Enter maximum number of job ads"
+                               tabindex="3"
+                               data-ng-model="item.maximumJobAds"
+                               ui-number-mask="0" />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="setPriceForm.maximumAds.$touched" ng-messages="setPriceForm.maximumAds.$error" ng-if="setPriceForm.maximumAds.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter maximum number of job ads</div>                     
+                    </div>
+                </div>
+            </div>
+            {{item.unitPrice}}
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':setPriceForm.price.$touched && setPriceForm.price.$invalid}">
+                    <label for="price" class="control-label">Unit Price (R)</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-money"></span>
+                        </div>
+                        <input type="text"
+                               name="price"
+                               class="form-control "
+                               placeholder="Enter price"
+                               tabindex="3"
+                               data-ng-model="item.unitPrice"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim
+                               pformat
+                               prefix=""
+                               thousands=","
+                               cents="." />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="setPriceForm.price.$touched" ng-messages="setPriceForm.price.$error" ng-if="setPriceForm.price.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter price</div>
+                        <div ng-message-exp="['minlength','maxlength']">Price must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <button class="btn btn-primary" tabindex="4" ng-click="save()" ng-enable='setPriceForm.$valid'>Save</button>
+                    <button class="btn btn-primary" tabindex="6" ui-sref="admin.prices">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+

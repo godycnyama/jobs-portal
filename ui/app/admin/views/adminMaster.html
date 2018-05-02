@@ -1,0 +1,19 @@
+﻿<div class="container">
+    <h1>Administration</h1>
+     <hr />
+    <div class="btn-group-vertical" role="group" aria-label="...">
+        <a class="btn btn-default" ui-sref="admin.jobAds" style="text-align:left">Job Ads Administration</a>
+        <a class="btn btn-default" ui-sref="admin.jobSeekers" style="text-align:left">Job Seekers Administration</a>
+        <a class="btn btn-default" ui-sref="admin.recruiters" style="text-align:left">Recruiters Administration</a>
+        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+            <button id="btn-append-to-body" type="button" class="btn btn-default" uib-dropdown-toggle style="text-align:left">
+                Prices Administration    <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                <li role="menuitem"><a ui-sref="admin.prices" style="text-align:left">Prices</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a ui-sref="admin.setPrice" style="text-align:left">Set Price</a></li>
+            </ul>
+        </div>    
+    </div>   
+</div>

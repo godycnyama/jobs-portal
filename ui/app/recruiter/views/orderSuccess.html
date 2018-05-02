@@ -1,0 +1,27 @@
+﻿<div class="container" ng-controller="OrderSuccessController">
+   <h1>Order Received</h1>
+    <p>Thank you.Your order# {{cart._id}} has been paid successfully.</p>
+    <br />
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="well">
+                    <td><b>Job ID</b></td>
+                    <td><b>Job Title</b></td>
+                    <td><b>Job REF</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="jobAd in cart.orderDetails">
+                    <td>{{jobAd.jobAdID}}</td>
+                    <td>{{jobAd.jobTitle}}</td>
+                    <td>{{jobAd.jobREF}}</td>
+                </tr>
+                <tr>
+                    <td><b>Total</b></td>
+                    <td><b>R{{cart.total}}</b></td>
+                </tr>
+            </tbody>
+        </table>   
+    </div>
+</div>

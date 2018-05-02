@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <title>JobsApp</title>
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/bootswatch.min.css" />
+    <link rel="stylesheet" href="lib/styles/styles.css" /> 
+    <link rel="stylesheet" href="lib/ngCheckbox/ngCheckbox.css" /> 
+    <link rel="stylesheet" href="bower_components/v-accordion/dist/v-accordion.min.css" />
+    <link rel="stylesheet" href="bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
+</head>
+<body class="container" data-ng-controller="MainController">
+    <header class="navbar navbar-default navbar-fixed-top navbar-inner" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" ng-click="isCollapsed=!isCollapsed">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 class="navbar-brand">
+                    JobsApp
+                </h1>
+            </div>
+            <nav id="bs-navbar" class="collapse navbar-collapse" uib-collapse ="!isCollapsed">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active:$state.includes('jobs')}"><a role="button" ui-sref="jobs.master" ng-click="isCollapsed=!isCollapsed">Jobs</a></li>
+                    <li ng-class="{active:$state.includes('profile')}"><a role="button" ui-sref="profile.master" ng-click="isCollapsed=!isCollapsed">Job Seekers</a></li>
+                    <li ng-class="{active:$state.includes('recruiters')}"><a role="button" ui-sref="recruiters.Master" ng-click="isCollapsed=!isCollapsed">Recruiters</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-class="{active:$state.includes('admin')}"><a role="button"  ui-sref="auth.signin" ng-click="isCollapsed=!isCollapsed"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+                    <li ng-class="{active:$state.includes('admin')}"><a role="button" ng-click="signOut();isCollapsed=!isCollapsed" ><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+                    <li uib-dropdown class="dropdown">
+                        <a href="#" uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user-plus"></span> Sign Up <span class="caret"></span></a>
+                        <ul uib-dropdown-menu class="dropdown-menu">
+                            <li><a  ng-click="jobSeekerSignUp();isCollapsed=!isCollapsed "><span class="fa fa-user-plus"></span> Job Seeker Signup</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a ng-click="recruiterSignUp();isCollapsed=!isCollapsed"><span class="fa fa-user-plus"></span> Recruiter Signup</a></li>
+                        </ul>
+                    </li>
+                    <li ng-class="{active:$state.includes('admin')}"><a ui-sref="admin.Master" ng-click="isCollapsed=!isCollapsed" >Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="view-container row">               
+        <div class="app-view col-sm-12" style="padding-top: 80px;" ui-view ></div>        
+    </div>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="bower_components/socket.io-client/socket.io.js"></script>
+    <script type="text/javascript" src="bower_components/angular-socket-io/socket.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-patternfly/dist/angular-patternfly.min.js"></script>
+    <script type="text/javascript" src="bower_components/api-check/dist/api-check.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-formly/dist/formly.min.js"></script>
+    <script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="bower_components/restangular/dist/restangular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="bower_components/v-accordion/dist/v-accordion.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap-file-field/dist/angular-bootstrap-file-field.min.js"></script>
+    <script type="text/javascript" src="bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
+    <script type="text/javascript" src="bower_components/ng-simplePagination/simplePagination.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/adminJobAdsController.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/adminJobAdController.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/adminJobSeekersController.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/adminJobSeekerController.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/adminRecruitersController.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/adminRecruiterController.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/adminModalsControllers.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/editPriceController.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/pricesController.js"></script>
+    <script type="text/javascript" src="app/admin/controllers/setPriceController.js"></script>
+    <script type="text/javascript" src="app/admin/services/adminService.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signupController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signinController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordChangeController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordResetController.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/jobs.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/jobsModalControllers.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/job.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/jobApply.js"></script>
+    <script type="text/javascript" src="app/jobs/services/jobsService.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordChangeController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordResetController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/recruiterSignupController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signinController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signupController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signInUpModalsController.js"></script>
+    <script type="text/javascript" src="app/auth/services/authService.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/cvController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/attachmentController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/qualificationController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/employmentController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/languageController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/personalDetailController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/profileController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/skillsController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/jobSeekerModalsControllers.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/vaccordionController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/services/jobSeekerService.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/jobAdsRESTservice.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/jobAdsService.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/cartService.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/candidatesService.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/recruitersController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/candidatesController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/candidateController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/candidatePrintController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/recruiterDetailsControllers.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/recruiterDetailsEditController.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/recruiterService.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/jobAdsController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/jobAdController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/previewJobAdController.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/socketIOService.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/checkOutController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/candidatesController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/questionnairesController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/questionnaireController.js"></script>
+    <script type="text/javascript" src="lib/ngCheckbox/ngCheckbox.js"></script>
+    <script type="text/javascript" src="app/mainApp.js"></script>
+</body>
+</html>

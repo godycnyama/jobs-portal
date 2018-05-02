@@ -1,0 +1,19 @@
+﻿<table class="table-bordered">
+    <tr class="well">
+        <td><b>User</b></td>
+        <td><b>Role</b></td>
+        <td><b>Created On</b></td>
+    </tr>
+    <tr dir-paginate="user in users | itemsPerPage: usersPerPage" total-items="totalUsers" current-page="pagination.current">
+        <td>{{user.email}}</td>
+        <td>{{user.role}}</td>
+        <td>{{user.createdOn}}</td>
+        <td><button class="btn btn-primary" ng-click="deleteUser(user)"><span class="glyphicon glyphicon-trash"></span> Remove</button></td>
+    </tr>
+</table>
+<br />
+<div class="form-group col-sm-3">
+    <div style="margin-top:25px">
+        <dir-pagination-controls boundary-links="true" on-page-change="getPage(newPageNumber)" auto-hide="false" max-size="5" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+</div> 

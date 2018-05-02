@@ -1,0 +1,116 @@
+﻿<div class="container" ng-controller="SignupJobSeekerController">    
+    <form  role="form" name = "signupForm" novalidate>
+        <div class="col-sm-8">
+            <h1><span class="fa fa-user-plus"></span> Job Seeker Sign Up</h1>     
+            <hr />
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':signupForm.email.$touched && signupForm.email.$invalid}">
+                    <label for="email" class="control-label">Email</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-envelope"></span>
+                        </div>
+                        <input type="email"
+                               name="email"
+                               class="form-control "
+                               placeholder="Enter email"
+                               tabindex="1"
+                               data-ng-model="signup.email"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="signupForm.email.$touched" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="email">Please enter valid email</div>
+                        <div ng-message="required">Please enter email</div>
+                        <div ng-message-exp="['minlength','maxlength']">Email must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':signupForm.password.$touched && signupForm.password.$invalid}">
+                    <label for="password" class="control-label">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-lock"></span>
+                        </div>
+                        <input type="password"
+                               name="password"
+                               class="form-control "
+                               placeholder="Enter password"
+                               tabindex="2"
+                               data-ng-model="signup.password"
+                               ng-minlength="6"
+                               ng-maxlength="10"
+                               ng-required="true"
+                               ng-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,10}$/"
+                               ng-trim />
+                    </div>
+                        <div class="help-block" ngfx-slide-in-left="signupForm.password.$touched" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter password</div>
+                            <div ng-message="pattern">Password must contain  at least one upper case letter,one lower case letter,one digit ,one special character(#?!@$%^&*-),and must be between 6 to  10 characters in length</div>
+                            <div ng-message-exp="['minlength','maxlength']">Password must be between 6 and 10 characters long</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':signupForm.confirmPassword.$touched && signupForm.confirmPassword.$invalid}">
+                    <label for="confirmPassword" class="control-label">Confirm Password</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-lock"></span>
+                        </div>
+                        <input type="password"
+                               name="confirmPassword"
+                               class="form-control "
+                               placeholder="Confirm password"
+                               tabindex="3"
+                               data-ng-model="confirmPassword"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               match ="signup.password"
+                               ng-trim />
+                    </div>
+                        <div class="help-block" ngfx-slide-in-left="signupForm.confirmPassword.$touched" ng-messages="signupForm.confirmPassword.$error" ng-if="signupForm.confirmPassword.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please confirm password</div>
+                            <div ng-message="match">Confirm password must be identical to password</div>
+                            <div ng-message-exp="['minlength','maxlength']">Password must be between 6 and 10 characters long</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':signupForm.passwordRecoveryEmail.$touched && signupForm.passwordRecoveryEmail.$invalid}">
+                    <label for="passwordRecoveryEmail" class="control-label">Password Recovery Email</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-envelope"></span>
+                        </div>
+                        <input type="email" name="passwordRecoveryEmail"
+                               class="form-control "
+                               placeholder="Password Recovery Email"
+                               tabindex="5"
+                               data-ng-model="signup.passwordRecoveryEmail"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="signupForm.passwordRecoveryEmail.$touched" ng-messages="signupForm.passwordRecoveryEmail.$error" ng-if="signupForm.passwordRecoveryEmail.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="email">Please enter valid email</div>
+                        <div ng-message="required">Please enter password recovery email</div>
+                        <div ng-message-exp="['minlength','maxlength']">Email must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <button class="btn btn-primary" ng-disabled="signupForm.$invalid"  tabindex="7" ng-click="save()">Sign Up</button>
+                    <a class="btn btn-primary" tabindex="8" ui-sref="auth.signin">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

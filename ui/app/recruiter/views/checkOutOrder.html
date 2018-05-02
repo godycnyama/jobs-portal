@@ -1,0 +1,39 @@
+﻿<div class="container" ng-controller="CheckOutOrderController">
+    <h1>Check Out</h1>
+    <br />
+    <button class="btn btn-primary" ng-click="back()"><span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+    <br />
+    <br />
+    <p><strong>Please review your order then click on "Pay Now" button.You will be re-directed to the Payfast website.All orders are paid through Payfast.</strong></p>
+    <br />   
+    <h2>Your Order #{{cart._id}}</h2>
+    <br />
+    <button class="btn btn-primary" ng-click="addJobAd()"><span class="glyphicon glyphicon-plus"></span> Add JobAd</button>
+    <hr />
+    <div>
+        <table class="table table-bordered">
+            <thead>  
+                <tr class="well">
+                    <td><b>Job ID</b></td>
+                    <td><b>Job Title</b></td>
+                    <td><b>Job REF</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="jobAd in cart.orderDetails">
+                    <td>{{jobAd.jobAdID}}</td>
+                    <td>{{jobAd.jobTitle}}</td>
+                    <td>{{jobAd.jobREF}}</td>
+                    <td><button class="btn btn-primary" ng-click="deleteItem(jobAd)"><span class="glyphicon glyphicon-trash"></span> Remove</button></td>
+                </tr>
+                <tr>
+                    <td><b>Total</b></td>
+                    <td><b>R{{cart.total}}</b></td>
+                </tr>
+            </tbody>       
+        </table>
+        <br />
+        <button class="btn btn-primary"  ng-click="pay()">Pay Now</button> 
+        <button class="btn btn-primary" ng-click="clearOrder()" ng-show="cart.orderDetails.length"><span class="glyphicon glyphicon-trash"></span> Clear Cart</button>
+    </div>
+</div>

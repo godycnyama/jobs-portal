@@ -1,0 +1,91 @@
+﻿<div class="container" ng-controller="SetPriceController">
+    <form role="form" name="setPriceForm" novalidate>
+        <div class="col-sm-8">
+            <h1>Set Price</h1>
+            <hr />
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':setPriceForm.itemCode.$touched && setPriceForm.itemCode.$invalid}">
+                    <label for="itemCode" class="control-label">Item Code</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="text"
+                               name="itemCode"
+                               class="form-control"
+                               placeholder="Enter item code"
+                               tabindex="1"
+                               data-ng-model="item.itemCode"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="setPriceForm.itemCode.$error" ng-if="setPriceForm.itemCode.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter item code</div>
+                        <div ng-message-exp="['minlength','maxlength']">Item code must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':setPriceForm.description.$touched && setPriceForm.description.$invalid}">
+                    <label for="description" class="control-label">Description</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <input type="password"
+                               name="description"
+                               class="form-control "
+                               placeholder="Enter description"
+                               tabindex="2"
+                               data-ng-model="item.description"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="setPriceForm.description.$error" ng-if="setPriceForm.description.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter description</div>
+                        <div ng-message-exp="['minlength','maxlength']">Description must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            {{item.unitPrice}}
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':setPriceForm.price.$touched && setPriceForm.price.$invalid}">
+                    <label for="price" class="control-label">Price</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-money"></span>
+                        </div>
+                        <input type="text"
+                               name="price"
+                               class="form-control "
+                               placeholder="Enter price"
+                               tabindex="3"
+                               data-ng-model="item.unitPrice"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim
+                               pformat                               
+                               thousands=","
+                               cents="." />
+                    </div>
+                    <div class="help-block" ng-messages="setPriceForm.price.$error" ng-if="setPriceForm.price.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter price</div>
+                        <div ng-message-exp="['minlength','maxlength']">Price must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <button class="btn btn-primary" tabindex="4" ng-click="save()">Save</button>                   
+                    <button class="btn btn-primary" tabindex="6" ui-sref="admin.prices">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

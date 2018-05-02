@@ -1,0 +1,54 @@
+﻿<div class="container" ng-controller="RecruiterDetailsController" ng-init="getRecruiterDetails()">
+    <div class="col-sm-10">
+        <h1>Recruiter Details</h1>
+        <button class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+        <a class="btn btn-primary" ui-sref="recruiter.detailsCreate"  ng-show="!recruiterDetails">Add Company Details</a>
+        <a class="btn btn-primary" ui-sref="recruiter.detailsEdit" ng-show="recruiterDetails"> <span class="glyphicon glyphicon-edit"></span> Edit Details</a>
+        <hr />
+        <div class="media" ng-show="recruiterDetails !== null">
+            <div class="pull-left">
+                <img class="media-object" ng-src="{{ recruiterDetails.companyLogo || 'images/companyLogo.jpg' }}" alt="Media Object" width="200" height="100" />
+            </div>
+            <div class="media-body">                            
+                <dl class="dl-horizontal">
+                    <dt style="text-align:left"><span class="fa fa-institution"></span> <strong>Company Name</strong></dt>
+                    <dd>{{recruiterDetails.companyName}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Recruiter Type</strong></dt>
+                    <dd>{{recruiterDetails.recruiterType}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-industry"></span> <strong>Company Sector</strong></dt>
+                    <dd>{{recruiterDetails.companySector}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-calendar"></span> <strong>Year Founded</strong></dt>
+                    <dd>{{recruiterDetails.yearFounded}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon fa fa-users"></span> <strong>Number of Employees</strong></dt>
+                    <dd>{{recruiterDetails.numberOfemployees}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Company Introduction</strong></dt>
+                    <dd>{{recruiterDetails.introduction}}</dd>                  
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Physical Address </strong></dt>
+                    <dd>{{recruiterDetails.physicalAddress}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-envelope"></span> <strong>Postal Address</strong></dt>
+                    <dd> {{recruiterDetails.postalAddress}}</dd>                   
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-phone-alt"></span> <strong>Tel</strong></dt>
+                    <dd>{{recruiterDetails.tel}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-phone"></span> <strong>Mobile</strong></dt>
+                    <dd>{{recruiterDetails.mobile}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-envelope"></span> <strong>Email</strong></dt>
+                    <dd>{{recruiterDetails.email}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-fax"></span> <strong>Fax</strong></dt>
+                    <dd>{{recruiterDetails.fax}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-globe"></span> <strong>Website</strong></dt>
+                    <dd>{{recruiterDetails.website}}</dd>                  
+                </dl> 
+
+                <hr />
+                <p>
+                    <a class="btn btn-primary" ng-click="back()">Back</a>
+                    <span class="pull-right">                      
+                        <a class="btn btn-primary" ui-sref="recruiter.detailsEdit">Edit Details</a>                       
+                    </span>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</div>

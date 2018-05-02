@@ -1,0 +1,27 @@
+﻿<div class="container" data-ng-controller="RecruiterOrderController">
+    <h1>Order# {{order._id}}</h1>
+    <br />
+    <button class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+    <hr />
+        <button ng-if="!order.paid" class="btn btn-primary" ng-click="proceedCheckOut()">Proceed to checkout</button>
+        <button ng-if="!order.paid" class="btn btn-primary" ng-click="deleteOrder()">Delete Order</button>
+        <br />              
+    <hr />
+    <table class="table table-bordered" ng-show="order !== null">
+        <thead>
+            <tr class="well">
+                <td><b>JobAdID</b></td>
+                <td><b>JobREF</b></td>
+                <td><b>Job Title</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="jobAd in order.orderDetails">
+                <td>{{ jobAd.jobAdID }}</td>
+                <td>{{ jobAd.jobREF }}</td>
+                <td>{{ jobAd.jobTitle }}</td>
+                <td><button ng-if="!order.paid" class="btn btn-primary" ng-click="removeJobAd(jobAd)">Remove job Ad</button></td>
+            </tr>
+        </tbody>     
+    </table>
+</div>

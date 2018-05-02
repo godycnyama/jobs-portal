@@ -1,0 +1,457 @@
+﻿<div class="container" data-ng-controller="JobAdController" ng-init="getRecruiter()">
+    <form name="createJobAd" role="form">
+        <h1>Create Job Ad</h1>
+        <a class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a>  
+        <hr />
+        <v-accordion class="vAccordion--default">
+            <v-pane id="1">
+                <v-pane-header>
+                    <h2>Job Details</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div class="row">
+                        <div class="form-group  col-sm-6" ng-class="{'has-error has-feedback':createJobAd.jobTitle.$touched && createJobAd.jobTitle.$invalid, 'has-success has-feedback': createJobAd.jobTitle.$dirty && createJobAd.jobTitle.$valid}">
+                            <label for="jobTitle" class="control-label">Job Title</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="jobTitle"
+                                       data-ng-model="jobAd.jobTitle"
+                                       ng-minlength="1"
+                                       ng-maxlength="50"
+                                       ng-required="true"
+                                       ng-trim />
+                                <span ng-if="createJobAd.jobTitle.$dirty && createJobAd.jobTitle.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="createJobAd.jobTitle.$touched && createJobAd.jobTitle.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.jobTitle.$touched" ng-messages="createJobAd.jobTitle.$error" ng-if="createJobAd.jobTitle.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter job title</div>
+                                    <div ng-message-exp="['minlength','maxlength']">Job title must be between 1 and 50 characters long</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.jobREF.$touched && createJobAd.jobREF.$invalid, 'has-success has-feedback': createJobAd.jobREF.$dirty && createJobAd.jobREF.$valid}">
+                            <label for="jobREF" class="control-label">JobREF</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="jobREF"
+                                       data-ng-model="jobAd.jobREF"
+                                       ng-minlength="1"
+                                       ng-maxlength="50"
+                                       ng-required="true"
+                                       ng-trim />
+                                <span ng-if="createJobAd.jobREF.$dirty && createJobAd.jobREF.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="createJobAd.jobREF.$touched && createJobAd.jobREF.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.jobREF.$touched" ng-messages="createJobAd.jobREF.$error" ng-if="createJobAd.jobREF.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter job ref</div>
+                                    <div ng-message-exp="['minlength','maxlength']">JobREF must be between 1 and 50 characters long</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.jobLevel.$touched && createJobAd.jobLevel.$invalid, 'has-success has-feedback': createJobAd.jobLevel.$dirty && createJobAd.jobLevel.$valid}">
+                            <label for="jobLevel" class="control-label">Job Level</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </div>
+                                <select name="jobLevel" class="form-control" data-ng-model="jobAd.jobLevel"
+                                        data-ng-options="jobLevel for jobLevel in jobLevelOptions"
+                                        ng-required="true"><option value="">Choose job level</option></select>                            
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.jobLevel.$touched" ng-messages="createJobAd.jobLevel.$error" ng-if="createJobAd.jobLevel.$touched" role="alert">
+                                    <div ng-message="required">Please select job level</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.jobType.$touched && createJobAd.jobType.$invalid, 'has-success has-feedback': createJobAd.jobType.$dirty && createJobAd.jobType.$valid}">
+                            <label for="jobType" class="control-label">Job Type</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </div>
+                                <select name="jobType" class="form-control" data-ng-model="jobAd.jobType"
+                                        data-ng-options="jobType for jobType in jobTypeOptions"
+                                        ng-required="true"><option value="">Choose job type</option></select>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.jobType.$touched" ng-messages="createJobAd.jobType.$error" ng-if="createJobAd.jobType.$touched" role="alert">
+                                    <div ng-message="required">Please select job type</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.companySector.$touched && createJobAd.companySector.$invalid, 'has-success has-feedback': createJobAd.companySector.$dirty && createJobAd.companySector.$valid}">
+                            <label for="companySector" class="control-label">Company Sector</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="fa fa-industry"></span>
+                                </div>
+                                <select name="companySector" class="form-control" data-ng-model="jobAd.companySector"
+                                        data-ng-options="companySector for companySector in companySectorOptions"
+                                        ng-required="true"><option value="">Choose company sector</option></select>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.companySector.$touched" ng-messages="createJobAd.companySector.$error" ng-if="createJobAd.companySector.$touched" role="alert">
+                                    <div ng-message="required">Please select company sector</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <sh-checkbox label="Is Employment Equity Position"
+                                     ng-model="jobAd.employmentEquityPosition"
+                                     checked-icon-class="fa fa-check-square-o"
+                                     un-checked-icon-class="fa fa-square-o">
+                            </sh-checkbox>                                
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.disabilities.$touched && createJobAd.disabilities.$invalid, 'has-success has-feedback': createJobAd.disabilities.$dirty && createJobAd.disabilities.$valid}">
+                            <label for="disabilities" class="control-label">Disabilities Allowed</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </div>
+                                <select name="disabilities" class="form-control" data-ng-model="jobAd.disabilityOption"
+                                        data-ng-options="disabilities for disabilities in disabilityCandidatesOptions"
+                                        ng-required="true"><option value="">Choose disability option</option></select>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.disabilities.$touched" ng-messages="createJobAd.disabilities.$error" ng-if="createJobAd.disabilities.$touched" role="alert">
+                                    <div ng-message="required">Please select disabilities allowed option </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error':createJobAd.closingDate.$touched && createJobAd.closingDate.$invalid, 'has-success has-feedback': createJobAd.closingDate.$dirty && createJobAd.closingDate.$valid}">
+                            <label for="closingDate" class="control-label">Closing Date (DD-MM-YYYY)</label>
+                            <p class="input-group">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btnCustom btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                                <input type="text"
+                                       class="form-control"
+                                       name="closingDate"
+                                       datepicker-append-to-body="true"
+                                       uib-datepicker-popup="dd-MM-yyyy"
+                                       ng-model="jobAd.closingDate"
+                                       datepicker-options="dateOptions"
+                                       ng-required="true"
+                                       close-text="Close"
+                                       is-open="datePickerOpened"
+                                       ng-focus="datePickerOpened=true" /> 
+                                <span ng-if="createJobAd.closingDate.$dirty && createJobAd.closingDate.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="createJobAd.closingDate.$touched && createJobAd.closingDate.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>                              
+                            </p>
+                            <div class="help-block" ngfx-slide-in-left="createJobAd.closingDate.$touched" ng-messages="createJobAd.closingDate.$error" ng-if="createJobAd.closingDate.$touched" role="alert">
+                                <div ng-message="required">Please enter closing date </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group-sm" ng-class="{'has-error has-feedback':createJobAd.jobLocationTown.$touched && createJobAd.jobLocationTown.$invalid, 'has-success has-feedback': createJobAd.jobLocationTown.$dirty && createJobAd.jobLocationTown.$valid}">
+                                <label for="jobLocationTown" class="control-label">Job Location Town/City</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-map-marker"></span>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="jobLocationTown"
+                                           data-ng-model="jobAd.jobLocationTown"
+                                           ng-minlength="1"
+                                           ng-maxlength="50"
+                                           ng-required="true"
+                                           ng-trim />
+                                    <span ng-if="createJobAd.jobLocationTown.$dirty && createJobAd.jobLocationTown.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                    <span ng-if="createJobAd.jobLocationTown.$touched && createJobAd.jobLocationTown.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                </div>
+                                    <div class="help-block" ngfx-slide-in-left="createJobAd.jobLocationTown.$touched" ng-messages="createJobAd.jobLocationTown.$error" ng-if="createJobAd.jobLocationTown.$touched" role="alert" ng-messages-multiple>
+                                        <div ng-message="required">Please enter job location town/city</div>
+                                        <div ng-message-exp="['minlength','maxlength']">Job location town/city must be between 1 and 50 characters long</div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group-sm" ng-class="{'has-error has-feedback':createJobAd.jobLocationCountry.$touched && createJobAd.jobLocationCountry.$invalid, 'has-success has-feedback': createJobAd.jobLocationCountry.$dirty && createJobAd.jobLocationCountry.$valid}">
+                                <label for="jobLocationCountry" class="control-label">Job Location Country</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-map-marker"></span>
+                                    </div>
+                                    <select name="jobLocationCountry" class="form-control" data-ng-model="jobAd.jobLocationCountry"
+                                            data-ng-options="jobLocationCountry for jobLocationCountry in jobLocationCountryOptions"
+                                            ng-required="true"><option value="">Choose location country</option></select>
+                                </div>
+                                    <div class="help-block" ngfx-slide-in-left="createJobAd.jobLocationCountry.$touched" ng-messages="createJobAd.jobLocationCountry.$error" ng-if="createJobAd.jobLocationCountry.$touched" role="alert">
+                                        <div ng-message="required">Please select job location country</div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="2">
+                <v-pane-header>
+                    <h2>Renumeration</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div class="row">
+                        <div class="form-group col-sm-3" ng-class="{'has-error has-feedback':createJobAd.renumerationType.$touched && createJobAd.renumerationType.$invalid, 'has-success has-feedback': createJobAd.renumerationType.$dirty && createJobAd.renumerationType.$valid}">
+                            <label for="renumerationType" class="control-label">Renumeration Type</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </div>
+                                <select name="renumerationType" class="form-control" data-ng-model="jobAd.renumerationType"
+                                        data-ng-options="renumerationType for renumerationType in renumerationTypeOptions"
+                                        ng-required="true"><option value="">Choose renumeration type</option></select>
+                            </div>
+                            <div class="help-block" ngfx-slide-in-left="createJobAd.renumerationType.$touched" ng-messages="createJobAd.renumerationType.$error" ng-if="createJobAd.renumerationType.$touched" role="alert">
+                                <div ng-message="required">Please select renumeration type</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-3">
+                            <sh-checkbox label="Renumeration Negotiable"
+                                         ng-model="jobAd.salaryNegotiable"
+                                         checked-icon-class="fa fa-check-square-o"
+                                         un-checked-icon-class="fa fa-square-o">
+                            </sh-checkbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-3">
+                            <sh-checkbox label="Renumeration Market Related"
+                                         ng-model="jobAd.renumerationMarketRelated"
+                                         checked-icon-class="fa fa-check-square-o"
+                                         un-checked-icon-class="fa fa-square-o">
+                            </sh-checkbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-3" ng-class="{'has-error has-feedback':createJobAd.salaryFrequency.$touched && createJobAd.salaryFrequency.$invalid, 'has-success has-feedback': createJobAd.salaryFrequency.$dirty && createJobAd.salaryFrequency.$valid}">
+                            <label for="salaryFrequency" class="control-label">Salary Frequency</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </div>
+                                <select name="salaryFrequency" class="form-control" data-ng-model="jobAd.salaryFrequency"
+                                        data-ng-options="salaryFrequency for salaryFrequency in salaryFrequencyOptions"
+                                        ng-required="true"><option value="">Choose salary frequency</option></select>
+                            </div>
+                            <div class="help-block" ngfx-slide-in-left="createJobAd.salaryFrequency.$touched" ng-messages="createJobAd.salaryFrequency.$error" ng-if="createJobAd.salaryFrequency.$touched" role="alert">
+                                <div ng-message="required">Please select salary frequency</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-hide="jobAd.renumerationMarketRelated" class="row">
+                        <div class="form-group col-sm-3" ng-class="{'has-error has-feedback':createJobAd.currency.$touched && createJobAd.currency.$invalid, 'has-success has-feedback': createJobAd.currency.$dirty && createJobAd.currency.$valid}">
+                            <label for="currency" class="control-label">Salary Currency</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="fa fa-money"></span>
+                                </div>
+                                <select name="currency" class="form-control" data-ng-model="jobAd.salaryCurrency"
+                                        data-ng-options="currency for currency in salaryCurrencyOptions"
+                                        ng-required="true"><option value="">Choose salary currency</option></select>
+                            </div>
+                            <div class="help-block" ngfx-slide-in-left="createJobAd.currency.$touched" ng-messages="createJobAd.currency.$error" ng-if="createJobAd.currency.$touched" role="alert">
+                                <div ng-message="required">Please select salary currency</div>
+                            </div>
+                        </div>
+                    </div>        
+                    <div ng-hide="jobAd.renumerationMarketRelated" class="row">                      
+                        <div class="form-group col-sm-3" ng-class="{'has-error has-feedback':createJobAd.minimumSalary.$touched && createJobAd.minimumSalary.$invalid, 'has-success has-feedback': createJobAd.minimumSalary.$dirty && createJobAd.minimumSalary.$valid}">
+                            <label for="minimumSalary" class="control-label">Minimum Salary</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="fa fa-money"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="minimumSalary"
+                                       ng-model="jobAd.minimumSalary"
+                                       ng-minlength="1"
+                                       ng-maxlength="50"
+                                       ng-required="true"
+                                       ng-trim
+                                       pformat
+                                       prefix=""
+                                       thousands=","
+                                       cents="." />
+                                <span ng-if="createJobAd.minimumSalary.$dirty && createJobAd.minimumSalary.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="createJobAd.minimumSalary.$touched && createJobAd.minimumSalary.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.minimumSalary.$touched" ng-messages="createJobAd.minimumSalary.$error" ng-if="createJobAd.minimumSalary.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter minimum salary</div>
+                                    <div ng-message-exp="['minlength','maxlength']">Minimum salary must be between 1 and 50 characters long</div>
+                                </div>
+                        </div>                    
+                        <div class="form-group col-sm-3" ng-class="{'has-error has-feedback':createJobAd.maximumSalary.$touched && createJobAd.maximumSalary.$invalid, 'has-success has-feedback': createJobAd.maximumSalary.$dirty && createJobAd.maximumSalary.$valid}">
+                            <label for="maximumSalary" class="control-label">Maximum Salary</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="fa fa-money"></span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       name="maximumSalary"
+                                       ng-model="jobAd.maximumSalary"
+                                       ng-minlength="1"
+                                       ng-maxlength="50"
+                                       ng-required="true"
+                                       ng-trim
+                                       pformat
+                                       prefix=""
+                                       thousands=","
+                                       cents="." />
+                                <span ng-if="createJobAd.maximumSalary.$dirty && createJobAd.maximumSalary.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-if="createJobAd.maximumSalary.$touched && createJobAd.maximumSalary.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            </div>
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.maximumSalary.$touched" ng-messages="createJobAd.maximumSalary.$error" ng-if="createJobAd.maximumSalary.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter maximum salary</div>
+                                    <div ng-message-exp="['minlength','maxlength']">Maximum salary must be between 1 and 50 characters long</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.renumerationBenefits.$touched && createJobAd.renumerationBenefits.$invalid, 'has-success has-feedback': createJobAd.renumerationBenefits.$dirty && createJobAd.renumerationBenefits.$valid}">
+                            <label for="renumerationBenefits" class="control-label">Renumeration Benefits (Comma Separated)</label>                           
+                                <textarea class="form-control"
+                                          name="renumerationBenefits"
+                                          data-ng-model="jobAd.renumerationBenefits"
+                                          ng-minlength="1"
+                                          ng-maxlength="500"
+                                          ng-required="true"
+                                          ng-trim>
+                                </textarea>                          
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.renumerationBenefits.$touched" ng-messages="createJobAd.renumerationBenefits.$error" ng-if="createJobAd.renumerationBenefits.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter renumeration benefits</div>
+                                    <div ng-message-exp="['minlength','maxlength']">Renumeration benefits must be between 1 and 50 characters long</div>
+                                </div>
+                            </div>
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="3">
+                <v-pane-header>
+                    <h2>Introduction</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.introduction.$touched && createJobAd.introduction.$invalid, 'has-success has-feedback': createJobAd.introduction.$dirty && createJobAd.introduction.$valid}">
+                            <label for="introduction" class="control-label">Introduction</label>
+                            <textarea class="form-control"
+                                      name="introduction"
+                                      data-ng-model="jobAd.introduction"
+                                      rows="4" cols="8"
+                                      ng-minlength="1"
+                                      ng-maxlength="1000"
+                                      ng-required="true"
+                                      ng-trim></textarea>
+                            <div class="help-block" ngfx-slide-in-left="createJobAd.introduction.$touched" ng-messages="createJobAd.introduction.$error" ng-if="createJobAd.introduction.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter job description</div>
+                                <div ng-message-exp="['minlength','maxlength']">Job description must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="4">
+                <v-pane-header>
+                    <h2>Job Description</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.jobDescription.$touched && createJobAd.jobDescription.$invalid, 'has-success has-feedback': createJobAd.jobDescription.$dirty && createJobAd.jobDescription.$valid}">
+                            <label for="jobDescription" class="control-label">Job Description</label>                           
+                                <textarea class="form-control"
+                                          name="jobDescription"
+                                          data-ng-model="jobAd.jobDescription"
+                                          rows="4" cols="8"
+                                          ng-minlength="1"
+                                          ng-maxlength="1000"
+                                          ng-required="true"
+                                          ng-trim>
+                                </textarea>                         
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.jobDescription.$touched" ng-messages="createJobAd.jobDescription.$error" ng-if="createJobAd.jobDescription.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter job description</div>
+                                    <div ng-message-exp="['minlength','maxlength']">Job description must be between 1 and 50 characters long</div>
+                                </div>
+                            </div>
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="5">
+                <v-pane-header>
+                    <h2>Job Requirements</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div class="row">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.jobRequirements.$touched && createJobAd.jobRequirements.$invalid, 'has-success has-feedback': createJobAd.jobRequirements.$dirty && createJobAd.jobRequirements.$valid}">
+                            <label for="jobRequirements" class="control-label">Job Requirements</label>                     
+                                <textarea class="form-control"
+                                          name="jobRequirements"
+                                          data-ng-model="jobAd.jobRequirements"
+                                          rows="4" cols="8"
+                                          ng-minlength="1"
+                                          ng-maxlength="1000"
+                                          ng-required="true"
+                                          ng-trim>
+                                </textarea>                                               
+                                <div class="help-block" ngfx-slide-in-left="createJobAd.jobRequirements.$touched" ng-messages="createJobAd.jobRequirements.$error" ng-if="createJobAd.jobRequirements.$touched" role="alert" ng-messages-multiple>
+                                    <div ng-message="required">Please enter job requirements</div>
+                                    <div ng-message-exp="['minlength','maxlength']">Job requirements must be between 1 and 50 characters long</div>
+                                </div>
+                            </div>
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="6">
+                <v-pane-header>
+                    <h2>How to apply</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div class="row">
+                        <div class="form-group col-sm-3">
+                            <sh-checkbox label="Apply Online"
+                                         ng-model="jobAd.applyOnline"
+                                         checked-icon-class="fa fa-check-square-o"
+                                         un-checked-icon-class="fa fa-square-o">
+                            </sh-checkbox>
+                        </div>
+                    </div>
+                    <div class="row" ng-hide="jobAd.applyOnline">
+                        <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':createJobAd.howToApply.$touched && createJobAd.howToApply.$invalid, 'has-success has-feedback': createJobAd.howToApply.$dirty && createJobAd.howToApply.$valid}">
+                            <label for="jobRequirements" class="control-label">How to apply</label>
+                            <textarea class="form-control"
+                                      name="howToApply"
+                                      data-ng-model="jobAd.howToApply"
+                                      rows="4" cols="8"
+                                      ng-minlength="1"
+                                      ng-maxlength="1000"
+                                      ng-trim></textarea>
+                            <div class="help-block" ngfx-slide-in-left="createJobAd.howToApply.$touched" ng-messages="createJobAd.howToApply.$error" ng-if="createJobAd.howToApply.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter job application instructions</div>
+                                <div ng-message-exp="['minlength','maxlength']">Instructions must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                    </div>
+                </v-pane-content>
+            </v-pane>
+        </v-accordion> 
+        <a ng-disabled="createJobAd.$invalid" class="btn btn-primary" ng-click="previewJobAd()"> Preview Job Ad</a>
+        <hr />
+    </form>
+</div>

@@ -1,0 +1,39 @@
+﻿<div>
+    <div class="imgcontainer">
+        <img ng-src="{{jobAd.company.companyLogo||'images/companyLogo.jpg'}}" alt="Company Logo" class="img-thumbnail" width="218" height="100" />
+        <p class="text-center"><span><strong>{{jobAd.company.companyName}}</strong></span></p>
+    </div>
+    <div class="modal-body">
+        <div style=" margin: 20px">
+            <h1 style="text-align: center"> About {{jobAd.company.companyName}}</h1>
+            <hr />
+            <h2>Introduction</h2>
+            <p>{{jobAd.company.introduction}}</p>
+            <hr />
+            <h2>Contact Details</h2>
+            <dl class="dl-horizontal">
+                <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Physical Address </strong></dt>
+                <dd>{{jobAd.company.physicalAddress}}</dd>
+                <dt style="text-align:left"><span class="fa fa-envelope"></span> <strong>Postal Address</strong></dt>
+                <dd> {{jobAd.company.postalAddress}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-phone-alt"></span> <strong>Tel</strong></dt>
+                <dd>{{jobAd.company.tel}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-phone"></span> <strong>Mobile</strong></dt>
+                <dd>{{jobAd.company.mobile}}</dd>
+                <dt style="text-align:left"><span class="fa fa-envelope"></span> <strong>Email</strong></dt>
+                <dd>{{jobAd.company.email}}</dd>
+                <dt style="text-align:left"><span class="fa fa-fax"></span> <strong>Fax</strong></dt>
+                <dd>{{jobAd.company.fax}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-globe"></span> <strong>Website</strong></dt>
+                <dd>{{jobAd.company.website}}</dd>
+            </dl>
+            <hr />
+            <div class="row" style="text-align: center">
+                <div class="form-group">
+                    <button class="btn btn-lg  btn-block btn-primary" type="button" ng-click="ok()">OK</button>
+                    <button class="btn btn-lg  btn-block btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </div>
+            </div>        
+        </div>      
+    </div>
+</div>

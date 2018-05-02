@@ -1,0 +1,17 @@
+﻿<div class="container" ng-controller="AdminJobApplicationController">
+        <div class="row">          
+            <div class="col-sm-8">
+                <br />
+                <div><button ng-click="back()" class="btn btn-primary">Back</button></div>
+                <hr />
+                <p><h4><strong>{{jobApplication.jobTitle}}</strong></h4></p>
+                <p><span>JobREF: {{jobApplication.jobAdREF}}</span></p>
+                <span>Applicant Name: {{jobApplication.firstName}} {{jobApplication.lastName}}</span>
+                <button class="btn btn-primary" ng-click="viewProfile()">View Profile</button>
+                <hr />
+                <h5><strong>Cover Note</strong></h5>
+                <p>{{jobApplication.coverNote}}</p>             
+                <hr />
+            </div>
+        </div>   
+</div>

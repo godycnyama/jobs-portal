@@ -1,0 +1,70 @@
+﻿.ng-checkbox {
+	font-size: 12px;
+}
+
+/* Label sizes */
+.ng-checkbox > label.sm {
+	font-size: 12px;
+}
+
+.ng-checkbox > label.md {
+	font-size: 16px;
+}
+
+.ng-checkbox > label.lg {
+	font-size: 20px;
+}
+
+.ng-checkbox > label.x-lg {
+	font-size: 26px;
+}
+
+.ng-checkbox > label.xx-lg {
+	font-size: 32px;
+}
+
+.ng-checkbox > label.xxx-lg {
+	font-size: 60px;
+}
+
+/* Icon sizes */
+.ng-checkbox > label > i {
+	font-size: 14px;
+}
+
+.ng-checkbox > label > i.sm {
+	font-size: 12px;
+}
+
+.ng-checkbox > label > i.md {
+	font-size: 16px;
+}
+
+.ng-checkbox > label > i.lg {
+	font-size: 20px;
+}
+
+.ng-checkbox > label > i.x-lg {
+	font-size: 26px;
+}
+
+.ng-checkbox > label > i.xx-lg {
+	font-size: 32px;
+}
+
+.ng-checkbox > label > i.xxx-lg {
+	font-size: 60px;
+}
+
+/* Themes */
+.ng-checkbox > label > i.green {
+	color: #8dc63f;
+}
+
+.ng-checkbox > label > i.red {
+	color: #ff5c5b;
+}
+
+.ng-checkbox > label > i.blue {
+	color: #3399FF;
+}

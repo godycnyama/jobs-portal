@@ -1,0 +1,63 @@
+﻿<div class="container" ng-controller="PreviewJobAdController"> 
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="row">
+                <br />
+                <h1>Job Ad Create Preview</h1>
+                <button class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+                <button class="btn btn-primary" ui-sref="recruiter.editJobAd"> <span class="glyphicon glyphicon-edit"></span> Edit Job Ad</button>
+                <hr /> 
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img ng-src="{{recruiter.companyLogo||'images/companyLogo.jpg'}}" alt="Company Logo" class="img-thumbnail" height="140" width="140" />
+                        <p class="text-center"><span><strong>{{recruiter.companyName}}</strong></span></p>
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-heading"><strong>{{jobAd.jobTitle}}</strong></h3>
+                        <dl class="dl-horizontal">
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Location</strong></dt>
+                            <dd>{{jobAd.jobLocationTown}} {{jobAd.jobLocationCountry}}</dd>
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Job Type</strong></dt>
+                            <dd>{{jobAd.jobType}} {{jobAd.jobLevel}} Position</dd>
+                            <dt style="text-align:left"><span class="fa fa-money"></span> <strong>Salary</strong></dt>
+                            <dd>{{jobAd.salaryCurrency}}{{jobAd.minimumSalary}}-{{jobAd.salaryCurrency}}{{jobAd.maximumSalary}} {{jobAd.salaryFrequency}} {{jobAd.renumerationType}}</dd>
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Job REF</strong></dt>
+                            <dd>{{jobAd.jobREF}}</dd>
+                            <dt style="text-align:left"><span class="fa fa-industry"></span> <strong>Sector</strong></dt>
+                            <dd>{{jobAd.companySector}}</dd>
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-calendar"></span> <strong>Posted by </strong></dt>
+                            <dd>{{recruiter.companyName}} on {{today_date| date :  "fullDate"}}</dd>
+                            <dt style="text-align:left"><span class="glyphicon glyphicon-time"></span> <strong>Closing Date</strong></dt>
+                            <dd>{{jobAd.closingDate| date :  "fullDate"}}</dd>
+                        </dl>
+                        <h4 ng-if="jobAd.closed"><span class="label label-danger">Closed</span></h4>
+                        <hr />
+                        <h3><strong>Introduction</strong></h3>
+                        <p>{{jobAd.introduction}}</p>
+                        <h3><strong>Job Description</strong></h3>
+                        <p>{{jobAd.jobDescription}}</p>
+                        <hr />
+                        <h3><strong>Job Requirements</strong></h3>
+                        <p>{{jobAd.jobRequirements}}</p>
+                        <hr />
+                        <h3><strong>How to apply</strong></h3>
+                        <p ng-if="jobAd.applyOnline">Apply Online</p>
+                        <p ng-if="!jobAd.applyOnline">{{jobAd.howToApply}}</p>
+                        <p>Apply before {{jobAd.closingDate| date :  "fullDate"}}
+                        <p>
+                           <button class="btn btn-primary" ng-click="back()">Back</button>
+                            <span class="pull-right">
+                                <button class="btn btn-primary" ng-click="createJobAd()">Save</button>
+                                <button ng-show="addQuestionnaire==true" class="btn btn-primary" ui-sref="recruiters.questionnairesMaster">Save & Add Questionnaire</button>
+                                <button ng-show="mode == true" class="btn btn-primary" ng-click="createJobAdAddToNewOrder()">Save & Add to new order</button>
+                                <button ng-show="mode == true" class="btn btn-primary" ng-click="createJobAdAddToExistingOrder()">Save & Add to existing order</button>
+                            </span>
+                        </p>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

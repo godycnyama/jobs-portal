@@ -1,0 +1,185 @@
+﻿<div class="container" ng-controller="CandidateController">
+    <br />
+    <a class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    <a class="btn btn-primary" ui-sref="recruiter.candidateProfilePrint"> <span class="glyphicon glyphicon-new-window"></span> Profile Print View</a>
+    <button class="btn btn-primary" ng-click="addCV()"><span class="glyphicon glyphicon-plus"></span> Add CV to your database</button>
+    <br />
+    <div class="text-center">
+        <img class="vignetteA" ng-src="{{candidate.photo || 'images/user-avatar-placeholder.png' }}" alt="Photo" />
+    </div>
+    <h3 class="text-center">{{candidate.firstName}} {{candidate.middleName}} {{candidate.lastName}} <small>{{candidate.gender}} DOB {{candidate.birthDate| date :  "dd/MM/yyyy"}}</small></h3>
+    <div ng-if="candidate.profession" class="text-center"><span class="fa fa-id-card"></span> {{candidate.profession}}</div>
+    <div ng-if="candidate.mainQualification" class="text-center"><span class="glyphicon glyphicon-education"></span> {{candidate.mainQualification}}</div>
+    <div ng-if="candidate.homeTel" class="text-center"><span class="glyphicon glyphicon-earphone"></span> {{candidate.homeTel}}</div>
+    <div ng-if="candidate.workTel" class="text-center"><span class="glyphicon glyphicon-phone-alt"></span> {{candidate.workTel}}</div>
+    <div ng-if="candidate.mobile" class="text-center"><span class="glyphicon glyphicon-phone"></span> {{candidate.mobile}}</div>
+    <div ng-if="candidate.email" class="text-center"><span class="fa fa-envelope"></span> {{candidate.email}}</div>
+    <div ng-if="candidate.address" class="text-center"><span class="glyphicon glyphicon-map-marker"></span> {{candidate.address}} | {{candidate.locationTown}} {{candidate.locationCountry}}</div>
+    <hr />
+    <h4 ng-if="candidate.introduction" class="text-center">Introduction</h4>
+    <div ng-if="candidate.introduction" class="text-center">{{candidate.introduction}}</div>
+    <hr />
+    <v-accordion class="vAccordion--default">
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-user"></span>  Personal Details
+            </v-pane-header>
+            <v-pane-content>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt ng-if="candidate.linkedInProfile" style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>LinkedIn Profile</strong></dt>
+                    <dd ng-if="candidate.linkedInProfile">{{candidate.linkedInProfile}}</dd>
+                    <dt ng-if="candidate.website" style="text-align:left"><span class="glyphicon glyphicon-globe"></span> <strong>Website</strong></dt>
+                    <dd ng-if="candidate.website">{{candidate.website}}</dd>
+                    <dt ng-if="candidate.affiliations" style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Professional Affiliations</strong></dt>
+                    <dd ng-if="candidate.affiliations">{{candidate.affiliations}}</dd>
+                    <dt ng-if="candidate.noticePeriod" style="text-align:left"><span class="glyphicon glyphicon-calendar"></span> <strong>Notice Period</strong></dt>
+                    <dd ng-if="candidate.noticePeriod">{{candidate.noticePeriod}}</dd>
+                    <dt ng-if="candidate.requiredSalary" style="text-align:left"><span class="fa fa-money"></span> <strong>Required Salary</strong></dt>
+                    <dd ng-if="candidate.requiredSalary">{{candidate.requiredSalary}}</dd>
+                    <dt ng-if="candidate.preferredJobTitles" style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Preferred Job Titles</strong></dt>
+                    <dd ng-if="candidate.preferredJobTitles">{{candidate.preferredJobTitles}}</dd>
+                    <dt ng-if="candidate.preferredJobTypes" style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Preferred Job Types</strong></dt>
+                    <dd ng-if="candidate.preferredJobTypes">{{candidate.preferredJobTypes}}</dd>
+                    <dt ng-if="candidate.preferredJobLocations" style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Preferred Job Locations</strong></dt>
+                    <dd ng-if="candidate.preferredJobLocations">{{candidate.preferredJobLocations}}</dd>
+                </dl>
+                <hr />          
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="glyphicon glyphicon-education"></span>  Education
+            </v-pane-header>
+            <v-pane-content>
+                <div ng-repeat="qualification in candidate.qualifications">
+                    <hr />
+                    <br />
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left"><strong>Qualification Title</strong></dt>
+                        <dd>{{qualification.title}}</dd>
+                        <dt style="text-align:left"><strong>Qualification Level</strong></dt>
+                        <dd>{{qualification.level}}</dd>
+                        <dt style="text-align:left"><strong>Duration and Status</strong></dt>
+                        <dd>{{qualification.startMonth}} {{qualification.startYear}}-{{qualification.endMonth}} {{qualification.endYear}}        {{qualification.status}}</dd>
+                        <dt style="text-align:left"> <strong>Institution</strong></dt>
+                        <dd>{{qualification.institution}}     {{qualification.country}}</dd>
+                        <dt style="text-align:left"><strong>Majors</strong></dt>
+                        <dd>{{qualification.majors}}</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-cogs"></span> Skills
+            </v-pane-header>
+            <v-pane-content>
+                <div ng-repeat="skill in candidate.skills">
+                    <hr />
+                    <br />
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left"><strong>Skill Description</strong></dt>
+                        <dd>{{skill.description}}</dd>
+                        <dt style="text-align:left"><strong>Skill Level</strong></dt>
+                        <dd>{{skill.skillLevel}}</dd>
+                        <dt style="text-align:left"><strong>Experience</strong></dt>
+                        <dd>{{skill.experience}}</dd>
+                        <dt style="text-align:left"> <strong>Last Date Used</strong></dt>
+                        <dd ng-hide="skill.isCurrent === true">{{skill.lastDateUsedMonth}} - {{skill.lastDateUsedYear}}</dd>
+                        <dd ng-show="skill.isCurrent === true">Current</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-archive"></span>  Work Experience
+            </v-pane-header>
+            <v-pane-content>
+                <div ng-repeat="employment in candidate.employment">
+                    <hr />
+                    <br />
+                    <div><span><strong>{{employment.jobTitle}}</strong></span></div>
+                    <div><span><strong>{{employment.companyName}}</strong></span></div>
+                    <div ng-show="employment.isCurrent === false"><span><strong>{{employment.startMonth}} {{employment.startYear}}-{{employment.endMonth}} {{employment.endYear}}</strong></span></div>
+                    <div ng-show="employment.isCurrent === true"><span><strong>{{employment.startMonth}} {{employment.startYear}}-Current</strong></span></div>
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left" ng-show="employment.isCurrent === false"><strong>Reasons for Leaving</strong></dt>
+                        <dd ng-show="employment.isCurrent === false">{{employment.reasonsForLeaving}}</dd>
+                        <dt style="text-align:left"><strong>Duties and Responsibilites</strong></dt>
+                        <dd>{{employment.duties}}</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-language"></span>  Languages
+            </v-pane-header>
+            <v-pane-content>
+                <div ng-repeat="language in candidate.languages">
+                    <hr />
+                    <br />
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left"><strong>Language Name</strong></dt>
+                        <dd>{{language.languageName}}</dd>
+                        <dt style="text-align:left"><strong>Spoken Ability</strong></dt>
+                        <dd>{{language.spokenAbility}}</dd>
+                        <dt style="text-align:left"><strong>Written Ability</strong></dt>
+                        <dd>{{language.writtenAbility}}</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-address-book"></span>  Referees
+            </v-pane-header>
+            <v-pane-content>
+                <div ng-repeat="referee in candidate.referees">
+                    <hr />
+                    <br />
+                    <dl class="dl-horizontal">
+                        <dt style="text-align:left"><strong>Name</strong></dt>
+                        <dd>{{referee.fullName}}</dd>
+                        <dt style="text-align:left"><strong>Title</strong></dt>
+                        <dd>{{referee.title}}</dd>
+                        <dt style="text-align:left"><strong>Organisation Name</strong></dt>
+                        <dd>{{referee.organisationName}}</dd>
+                        <dt style="text-align:left"><strong>Tel</strong></dt>
+                        <dd>{{referee.tel}}</dd>
+                        <dt style="text-align:left"><strong>Cell</strong></dt>
+                        <dd>{{referee.cell}}</dd>
+                        <dt style="text-align:left"><strong>Email</strong></dt>
+                        <dd>{{referee.refereeEmail}}</dd>
+                    </dl>
+                    <hr />
+                </div>
+            </v-pane-content>
+        </v-pane>
+
+        <v-pane>
+            <v-pane-header>
+                <span class="fa fa-file"></span>   CV
+            </v-pane-header>
+            <v-pane-content>
+                <hr />
+                <span>
+                    <strong>{{candidate.cv.fileName}}</strong>
+                </span>
+                <button  class="btn btn-primary" ng-click="downloadCV()"><span class="glyphicon glyphicon-download"></span> Download</button>
+                <hr />
+            </v-pane-content>
+        </v-pane>
+    </v-accordion>
+</div>

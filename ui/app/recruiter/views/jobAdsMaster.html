@@ -1,0 +1,191 @@
+﻿<div class="container" ng-init="init()" data-ng-controller="JobAdsController">
+    <h1>Job Ads</h1>
+    <button class="btn btn-primary" ng-click="createJobAd()"><span class="glyphicon glyphicon-plus"></span> Create Job Ad</button>
+    <a class="btn btn-primary"
+       ui-sref="recruiters.jobAds.checkOut"
+       ng-show="selectedSearchBy=='Payment Pending'">
+        <span class="glyphicon glyphicon-shopping-cart"></span> {{cartItemsTotal}} R{{cartTotalAmount}}
+    </a>
+    <hr />
+    <form name="jobAds">
+        <h2>Search for Job Ads</h2>
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <label for="searchOption" class="control-label">Search By</label>
+                <select class="form-control" name="searchOption" data-ng-model="searchBy"
+                        data-ng-options="searchOption for searchOption in searchByOptions" ng-change="clearJobAds()"></select>
+            </div>
+            <div class="form-group col-sm-1" ng-hide="searchBy==='Date'||searchBy==='Date Range'||searchBy==='JobREF'||searchBy==='Job Title'">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchJobAds()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="searchBy==='JobID'||searchBy==='JobREF'||searchBy==='Job Title'">
+            <div class="form-group col-sm-3" ng-class="{'has-error':jobAds.searchTerm.$touched && jobAds.searchTerm.$invalid}">
+                <label for="searchTerm" class="control-label">Enter {{searchBy}}</label>
+                <input type="text"
+                       class="form-control"
+                       name="searchTerm"
+                       data-ng-model="searchTerm"
+                       placeholder="Enter Search Term"
+                       ng-minlength="1"
+                       ng-maxlength="50"
+                       ng-required="true"
+                       ng-trim />
+                <div class="help-block" ng-messages="jobAds.searchTerm.$error" ng-if="jobAds.searchTerm.$touched" role="alert" ng-messages-multiple>
+                    <div ng-message="required">Please enter search term</div>
+                    <div ng-message-exp="['minlength','maxlength']">Search term must be between 1 and 50 characters long</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchJobAds()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="searchBy==='Date'">
+            <div class="form-group col-sm-2" ng-class="{'has-error':jobAds.date.$touched && jobAds.date.$invalid}">
+                <label for="date" class="control-label">Date</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="date"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="date"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="datePickerOpened"
+                           ng-focus="datePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="jobAds.date.$error" ng-if="jobAds.date.$touched" role="alert">
+                    <div ng-message="required">Please select date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchJobAds()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="searchBy==='Date Range'">
+            <div class="form-group col-sm-2" ng-class="{'has-error':jobAds.fromDate.$touched && jobAds.fromDate.$invalid}">
+                <label for="fromDate" class="control-label">Date From</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="fromDate"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="dateFrom"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="fromDatePickerOpened"
+                           ng-focus="fromDatePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openFromDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="jobAds.fromDate.$error" ng-if="jobAds.fromDate.$touched" role="alert">
+                    <div ng-message="required">Please enter start date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-2" ng-class="{'has-error':jobAds.toDate.$touched && jobAds.toDate.$invalid}">
+                <label for="toDate" class="control-label">Date To</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"
+                           name="toDate"
+                           datepicker-append-to-body="true"
+                           uib-datepicker-popup="dd-MM-yyyy"
+                           ng-model="dateTo"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close"
+                           is-open="toDatePickerOpened"
+                           ng-focus="toDatePickerOpened=true" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btnCustom btn-default" ng-click="openToDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+                <div class="help-block" ng-messages="jobAds.toDate.$error" ng-if="jobAds.toDate.$touched" role="alert">
+                    <div ng-message="required">Please enter start date</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1">
+                <div style="margin-top:25px">
+                    <button type="button" class="btn btn-primary" ng-click="searchJobAds()"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span>Display</span>
+                    </div>
+                    <select class="form-control" name="viewOption" data-ng-model="jobAdsPerPage"
+                            data-ng-options="viewPerPageOption for viewPerPageOption in viewPerPageOptions"></select>
+                    <div class="input-group-addon">
+                        <span>Per Page</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <dir-pagination-controls on-page-change="getPage(newPageNumber)" max-size="5"></dir-pagination-controls>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <div dir-paginate="jobAd in jobAds | itemsPerPage: jobAdsPerPage" total-items="totalJobAds" current-page="pagination.current">
+        <hr />
+        <div class="media">
+            <div class="pull-left">
+                <img ng-src="{{jobAd.company.companyLogo||'images/companyLogo.jpg'}}" alt="Company Logo" class="img-thumbnail" width="218" height="100" uib-tooltip="{{jobAd.company.introduction}}" />
+                <p class="text-center"><span><strong>{{jobAd.company.companyName}}</strong></span></p>
+                <p class="text-center"><button ng-click="aboutRecruiter(jobAd)" class="btn btn-primary">About {{jobAd.company.companyName}}</button></p>
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading"><strong>{{jobAd.jobTitle}}</strong></h3>
+                <dl class="dl-horizontal">
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Job REF</strong></dt>
+                    <dd>{{jobAd.jobREF}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Location</strong></dt>
+                    <dd>{{jobAd.jobLocationTown}} {{jobAd.jobLocationCountry}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Job Type</strong></dt>
+                    <dd>{{jobAd.jobType}} {{jobAd.jobLevel}} Position</dd>
+                    <dt style="text-align:left"><span class="fa fa-money"></span> <strong>Salary</strong></dt>
+                    <dd>{{jobAd.salaryCurrency}}{{jobAd.minimumSalary}}-{{jobAd.salaryCurrency}}{{jobAd.maximumSalary}} {{jobAd.salaryFrequency}} {{jobAd.renumerationType}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-industry"></span> <strong>Sector</strong></dt>
+                    <dd>{{jobAd.companySector}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-calendar"></span> <strong>Posted by </strong></dt>
+                    <dd>{{jobAd.company.companyName}} on {{jobAd.createdOn| date :  "fullDate"}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-time"></span> <strong>Closing Date </strong></dt>
+                    <dd>{{jobAd.closingDate| date :  "fullDate"}}</dd>
+                </dl>
+                <p ng-show="jobAd.paid"><span class="label label-success">Paid</span></p>
+                <p ng-show="!jobAd.paid"><span class="label label-warning">Not Paid</span></p>
+                <p ng-if="jobAd.closed"><span class="label label-danger">Closed</span></p>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+
+                            <button ng-click="viewJobAd(jobAd)" class="btn btn-lg  btn-block btn-primary"><span class="glyphicon glyphicon-new-window"></span> View Job Ad</button>
+                            <button ng-click="editJobAd(jobAd)" class="btn btn-lg  btn-block btn-primary" ng-show="!jobAd.paid && !jobAd.closed"><span class="glyphicon glyphicon-edit"></span> Edit Job Ad</button>
+                            <button ng-click="copyCreateNewJobAd(jobAd)" class="btn btn-lg  btn-block btn-primary"><span class="glyphicon glyphicon-plus"></span> Copy and Create New</button>
+                            <button ng-click="addToCart(jobAd)" class="btn btn-lg  btn-block btn-primary" ng-show="!jobAd.paid && !jobAd.closed && cart"><span class="glyphicon glyphicon-plus"></span> Add to Cart/Current Order</button>
+                            <button ng-click="addToNewOrder(jobAd)" class="btn btn-lg  btn-block btn-primary" ng-show="!jobAd.paid && !jobAd.closed"><span class="glyphicon glyphicon-plus"></span> Add to new order</button>
+                            <button ng-click="addToExistingOrder(jobAd)" class="btn btn-lg  btn-block btn-primary" ng-show="!jobAd.paid && !jobAd.closed"><span class="glyphicon glyphicon-plus"></span> Add to existing order</button>
+                            <button ng-click="closeJobAd(jobAd)" class="btn btn-lg  btn-block btn-primary" ng-if="!jobAd.closed"> Close</button>
+                            <button ng-click="deleteJobAd(jobAd)" class="btn btn-lg  btn-block btn-primary"> Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>

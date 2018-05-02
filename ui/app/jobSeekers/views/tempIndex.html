@@ -1,0 +1,141 @@
+﻿<h1>Hello there</h1>
+<hr />
+<v-accordion id="accordionA" class="vAccordion--default" control="accordionA" onexpand="expandCallback(index, id)" oncollapse="collapseCallback(index, id)">
+    <v-pane id="1">
+        <v-pane-header>
+            Personal Details
+        </v-pane-header>
+        <v-pane-content>
+            <a class="btn btn-primary" ui-sref="profile.personal"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt style="text-align:left"><strong>Address</strong></dt>
+                <dd>{{jobSeeker.address}}</dd>
+                <dt style="text-align:left"><strong>Main Qualification</strong></dt>
+                <dd>{{jobSeeker.mainQualification}}</dd>
+                <dt style="text-align:left"><strong>Career Objectives</strong></dt>
+                <dd>{{jobSeeker.careerObjectives}}</dd>
+                <dt style="text-align:left"><strong>Total Work Experience</strong></dt>
+                <dd>{{totalWorkExperience}}</dd>
+                <dt style="text-align:left"><strong>LinkedIn Profile</strong></dt>
+                <dd>{{jobSeeker.linkedInProfile}}</dd>
+                <dt style="text-align:left"><strong>Website</strong></dt>
+                <dd>{{jobSeeker.website}}</dd>
+                <dt style="text-align:left"><strong>Professional Affiliations</strong></dt>
+                <dd>{{jobSeeker.affiliations}}</dd>
+                <dt style="text-align:left"><strong>Notice Period</strong></dt>
+                <dd>{{jobSeeker.noticePeriod}}</dd>
+                <dt style="text-align:left"><strong>Required Salary</strong></dt>
+                <dd>{{jobSeeker.requiredSalary}}</dd>
+                <dt style="text-align:left"><strong>Preferred Job Titles</strong></dt>
+                <dd>{{jobSeeker.preferredJobTitles}}</dd>
+                <dt style="text-align:left"><strong>Preferred Job Types</strong></dt>
+                <dd>{{jobSeeker.preferredJobTypes}}</dd>
+                <dt style="text-align:left"><strong>Preferred Job Locations</strong></dt>
+                <dd>{{jobSeeker.preferredJobLocations}}</dd>
+                <dt style="text-align:left"><strong>Current Location</strong></dt>
+                <dd>{{jobSeeker.locationTown}} {{jobSeeker.locationCountry}}</dd>
+            </dl>
+        </v-pane-content>
+    </v-pane>
+    <v-pane id="2">
+        <v-pane-header>
+            Career Objectives
+        </v-pane-header>
+        <v-pane-content>
+            <a class="btn btn-primary" ui-sref="profile.careerObjectives"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+            <hr />
+            <div><span>{{jobSeeker.careerObjectives}}</span></div>
+            <hr />
+        </v-pane-content>
+    </v-pane>
+    <v-pane id="3">
+        <v-pane-header>
+            Education
+        </v-pane-header>
+        <v-pane-content>
+            <a class="btn btn-primary" ui-sref="profile.education"><span class="fa fa-plus"></span> Add Qualification</a>
+            <div ng-repeat="qualification in jobSeeker.qualifications">
+                <hr />
+                <div><span><strong>{{qualification.title}}</strong></span></div>
+                <div><span><strong>{{qualification.level}}</strong></span></div>
+                <div><span><strong>{{qualification.startMonth}} {{qualification.startYear}}-{{qualification.endMonth}} {{qualification.endYear}}        {{qualification.status}}</strong></span></div>
+                <div><span><strong>{{qualification.institution}}     {{qualification.country}}</strong></span></div>
+                <div><p><strong>Majors: </strong>{{qualification.majors}}</p></div>
+                <hr />
+            </div>
+        </v-pane-content>
+    </v-pane>
+    <v-pane id="4">
+        <v-pane-header>
+            Skills
+        </v-pane-header>
+        <v-pane-content>
+            <a class="btn btn-primary" ui-sref="profile.skill"><span class="fa fa-plus"></span> Add Skill</a>
+            <div ng-repeat="skill in jobSeeker.skills">
+                <hr />
+                <div><span><strong>{{skill.description}}</strong></span></div>
+                <div><span>{{skill.skillLevel}}</span></div>
+                <div><span>{{skill.experience}}</span></div>
+                <hr />
+            </div>
+        </v-pane-content>
+    </v-pane>
+    <v-pane id="5">
+        <v-pane-header>
+            Work Experience
+        </v-pane-header>
+        <v-pane-content>
+            <a class="btn btn-primary" ui-sref="profile.employment"><span class="fa fa-plus"></span> Add Employment</a>
+            <div ng-repeat="employment in jobSeeker.employment">
+                <hr />
+                <div><span><strong>{{employment.jobTitle}}</strong></span></div>
+                <div><span><strong>{{employment.companyName}}</strong></span></div>
+                <div><span><strong>{{employment.startMonth}} {{employment.startYear}}-{{employment.endMonth}} {{employment.endYear}}</strong></span></div>
+                <div><p><strong>Duties and Responsibilites: </strong>{{employment.duties}}</p></div>
+                <hr />
+            </div>
+        </v-pane-content>
+    </v-pane>
+    <v-pane id="6">
+        <v-pane-header>
+            Languages
+        </v-pane-header>
+        <v-pane-content>
+            <a class="btn btn-primary" ui-sref="profile.languages"> <span class="fa fa-plus"></span> Add Language</a>
+            <div ng-repeat="language in jobSeeker.languages">
+                <hr />
+                <div><span><strong>{{language.name}}</strong></span></div>
+                <div><span><strong>Spoken Ability:</strong>  {{langauge.spokenAbility}}</span></div>
+                <div><span><strong>Written Ability:</strong>  {{langauge.writtenAbility}}</span></div>
+                <hr />
+            </div>
+        </v-pane-content>
+    </v-pane>
+    <v-pane id="7">
+        <v-pane-header>
+            CVs
+        </v-pane-header>
+        <v-pane-content>
+            <a class="btn btn-primary" ui-sref="profile.cv"><span class="fa fa-plus"></span> Attach CV</a>
+            <div ng-repeat="cv in jobSeeker.cvs">
+                <hr />
+                <div><span><strong>{{cv.fileName}}:</strong><a>{{cv.isDefault}}</a><button>Remove</button></span></div>
+                <hr />
+            </div>
+        </v-pane-content>
+    </v-pane>
+    <v-pane id="8">
+        <v-pane-header>
+            Attachments
+        </v-pane-header>
+        <v-pane-content>
+            <a class="btn btn-primary" ui-sref="profile.attachments"><span class="fa fa-plus"></span> Attach Document</a>
+            <div ng-repeat="attachment in jobSeeker.attachments">
+                <hr />
+                <div><span><strong>{{attachment.documentType}}:</strong><a>{{attachment.fileName}}</a><button>Remove</button></span></div>
+                <hr />
+            </div>
+        </v-pane-content>
+    </v-pane>
+</v-accordion>

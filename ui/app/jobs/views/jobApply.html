@@ -1,0 +1,22 @@
+﻿<div ng-controller="JobApplyController" class="container">
+    <form name="apply" novalidate>
+        <div class="row">          
+            <div class="col-sm-8">
+                <br />
+                <div><button ng-click="back()" class="btn btn-primary">Back</button></div>
+                <hr />
+                <p><h4><strong>{{jobAd.jobTitle}}</strong></h4>  {{jobAd.jobLocationTown}}-{{jobAd.jobLocationCountry}}</p>
+                <p><span>JobID: {{jobAd._id}}</span>|Job REF:{{jobAd.jobREF}}</p>
+                <p>{{jobAd.company.companyName}}</p>
+                <hr />
+                <h5><strong>Cover Note</strong> {{count}}/2000  (Maximum of 2000 characters)</h5>
+                <p ngfx-slide-in-left="count >= 2001" ng-show="count >= 2001" class="label label-danger"><strong>Error!</strong> Cover note must be a maximum of 2000 characters!</p>
+                <br />
+                <trix-editor ng-disabled="count == 2001" angular-trix ng-model="coverNote" class="trix-content" trix-change="countText(e,editor)"></trix-editor>
+                <hr />
+                <button class="btn btn-primary" ng-click="sendApplication()" ng-disabled="count >= 2001">Send Application</button>
+                <hr />
+            </div>
+        </div>
+    </form>
+</div>

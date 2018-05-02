@@ -1,0 +1,171 @@
+﻿<div class="container" ng-controller="RefereeController">
+    <h1><span class="fa fa-plus"></span> Add Referee</h1>
+    <br />
+    <button ng-click="back()" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+    <div class="row">
+        <div class="col-sm-8">
+            <hr />
+            <form name="referees" role="form">
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':referees.fullName.$touched && referees.fullName.$invalid, 'has-success has-feedback': referees.fullName.$dirty && referees.fullName.$valid}">
+                        <label for="fullName" class="control-label">Full Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-user"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="fullName"
+                                   ng-model="referee.fullName"
+                                   placeholder="Enter full name"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="referees.fullName.$dirty && referees.fullName.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="referees.fullName.$touched && referees.fullName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="referees.fullName.$touched" ng-messages="referees.fullName.$error" ng-if="referees.fullName.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter full name</div>
+                                <div ng-message-exp="['minlength','maxlength']">Full name must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':referees.title.$touched && referees.title.$invalid, 'has-success has-feedback': referees.title.$dirty && referees.title.$valid}">
+                        <label for="title" class="control-label">Title</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="title"
+                                   ng-model="referee.title"
+                                   placeholder="Enter title"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="referees.title.$dirty && referees.title.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="referees.title.$touched && referees.title.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="referees.title.$touched" ng-messages="referees.title.$error" ng-if="referees.title.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter title</div>
+                            <div ng-message-exp="['minlength','maxlength']">Title must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':referees.organisationName.$touched && referees.organisationName.$invalid, 'has-success has-feedback': referees.organisationName.$dirty && referees.organisationName.$valid}">
+                        <label for="organisationName" class="control-label">Organisation Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-institution"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="organisationName"
+                                   ng-model="referee.organisationName"
+                                   placeholder="Enter organisation name"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="referees.organisationName.$dirty && referees.organisationName.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="referees.organisationName.$touched && referees.organisationName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="referees.organisationName.$touched" ng-messages="referees.organisationName.$error" ng-if="referees.organisationName.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter title</div>
+                            <div ng-message-exp="['minlength','maxlength']">Organisation name must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':referees.tel.$touched && referees.tel.$invalid, 'has-success has-feedback': referees.tel.$dirty && referees.tel.$valid}">
+                        <label for="tel" class="control-label">Tel</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="tel"
+                                   ng-model="referee.tel"
+                                   placeholder="Enter telephone number"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="referees.tel.$dirty && referees.tel.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="referees.tel.$touched && referees.tel.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="referees.tel.$touched" ng-messages="referees.tel.$error" ng-if="referees.tel.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter telephone number</div>
+                            <div ng-message-exp="['minlength','maxlength']">Tel must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':referees.cell.$touched && referees.cell.$invalid, 'has-success has-feedback': referees.cell.$dirty && referees.cell.$valid}">
+                        <label for="cell" class="control-label">Cell</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-phone"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="cell"
+                                   ng-model="referee.cell"
+                                   placeholder="Enter cellphone number"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="referees.cell.$dirty && referees.cell.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="referees.cell.$touched && referees.cell.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="referees.cell.$touched" ng-messages="referees.cell.$error" ng-if="referees.cell.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter cellphone number</div>
+                            <div ng-message-exp="['minlength','maxlength']">Cell must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error has-feedback':referees.refereeEmail.$touched && referees.refereeEmail.$invalid, 'has-success has-feedback': referees.refereeEmail.$dirty && referees.refereeEmail.$valid}">
+                        <label for="refereeEmail" class="control-label">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-envelope"></span>
+                            </div>
+                            <input type="email"
+                                   name="refereeEmail"
+                                   class="form-control "
+                                   placeholder="Enter email"
+                                   tabindex="1"
+                                   data-ng-model="referee.refereeEmail"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                            <span ng-if="referees.refereeEmail.$dirty && referees.refereeEmail.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-if="referees.refereeEmail.$touched && referees.refereeEmail.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="referees.refereeEmail.$touched" ng-messages="referees.refereeEmail.$error" ng-if="referees.refereeEmail.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="email">Please enter valid email</div>
+                            <div ng-message="required">Please enter email</div>
+                            <div ng-message-exp="['minlength','maxlength']">Email must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <button class="btn btn-primary" ng-disabled="referees.$invalid" ng-click="createReferee()"> Save</button>
+                        <a class="btn btn-primary" ui-sref="profile.master"> Cancel</a>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>

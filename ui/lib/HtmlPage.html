@@ -1,0 +1,21 @@
+﻿<div ng-repeat="jobAd in jobAds">
+    <div class="col-sm-10">
+        <div class="row">
+            <hr />
+            <div class="col-sm-2">
+                <img src="jobAd.company.companyLogo" alt="logo" class="img-thumbnail" height="140" width="140" />
+                <p><span><strong>{{jobAd.company.companyName}}</strong></span></p>
+            </div>
+            <div class="col-sm-8">
+                <h4><strong>{{jobAd.jobTitle}}</strong></h4>
+                <h5>{{jobAd.jobLocationTown}} {{jobAd.jobLocationCountry}}</h5>
+                <p><span>{{jobAd.jobType}} {{jobAd.jobLevel}} Position</span></p>
+                <p><span>{{jobAd.salaryCurrency}}{{jobAd.minimumSalary}}-{{jobAd.maximumSalary}} {{jobAd.salaryFrequency}} {{jobAd.renumerationType}}</span></p>
+                <p><span> JobID: {{jobAd.jobID}}|Job Ref:{{jobAd.jobRef}}</span></p>
+                <p><span>Sector: {{jobAd.sector}}</span></p>
+                <p><span>Posted by {{jobAd.companyName}} on {{jobAd.postedDate}}</span></p>
+                <p><span>Expires in {{jobAd.daysLeft}} days</span>      <button class="btn btn-primary" ng-click="viewJobAd(jobAd)">View & Apply</button></p>
+            </div>
+        </div>
+    </div>
+</div>

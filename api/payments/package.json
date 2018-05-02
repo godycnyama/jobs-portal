@@ -1,0 +1,6 @@
+﻿{ 
+  "name": "payments",
+  "version": "0.0.1",
+  "description": "Payments plugin",
+  "main": "index.js" 
+} 

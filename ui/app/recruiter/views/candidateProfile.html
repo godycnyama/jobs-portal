@@ -1,0 +1,179 @@
+﻿<div class="container" ng-controller="CandidateController">
+    <h1>Profile</h1>
+    <a class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a> 
+    <a class="btn btn-primary" ui-sref="recruiter.candidateProfilePrint"> <span class="glyphicon glyphicon-new-window"></span> Print View</a> 
+    <div class="media">
+        <a class="pull-left" href="#">
+            <hr />
+            <img class="img-circle" width="90" height="90" ng-src="{{candidate.photo || 'images/user-avatar-placeholder.png' }}" alt="Photo">
+            <hr />
+        </a>
+        <div class="media-body">
+            <hr />
+            <h4 class="media-heading">{{candidate.firstName}} {{candidate.middleName}} {{candidate.lastName}} <small>{{candidate.gender}} DOB {{candidate.birthDate| date :  "dd/MM/yyyy"}}</small></h4>
+            <dl class="dl-horizontal">
+                <dt style="text-align:left"><span class="glyphicon glyphicon-wrench"></span> <strong>Profession</strong></dt>
+                <dd>{{candidate.profession}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-education"></span> <strong>Main Qualification</strong></dt>
+                <dd>{{candidate.mainQualification}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Work Experience</strong></dt>
+                <dd>{{totalWorkExperience}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-earphone"></span> <strong>Home Tel</strong></dt>
+                <dd>{{candidate.homeTel}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-phone-alt"></span> <strong>Work Tel</strong></dt>
+                <dd>{{candidate.workTel}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-phone"></span> <strong>Mobile</strong></dt>
+                <dd>{{candidate.mobile}}</dd>
+                <dt style="text-align:left"><span class="fa fa-envelope"></span> <strong>Email</strong></dt>
+                <dd>{{candidate.email}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Current Location</strong></dt>
+                <dd>{{candidate.locationTown}} {{candidate.locationCountry}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Total Work Experience</strong></dt>
+                <dd>{{totalWorkExperience}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>LinkedIn Profile</strong></dt>
+                <dd>{{candidate.linkedInProfile}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-globe"></span> <strong>Website</strong></dt>
+                <dd>{{candidate.website}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Professional Affiliations</strong></dt>
+                <dd>{{candidate.affiliations}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-calendar"></span> <strong>Notice Period</strong></dt>
+                <dd>{{candidate.noticePeriod}}</dd>
+                <dt style="text-align:left"><span class="fa fa-money"></span> <strong>Required Salary</strong></dt>
+                <dd>{{candidate.requiredSalary}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Preferred Job Titles</strong></dt>
+                <dd>{{candidate.preferredJobTitles}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Preferred Job Types</strong></dt>
+                <dd>{{candidate.preferredJobTypes}}</dd>
+                <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Preferred Job Locations</strong></dt>
+                <dd>{{candidate.preferredJobLocations}}</dd>
+            </dl>
+            <hr />
+        </div>
+        <hr />
+        <h2>Introduction</h2>
+        <span>{{candidate.introduction}}</span>
+        <hr />
+        <v-accordion id="accordionA" class="vAccordion--default" control="accordionA" onexpand="expandCallback(index, id)" oncollapse="collapseCallback(index, id)">
+            <v-pane id="1">
+                <v-pane-header>
+                    <h2><span class="glyphicon glyphicon-education"></span> Education</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div ng-repeat="qualification in jobSeeker.qualifications">
+                        <hr />
+                        <br />
+                        <dl class="dl-horizontal">
+                            <dt style="text-align:left"><strong>Qualification Title</strong></dt>
+                            <dd>{{qualification.title}}</dd>
+                            <dt style="text-align:left"><strong>Qualification Level</strong></dt>
+                            <dd>{{qualification.level}}</dd>
+                            <dt style="text-align:left"><strong>Duration and Status</strong></dt>
+                            <dd>{{qualification.startMonth}} {{qualification.startYear}}-{{qualification.endMonth}} {{qualification.endYear}}        {{qualification.status}}</dd>
+                            <dt style="text-align:left"> <strong>Institution</strong></dt>
+                            <dd>{{qualification.institution}}     {{qualification.country}}</dd>
+                            <dt style="text-align:left"><strong>Majors</strong></dt>
+                            <dd>{{qualification.majors}}</dd>
+                        </dl>
+                        <hr />
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="2">
+                <v-pane-header>
+                    <h2><span class="glyphicon glyphicon-wrench"></span> Skills</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div ng-repeat="skill in jobSeeker.skills">
+                        <hr />
+                        <br />
+                        <dl class="dl-horizontal">
+                            <dt style="text-align:left"><strong>Skill Description</strong></dt>
+                            <dd>{{skill.description}}</dd>
+                            <dt style="text-align:left"><strong>Skill Level</strong></dt>
+                            <dd>{{skill.skillLevel}}</dd>
+                            <dt style="text-align:left"><strong>Experience</strong></dt>
+                            <dd>{{skill.experience}}</dd>
+                            <dt style="text-align:left"> <strong>Last Date Used</strong></dt>
+                            <dd ng-hide="skill.isCurrent === true">{{skill.lastDateUsed}}</dd>
+                            <dd ng-show="skill.isCurrent === true">{{skill.isCurrent}}Current</dd>
+                        </dl>
+                        <hr />
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="3">
+                <v-pane-header>
+                    <h2><span class="fa fa-file-text"></span> Work Experience</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div ng-repeat="employment in jobSeeker.employment">
+                        <hr />
+                        <br />
+                        <div><span><strong>{{employment.jobTitle}}</strong></span></div>
+                        <div><span><strong>{{employment.companyName}}</strong></span></div>
+                        <div ng-show="employment.isCurrent === false"><span><strong>{{employment.startMonth}} {{employment.startYear}}-{{employment.endMonth}} {{employment.endYear}}</strong></span></div>
+                        <div ng-show="employment.isCurrent === true"><span><strong>{{employment.startMonth}} {{employment.startYear}}-Current</strong></span></div>
+                        <dl class="dl-horizontal">
+                            <dt style="text-align:left" ng-show="employment.isCurrent === false"><strong>Reasons for Leaving</strong></dt>
+                            <dd ng-show="employment.isCurrent === false">{{employment.reasonsForLeaving}}</dd>
+                            <dt style="text-align:left"><strong>Duties and Responsibilites</strong></dt>
+                            <dd>{{employment.duties}}</dd>
+                        </dl>
+                        <hr />
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="4">
+                <v-pane-header>
+                    <h2><span class="fa fa-language"></span> Languages</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div ng-repeat="language in jobSeeker.languages">
+                        <hr />
+                        <br />
+                        <dl class="dl-horizontal">
+                            <dt style="text-align:left"><strong>Language Name</strong></dt>
+                            <dd>{{language.languageName}}</dd>
+                            <dt style="text-align:left"><strong>Spoken Ability</strong></dt>
+                            <dd>{{language.spokenAbility}}</dd>
+                            <dt style="text-align:left"><strong>Written Ability</strong></dt>
+                            <dd>{{language.writtenAbility}}</dd>
+                        </dl>
+                        <hr />
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="5">
+                <v-pane-header>
+                    <h2><span class="glyphicon glyphicon-file"></span> CVs</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div ng-repeat="cv in cvs">
+                        <hr />
+                        <span>
+                            <strong>{{cv.filename}}</strong> <span ng-show="!cv.metadata.isDefault">Is Default</span>
+                        </span>
+                        <button class="btn btn-primary" ng-click="downloadCV(cv)"><span class="glyphicon glyphicon-trash"></span> Download</button>
+                        <button ng-click="viewCV(cv)" class="btn btn-primary"><span class="glyphicon glyphicon-new-window"></span> View</button>{{cv.contentType}}
+                        <hr />
+                    </div>
+                </v-pane-content>
+            </v-pane>
+            <v-pane id="6">
+                <v-pane-header>
+                    <h2><span class="glyphicon glyphicon-paperclip"></span> Attachments</h2>
+                </v-pane-header>
+                <v-pane-content>
+                    <div ng-repeat="attachment in attachments">
+                        <hr />
+                        <span>
+                            <strong>{{attachment.metadata.documentType}}:</strong>{{attachment.filename}}
+                        </span>
+                        <button class="btn btn-primary" ng-click="viewAttachment(attachment)"><span class="glyphicon glyphicon-new-window"></span> View</button>{{attachment.contentType}}
+                        <hr />
+                    </div>
+                </v-pane-content>
+            </v-pane>
+        </v-accordion>    
+    </div>
+</div>

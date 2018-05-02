@@ -1,0 +1,34 @@
+﻿<div class="container" ng-controller="PricesController" ng-init="init()">
+    <h1>Manage Prices</h1>
+    <br />
+    <a class="btn btn-primary" ui-sref="admin.Master"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    <button class="btn btn-primary" ng-click="getPrices()" >Get Prices</button>
+    <a class="btn btn-primary" ui-sref="admin.setPrice"><span class="glyphicon glyphicon-plus"></span> Add Price</a>
+    <hr />
+    <div ng-hide="isEmpty()">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="well">
+                    <td><b>Item ID</b></td>
+                    <td><b>Item Code</b></td>
+                    <td><b>Description</b></td>
+                    <td><b>Price</b></td>
+                    <td />
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items">
+                    <td>{{item._id}}</td>
+                    <td>{{item.itemCode}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.unitPrice}}</td>
+                    <td><button class="btn btn-primary" ng-click="editItem(item)"><span class="glyphicon glyphicon-edit"></span> Edit</button></td>
+                    <td><button class="btn btn-primary" ng-click="deleteItem(item)"><span class="glyphicon glyphicon-trash"></span> Remove</button></td>
+                </tr>
+            </tbody>       
+        </table>
+        <br />
+        <br />
+        <a class="btn btn-primary" ui-sref="admin.Master">Cancel</a>
+    </div>
+</div>

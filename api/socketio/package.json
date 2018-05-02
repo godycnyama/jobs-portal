@@ -1,0 +1,6 @@
+﻿{ 
+  "name": "socketio",
+  "version": "0.0.1",
+  "description": "Socket IO plugin",
+  "main": "index.js"
+} 

@@ -1,0 +1,6 @@
+﻿{ 
+  "name": "orders",
+  "version": "0.0.1",
+  "description": "Orders plugin",
+  "main": "index.js"
+} 

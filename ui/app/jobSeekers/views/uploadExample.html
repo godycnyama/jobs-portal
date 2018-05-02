@@ -1,0 +1,21 @@
+﻿<div class="row">
+    <div class="form-group col-sm-3">
+        <label for="file" class="control-label">Upload CV</label>
+        <div class="btn btn-primary" name="file"
+             ng-model="cvFile"
+             ngf-max-size="2MB"
+             required
+             ngf-select
+             accept=".doc,.docx,.pdf"
+             ngf-pattern=".doc,.docx,.pdf"
+             ngf-model-invalid="errorFile"></div>
+        <div class="help-block" ng-messages="attachCV.file.$error" ng-if="attachCV.file.$touched" role="alert" ng-messages-multiple>
+            <div ng-message="required">Please select file</div>
+            <div ng-message="pattern">File format not allowed,please select allowed file format</div>
+            <div ng-message="maxSize">File too large{{errorFile.size / 1000000|number:1}}MB: max 2M</div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <button ng-click="cvFile = null" ng-show="cvFile">Remove</button>
+    </div>
+</div>

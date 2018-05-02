@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <title>JobsApp</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css" />
+    <link rel="stylesheet" href="lib/styles/styles.css" />
+
+
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+
+</head>
+
+<body layout="column" ng-cloak>
+
+    <md-toolbar layout="row">
+        <md-button class="menu" hide-gt-sm ng-click="ul.toggleSideNav" aria-label="Show SideNav">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+        
+        <a ng-href="/" >
+           <h1>JobsApp</h1>
+        </a>
+        
+        <md-menu-bar hide-sm hide-xs>
+            <md-menu>
+                <button ng-click="">
+                    Jobs
+                </button>                
+                <button ng-click="">
+                    Job Seekers
+                </button>               
+            </md-menu>
+        </md-menu-bar>
+    </md-toolbar>
+
+    <div flex layout="row">
+
+        <md-sidenav ng-click="ul.toggleSideNav" md-is-locked-open="false" md-component-id="left" class="md-whiteframe-z2">
+            <md-list>
+                <md-list-item ng-repeat="it in ul.users">
+                    <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+                        <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+                        {{it.name}}
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+
+        <md-content flex id="content">
+
+        </md-content>
+
+    </div>
+
+
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-socket-io/socket.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-patternfly/dist/angular-patternfly.min.js"></script>
+    <script type="text/javascript" src="bower_components/api-check/dist/api-check.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-formly/dist/formly.min.js"></script>
+    <script type="text/javascript" src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="bower_components/restangular/dist/restangular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="bower_components/v-accordion/dist/v-accordion.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signupController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signinController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordChangeController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordResetController.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/jobs.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/jobAd.js"></script>
+    <script type="text/javascript" src="app/jobs/controllers/jobApply.js"></script>
+    <script type="text/javascript" src="app/jobs/services/jobsService.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordChangeController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/passwordResetController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/recruiterSignupController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signinController.js"></script>
+    <script type="text/javascript" src="app/auth/controllers/signupController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/attachmentsController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/educationController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/employmentController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/languagesController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/personalDetailController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/profileController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/skillsController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/controllers/vaccordionController.js"></script>
+    <script type="text/javascript" src="app/jobSeekers/services/jobSeekerService.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/jobAdsRESTservice.js"></script>
+    <script type="text/javascript" src="app/recruiters/services/jobAdsService.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/recruitersController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/jobAdsController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/jobAdController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/previewJobAdController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/checkOutController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/candidatesController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/questionnairesController.js"></script>
+    <script type="text/javascript" src="app/recruiters/controllers/questionnaireController.js"></script>
+    <script type="text/javascript" src="app/mainApp.js"></script>
+
+    <script type="text/javascript">
+        angular
+            .module('starterApp', ['ngMaterial', 'users'])
+            .config(function ($mdThemingProvider, $mdIconProvider) {
+                $mdIconProvider
+                    .defaultIconSet("./assets/svg/avatars.svg", 128)
+                    .icon("menu", "./assets/svg/menu.svg", 24)
+                    .icon("share", "./assets/svg/share.svg", 24)
+                    .icon("google_plus", "./assets/svg/google_plus.svg", 512)
+                    .icon("hangouts", "./assets/svg/hangouts.svg", 512)
+                    .icon("twitter", "./assets/svg/twitter.svg", 512)
+                    .icon("phone", "./assets/svg/phone.svg", 512);
+                $mdThemingProvider.theme('default')
+                    .primaryPalette('brown')
+                    .accentPalette('red');
+            });
+    </script>
+
+</body>
+
+</html>

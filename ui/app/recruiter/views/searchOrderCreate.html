@@ -1,0 +1,30 @@
+﻿<div class="container" ng-controller="SearchOrderController">
+<form role="form" name="searchOrderForm" novalidate>
+    <div class="col-sm-8">
+        <h1>Create Search Order</h1>
+        <hr />
+        <div class="row">
+            <div class="form-group col-sm-6" ng-class="{'has-error':searchOrderForm.months.$touched && searchOrderForm.months.$invalid}">
+                <label for="months" class="control-label">Number of months</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                    </div>
+                    <select name="jobLevel" class="form-control" data-ng-model="searchOrder.months"
+                            data-ng-options="months for months in monthsOptions"
+                            ng-required="true"></select>
+                </div>
+                <div class="help-block" ngfx-slide-in-left="searchOrderForm.months.$touched" ng-messages="searchOrderForm.months.$error" ng-if="createJobAd.jobLevel.$touched" role="alert">
+                    <div ng-message="required">Please number of months</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <button class="btn btn-primary" tabindex="4" ng-click="create">Create Order</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+</div>

@@ -1,0 +1,6 @@
+{ 
+  "name": "resumes",
+  "version": "0.0.1",
+  "description": "Resumes plugin",
+  "main": "index.js"
+} 

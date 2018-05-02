@@ -1,0 +1,6 @@
+﻿{ 
+  "name": "jobSeekers",
+  "version": "0.0.1",
+  "description": "Job Seekers plugin",
+  "main": "index.js"
+} 

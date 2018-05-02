@@ -1,0 +1,544 @@
+﻿<div class="container"  ng-controller="PersonalController">
+    <h1><span class="fa fa-plus"></span> Add Personal Details</h1>
+    <br />
+    <a class="btn btn-primary" ui-sref="profile.master"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    <div class="row">
+        <div class="col-sm-8">           
+            <hr />
+            <form name="personalForm" role="form" novalidate>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.firstName.$touched && personalForm.firstName.$invalid}">
+                        <label for="firstName" class="control-label">First Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="firstName"
+                                   ng-model="personal.firstName"
+                                   placeholder="Enter first name"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="personalForm.firstName.$touched" ng-messages="personalForm.firstName.$error" ng-if="personalForm.firstName.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter first name</div>
+                            <div ng-message-exp="['minlength','maxlength']">First name must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.middleName.$touched && personalForm.middleName.$invalid}">
+                        <label for="middleName" class="control-label">Middle Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="middleName"
+                                   ng-model="personal.middleName"
+                                   placeholder="Enter middle name"
+                                   ng-maxlength="50"
+                                   ng-trim />
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.middleName.$touched" ng-messages="personalForm.middleName.$error" ng-if="personalForm.middleName.$touched" role="alert">
+                                <div ng-message="maxlength">Middle name must be a maximum of 50 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.lastName.$touched && personalForm.lastName.$invalid}">
+                        <label for="lastName" class="control-label">Last Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="lastName"
+                                   ng-model="personal.lastName"
+                                   placeholder="Enter last name"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.lastName.$touched" ng-messages="personalForm.lastName.$error" ng-if="personalForm.lastName.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter last name</div>
+                                <div ng-message-exp="['minlength','maxlength']">Last name must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-show="photoImage">
+                        <div> <label for="logo" class="control-label">Photo</label></div>
+                        <div><img name="logo" ng-src="{{personal.photo}}" width="80" height="80" /></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-show="photoImage">
+                        <div> <label for="logo" class="control-label">Crop Photo</label></div>
+                        <div style="width:200px;height:150px;overflow:hidden;background:#E4E4E4;">
+                            <img-crop image="photoImage|ngfDataUrl" result-image="personal.photo" area-type="square"></img-crop>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <button class="btn btn-success" ng-model="photoImage" ngf-select ngf-pattern="'image/*'"><span class="glyphicon glyphicon-camera"></span> Select Photo</button>
+                        <button class="btn btn-primary" ng-click="photoImage=null" ng-show="photoImage">Clear Photo</button>
+                    </div>
+                </div>   
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.gender.$touched && personalForm.gender.$invalid}">
+                        <label for="gender" class="control-label">Gender</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-venus"></span>
+                            </div>
+                            <select name="gender" class="form-control" data-ng-model="personal.gender"
+                                    data-ng-options="gender for gender in genderOptions"
+                                    ng-required="true"></select>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.gender.$touched" ng-messages="personalForm.gender.$error" ng-if="personalForm.gender.$touched" role="alert">
+                                <div ng-message="required">Please select gender</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.birthDate.$touched && personalForm.birthDate.$invalid}">
+                        <label for="birthDate" class="control-label">Birth Date</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btnCustom btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                            <input type="text" class="form-control"
+                                   name="birthDate"
+                                   datepicker-append-to-body="true"
+                                   uib-datepicker-popup="dd-MM-yyyy"
+                                   placeholder="Enter birth date"
+                                   ng-model="personal.birthDate"
+                                   datepicker-options="dateOptions"
+                                   ng-required="true"
+                                   close-text="Close"
+                                   is-open="datePickerOpened"
+                                   ng-focus="datePickerOpened=true" />                          
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="personalForm.birthDate.$touched" ng-messages="personalForm.birthDate.$error" ng-if="personalForm.birthDate.$touched" role="alert">
+                            <div ng-message="required">Please enter birth date</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-3" ng-class="{'has-error':personalForm.nationality.$touched && personalForm.nationality.$invalid}">
+                        <label for="nationality" class="control-label">Nationality</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <select name="nationality" class="form-control" data-ng-model="personal.nationality"
+                                    data-ng-options="nationality for nationality in nationalityOptions"
+                                    ng-required="true"></select>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.nationality.$touched" ng-messages="personalForm.nationality.$error" ng-if="personalForm.nationality.$touched" role="alert">
+                                <div ng-message="required">Please select nationality</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.profession.$touched && personalForm.profession.$invalid}">
+                        <label for="profession" class="control-label">Profession</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="profession"
+                                   ng-model="personal.profession"
+                                   placeholder="Enter profession"
+                                   ng-minlength="1"
+                                   ng-maxlength="100"
+                                   ng-required="true"
+                                   ng-trim />                           
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="personalForm.profession.$touched" ng-messages="personalForm.profession.$error" ng-if="personalForm.profession.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter profession</div>
+                            <div ng-message-exp="['minlength','maxlength']">Profession must be between 1 and 100 characters long</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.mainQualification.$touched && personalForm.mainQualification.$invalid}">
+                        <label for="mainQualification" class="control-label">Main Qualification</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-education"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="mainQualification"
+                                   ng-model="personal.mainQualification"
+                                   placeholder="Enter main qualification"
+                                   ng-minlength="1"
+                                   ng-maxlength="200"
+                                   ng-required="true"
+                                   ng-trim />                            
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.mainQualification.$touched" ng-messages="personalForm.mainQualification.$error" ng-if="personalForm.mainQualification.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter main qualification</div>
+                                <div ng-message-exp="['minlength','maxlength']">Main qualification must be between 1 and 200 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.introduction.$touched && personalForm.introduction.$invalid}">
+                        <label for="introduction" class="control-label">Introduction</label>                       
+                            <textarea type="text"
+                                      class="form-control"
+                                      name="introduction"
+                                      rows="5" cols="8"
+                                      ng-model="personal.introduction"
+                                      placeholder="Enter introduction"
+                                      ng-minlength="1"
+                                      ng-maxlength="500"
+                                      ng-required="true"
+                                      ng-trim></textarea>                      
+                            <div class="help-block" ngfx-slide-in-left="personalForm.introduction.$touched" ng-messages="personalForm.introduction.$error" ng-if="personalForm.introduction.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter introduction</div>
+                                <div ng-message-exp="['minlength','maxlength']">Introduction must be between 1 and 500 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.homeTel.$touched && personalForm.homeTel.$invalid}">
+                        <label for="homeTel" class="control-label">Home Tel</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-earphone"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="homeTel"
+                                   ng-model="personal.homeTel"
+                                   placeholder="Enter home tel"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"                                 
+                                   ng-trim />
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.homeTel.$touched" ng-messages="personalForm.homeTel.$error" ng-if="personalForm.homeTel.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter home telephone number</div>
+                                <div ng-message-exp="['minlength','maxlength']">Home telephone number must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.workTel.$touched && personalForm.workTel.$invalid}">
+                        <label for="workTel" class="control-label">Work Tel</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="workTel"
+                                   ng-model="personal.workTel"
+                                   placeholder="Enter work tel"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"                                   
+                                   ng-trim />
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.workTel.$touched" ng-messages="personalForm.workTel.$error" ng-if="personalForm.workTel.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter work telephone number</div>
+                                <div ng-message-exp="['minlength','maxlength']">Work telephone number must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.mobile.$touched && personalForm.mobile.$invalid}">
+                        <label for="mobile" class="control-label">Mobile</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-phone"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="mobile"
+                                   ng-model="personal.mobile"
+                                   placeholder="Enter mobile tel"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"                                  
+                                   ng-trim />
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.mobile.$touched" ng-messages="personalForm.mobile.$error" ng-if="personalForm.mobile.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter mobile telephone number</div>
+                                <div ng-message-exp="['minlength','maxlength']">Mobile telephone number must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.address.$touched && personalForm.address.$invalid}">
+                        <label for="address" class="control-label">Address</label>                       
+                            <textarea type="text"
+                                      class="form-control"
+                                      name="address"
+                                      rows="5" cols="8"
+                                      ng-model="personal.address"
+                                      placeholder="Enter address"
+                                      ng-minlength="1"
+                                      ng-maxlength="150"
+                                      ng-required="true"
+                                      ng-trim></textarea>                       
+                            <div class="help-block" ngfx-slide-in-left="personalForm.address.$touched" ng-messages="personalForm.address.$error" ng-if="personalForm.address.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter address</div>
+                                <div ng-message-exp="['minlength','maxlength']">Address must be between 1 and 150 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-3" ng-class="{'has-error':personalForm.currentLocationTown.$touched && personalForm.currentLocationTown.$invalid}">
+                        <label for="currentLocationTown" class="control-label">Current Location Town</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="currentLocationTown"
+                                   ng-model="personal.locationTown"
+                                   placeholder="Enter town/city"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim />
+                         </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.currentLocationTown.$touched" ng-messages="personalForm.currentLocationTown.$error" ng-if="personalForm.currentLocationTown.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter current location town</div>
+                                <div ng-message-exp="['minlength','maxlength']">Current location town must be between 1 and 50 characters long</div>
+                            </div>
+                     </div>
+                    <div class="form-group col-sm-3" ng-class="{'has-error':personalForm.currentLocationCountry.$touched && personalForm.currentLocationCountry.$invalid}">
+                        <label for="currentLocationCountry" class="control-label">Current Location Country</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                            </div>
+                            <select name="currentLocationCountry" class="form-control" data-ng-model="personal.locationCountry"
+                                    data-ng-options="currentLocationCountry for currentLocationCountry in locationCountryOptions"
+                                    ng-required="true"></select>
+                        </div>
+                        <div class="help-block" ngfx-slide-in-left="personalForm.currentLocationCountry.$touched" ng-messages="personalForm.currentLocationCountry.$error" ng-if="personalForm.currentLocationCountry.$touched" role="alert">
+                            <div ng-message="required">Please select current location country</div>
+                        </div>
+                    </div>
+                 </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.linkedInProfile.$touched && personalForm.linkedInProfile.$invalid}">
+                        <label for="linkedInProfile" class="control-label">LinkedIn Profile Address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="linkedInProfile"
+                                   ng-model="personal.linkedInProfile"
+                                   placeholder="Enter LinkedIn profile address"
+                                   ng-maxlength="150"
+                                   ng-trim />
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.linkedInProfile.$touched" ng-messages="personalForm.linkedInProfile.$error" ng-if="personalForm.linkedInProfile.$touched" role="alert">
+                                <div ng-message="maxlength">LinkedIN profile address must be a maximum of 150 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.website.$touched && personalForm.website.$invalid}">
+                        <label for="website" class="control-label">Website</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-globe"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="website"
+                                   ng-model="personal.website"
+                                   placeholder="Enter website"
+                                   ng-maxlength="150"
+                                   ng-trim />
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.website.$touched" ng-messages="personalForm.website.$error" ng-if="personalForm.website.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="maxlength">Website must be a maximum of 150 characters long</div>                               
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.professionalAffilitions.$touched && personalForm.professionalAffilitions.$invalid}">
+                        <label for="professionalAffilitions" class="control-label">Professional Affiliations</label>                        
+                            <textarea type="text"
+                                      class="form-control"
+                                      name="professionalAffilitions"
+                                      rows="5" cols="8"
+                                      ng-model="personal.professionalAffiliations"
+                                      placeholder="Enter professional affiliations"
+                                      ng-maxlength="200"
+                                      ng-trim></textarea>                       
+                            <div class="help-block" ngfx-slide-in-left="personalForm.professionalAffilitions.$touched" ng-messages="personalForm.professionalAffilitions.$error" ng-if="personalForm.professionalAffilitions.$touched" role="alert">
+                                <div ng-message="maxlength">Professional affilitions must be a maximum of 150 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.noticePeriod.$touched && personalForm.noticePeriod.$invalid}">
+                        <label for="noticePeriod" class="control-label">Notice Period</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                            <select name="noticePeriod" class="form-control" data-ng-model="personal.noticePeriod"
+                                    data-ng-options="notice for notice in noticeOptions"
+                                    ng-required="true"></select>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.noticePeriod.$touched" ng-messages="personalForm.noticePeriod.$error" ng-if="personalForm.noticePeriod.$touched" role="alert">
+                                <div ng-message="required">Please select notice period</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.currency.$touched && personalForm.currency.$invalid}">
+                        <label for="currency" class="control-label">Required Salary Currency</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-money"></span>
+                            </div>
+                            <select name="currency" class="form-control" data-ng-model="personal.requiredSalaryCurrency"
+                                    data-ng-options="currency for currency in currencyOptions"
+                                    ng-required="true"></select>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.currency.$touched" ng-messages="personalForm.currency.$error" ng-if="personalForm.currency.$touched" role="alert">
+                                <div ng-message="required">Please select required salary currency</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">                 
+                    <div class="form-group col-sm-3" ng-class="{'has-error':personalForm.requiredMinimumSalary.$touched && personalForm.requiredMinimumSalary.$invalid}">
+                        <label for="requiredMinimumSalary" class="control-label">Required Minimum Salary</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-money"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="requiredMinimumSalary"
+                                   ng-model="requiredMinimumSalary"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim
+                                   pformat
+                                   prefix=""
+                                   thousands=","
+                                   cents="." />
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.requiredMinimumSalary.$touched" ng-messages="personalForm.requiredMinimumSalary.$error" ng-if="personalForm.requiredMinimumSalary.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter required minimum salary</div>
+                                <div ng-message-exp="['minlength','maxlength']">Minimum salary must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                    <div class="form-group col-sm-3" ng-class="{'has-error':personalForm.requiredMaximumSalary.$touched && personalForm.requiredMaximumSalary.$invalid}">
+                        <label for="requiredMaximumSalary" class="control-label">Required Maximum Salary</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-money"></span>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="requiredMaximumSalary"
+                                   ng-model="requiredMaximumSalary"
+                                   ng-minlength="1"
+                                   ng-maxlength="50"
+                                   ng-required="true"
+                                   ng-trim
+                                   pformat
+                                   prefix=""
+                                   thousands=","
+                                   cents="." />
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="personalForm.requiredMaximumSalary.$touched" ng-messages="personalForm.requiredMaximumSalary.$error" ng-if="personalForm.requiredMaximumSalary.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter required maximum salary</div>
+                                <div ng-message-exp="['minlength','maxlength']">Maximum salary must be between 1 and 50 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.preferedJobTitles.$touched && personalForm.preferedJobTitles.$invalid}">
+                        <label for="preferedJobTitles" class="control-label">Preferred Job Titles</label>                       
+                            <textarea type="text"
+                                      class="form-control"
+                                      name="preferedJobTitles"
+                                      rows="5" cols="8"
+                                      ng-model="personal.preferredJobTitles"
+                                      placeholder="Enter preferred job titles"
+                                      ng-minlength="1"
+                                      ng-maxlength="500"
+                                      ng-required="true"
+                                      ng-trim></textarea>
+                        
+                            <div class="help-block" ngfx-slide-in-left="personalForm.preferedJobTitles.$touched" ng-messages="personalForm.preferedJobTitles.$error" ng-if="personalForm.preferedJobTitles.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter preferred job titles</div>
+                                <div ng-message-exp="['minlength','maxlength']">Preferred job titles must be between 1 and 500 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.preferedJobTypes.$touched && personalForm.preferedJobTypes.$invalid}">
+                        <label for="preferedJobTypes" class="control-label">Preferred Job Types</label>                       
+                            <textarea type="text"
+                                      class="form-control"
+                                      name="preferedJobTypes"
+                                      rows="5" cols="8"
+                                      ng-model="personal.preferredJobTypes"
+                                      placeholder="Enter preferred job types"
+                                      ng-minlength="1"
+                                      ng-maxlength="500"
+                                      ng-required="true"
+                                      ng-trim></textarea>
+                        
+                            <div class="help-block" ngfx-slide-in-left="personalForm.preferedJobTypes.$touched" ng-messages="personalForm.preferedJobTypes.$error" ng-if="personalForm.preferedJobTypes.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter preferred job types</div>
+                                <div ng-message-exp="['minlength','maxlength']">Preferred job types must be between 1 and 500 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6" ng-class="{'has-error':personalForm.preferedJobLocations.$touched && personalForm.preferedJobLocations.$invalid}">
+                        <label for="preferedJobLocations" class="control-label">Preferred Job Locations</label>                      
+                            <textarea type="text"
+                                      class="form-control"
+                                      name="preferedJobLocations"
+                                      rows="5" cols="8"
+                                      ng-model="personal.preferredJobLocations"
+                                      placeholder="Enter preferred job locations"
+                                      ng-minlength="1"
+                                      ng-maxlength="500"
+                                      ng-required="true"
+                                      ng-trim></textarea>                       
+                            <div class="help-block" ngfx-slide-in-left="personalForm.preferedJobLocations.$touched" ng-messages="personalForm.preferedJobLocations.$error" ng-if="personalForm.preferedJobLocations.$touched" role="alert" ng-messages-multiple>
+                                <div ng-message="required">Please enter preferred job locations</div>
+                                <div ng-message-exp="['minlength','maxlength']">Preferred job locations must be between 1 and 500 characters long</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <button class="btn btn-primary" ng-disabled="personalForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+                        <a class="btn btn-primary" ui-sref="profile.master"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

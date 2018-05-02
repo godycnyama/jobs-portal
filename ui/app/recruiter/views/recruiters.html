@@ -1,0 +1,30 @@
+﻿    <div class="container">
+        <h1>Recruiters</h1>
+        <a class="btn btn-primary" ui-sref="recruiters.details"><span class="glyphicon glyphicon-plus"></span> Recruiter Details</a>
+        <hr />
+        <div class="btn-group-vertical" role="group" aria-label="...">
+            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                <button id="btn-append-to-body" type="button" class="btn btn-default" uib-dropdown-toggle style="text-align:left">
+                    Job Ads    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                    <li role="menuitem"><a ui-sref="recruiters.jobAdsMaster" style="text-align:left">Search Job Ads</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem"><a ui-sref="recruiters.createJobAd" style="text-align:left">Post Job Ad</a></li>
+                </ul>
+            </div>
+            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                <button id="btn-append-to-body" type="button" class="btn btn-default" uib-dropdown-toggle style="text-align:left">
+                    Questionnaires    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                    <li role="menuitem"><a ui-sref="recruiters.questionnairesMaster" style="text-align:left">Search for Questionnaires</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem"><a ui-sref="recruiters.createQuestionnaire" style="text-align:left">Create a Questionnaire</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-default" ui-sref="recruiters.candidates" style="text-align:left">Search for Candidates</a>          
+        </div>         
+    </div>
+    
+

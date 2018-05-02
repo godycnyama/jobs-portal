@@ -1,0 +1,6 @@
+{
+  "name": "attachmentfiles",
+  "version": "0.0.1",
+  "description": "Attachment Files plugin",
+  "main": "index.js"
+}

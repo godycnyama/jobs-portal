@@ -1,0 +1,145 @@
+﻿<div class="container"  ng-controller="QuestionnaireController">
+    <h1>Edit Questionaire</h1>
+    <a class="btn btn-primary" ui-sref="recruiters.Master"> <span class="glyphicon glyphicon-arrow-left"></span> Back</a>  
+    <hr />
+    <form role="form">
+        <div class="row">
+            <div class="col-sm-9">
+                <hr />
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        <label for="category" class="control-label">Question Category</label>
+                        <select name="category" class="form-control" data-ng-model="question.category"
+                                data-ng-options="category for category in questionCategoryOptions"></select>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="questionType" class="control-label">Question Type</label>
+                        <select name="questionType" class="form-control" data-ng-model="question.type"
+                                data-ng-options="type for type in questionTypeOptions"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8">
+                        <label for="question" class="control-label">Question</label>
+                        <input type="text" class="form-control" ng-model="question.text" name="question" />
+                    </div>
+                </div>           
+                <div ng-show="question.type=='MultiCheckBox'">
+                    <h2>Answer Options</h2>
+                        <table class="table-bordered">
+                            <tr>
+                                <th>#</th>
+                                <th>ID</th>
+                                <th>Answer Option</th>
+                                <th>Answer Score</th>
+                            </tr>
+                            <tr ng-repeat="answerOption in multiCheckbox.templateOptions.options">
+                                <td>{{ $index }}</td>
+                                <td>{{ answerOption.id }}</td>
+                                <td>{{ answerOption.title }}</td>
+                                <td>{{answerOption.score}}</td>
+                                <td><button class="btn btn-primary" ng-click="deleteMultiCheckboxAnswerOption($index)">Delete</button></td>
+                            </tr>
+                        </table>                 
+                    <br />
+                    <div class="row">
+                        <div class="form-group col-sm-5">
+                            <label for="answerOption" class="control-label">Enter Answer Option</label>
+                            <input type="text" class="form-control" ng-model="questionAnswerOption.text" name="answerOption" placeholder="Enter answer option here" />
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label for="score" class="control-label">Answer Score</label>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <select name="score" class="form-control" data-ng-model="questionAnswerOption.score"
+                                            data-ng-options="score for score in answerScoreOptions"></select>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-primary" ng-click="addMultiCheckBoxOption()"><i class="glyphicon glyphicon-plus"></i> Add Answer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="question.type=='Multiple Choice Radio Buttons'">
+                    <h2>Answer Options</h2>
+                    <div class="col-sm-9">
+                        <table class="table-bordered">
+                            <tr>
+                                <th>#</th>
+                                <th>Answer Option</th>
+                                <th>Answer Score</th>
+                            </tr>
+                            <tr ng-repeat="answerOption in radio.templateOptions.options">
+                                <td>{{ $index }}</td>
+                                <td>{{ answerOption.value }}</td>
+                                <td>{{answerOption.score}}</td>
+                                <td><button class="btn btn-primary" ng-click="deleteRadioAnswerOption($index)">Delete</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-group col-sm-5">
+                            <label for="answerOption" class="control-label">Enter Answer Option</label>
+                            <input type="text" class="form-control" ng-model="questionAnswerOption.text" name="answerOption" placeholder="Enter answer option here" />
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label for="score" class="control-label">Answer Score</label>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <select name="score" class="form-control" data-ng-model="questionAnswerOption.score"
+                                            data-ng-options="score for score in answerScoreOptions"></select>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-primary" ng-click="addRadioAnswerOption()"><i class="glyphicon glyphicon-plus"></i> Add Answer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="question.type=='Multiple Choice Dropdown List'">
+                    <h2>Answer Options</h2>
+                    <div class="col-sm-9">
+                        <table class="table-bordered">
+                            <tr>
+                                <th>#</th>
+                                <th>Answer Option</th>
+                                <th>Answer Score</th>
+                            </tr>
+                            <tr ng-repeat="answerOption in select.templateOptions.options">
+                                <td>{{ $index }}</td>
+                                <td>{{ answerOption.name }}</td>
+                                <td>{{answerOption.score}}</td>
+                                <td><button class="btn btn-primary" ng-click="deleteSelectAnswerOption($index)">Delete</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-group col-sm-5">
+                            <label for="answerOption" class="control-label">Enter Answer Option</label>
+                            <input type="text" class="form-control" ng-model="questionAnswerOption.text" name="answerOption" placeholder="Enter answer option here" />
+                        </div>
+                        <div class="form-group col-sm-5">
+                            <label for="score" class="control-label">Answer Score</label>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <select name="score" class="form-control" data-ng-model="questionAnswerOption.score"
+                                            data-ng-options="score for score in answerScoreOptions"></select>
+                                </div>
+                                <div class="col-sm-1">                                   
+                                        <button type="button" class="btn btn-primary" ng-click="addSelectAnswerOption()"><i class="glyphicon glyphicon-plus"></i> Add Answer</button>                                      
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+                <button class="btn btn-primary" ng-click="addQuestion()"><span class="fa fa-plus"></span> Add Question</button>
+                <button class="btn btn-primary">Preview Questionnaire</button>
+                <hr />
+                <p><a class="btn btn-primary" ui-sref="recruiters.jobAds.previewJobAd">Back</a><button class="btn btn-primary">Next</button></p>
+            </div>
+        </div>
+    </form>
+</div>

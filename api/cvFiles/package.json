@@ -1,0 +1,6 @@
+{
+  "name": "cvfiles",
+  "version": "0.0.1",
+  "description": "CV Files plugin",
+  "main": "index.js"
+}

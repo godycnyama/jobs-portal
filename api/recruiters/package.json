@@ -1,0 +1,6 @@
+﻿{ 
+  "name": "recruiters",
+  "version": "0.0.1",
+  "description": "Recruiters plugin",
+  "main": "index.js"
+} 

@@ -1,0 +1,264 @@
+﻿<div class="container" data-ng-controller="RecruiterDetailsCreateController">
+    <form role="form" name="recruiterDetailsForm" novalidate>
+        <div class="col-sm-8">
+            <h1>Add Company Details</h1>
+            <hr />
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.companyName.$touched && recruiterDetailsForm.companyName.$invalid}">
+                    <label for="companyName" class="control-label">Company Name</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-institution"></span>
+                        </div>
+                        <input type="text"
+                               name="companyName"
+                               class="form-control "
+                               placeholder="Company Name"
+                               tabindex="6"
+                               data-ng-model="recruiterDetails.companyName"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                        <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.companyName.$touched" ng-messages="recruiterDetailsForm.companyName.$error" ng-if="recruiterDetailsForm.companyName.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please enter company name</div>
+                            <div ng-message-exp="['minlength','maxlength']">Company name must be between 1 and 150 characters long</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.recruiterType.$touched && recruiterDetailsForm.recruiterType.$invalid}">
+                    <label for="recruiterType" class="control-label">Recruiter Type</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <select name="recruiterType"
+                                class="form-control"
+                                data-ng-model="recruiterDetails.recruiterType"
+                                data-ng-options="recruiterType for recruiterType in recruiterTypeOptions"
+                                tabindex="7"
+                                ng-required="true"></select>
+                    </div>
+                        <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.recruiterType.$touched" ng-messages="recruiterDetailsForm.recruiterType.$error" ng-if="recruiterDetailsForm.recruiterType.$touched" role="alert">
+                            <div ng-message="required">Please select recruiterType</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.introduction.$touched && recruiterDetailsForm.introduction.$invalid}">
+                    <label for="introduction" class="control-label">Company Introduction</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                        <textarea class="form-control"
+                                  name="introduction"
+                                  data-ng-model="recruiterDetails.introduction"
+                                  ng-minlength="1"
+                                  ng-maxlength="500"
+                                  ng-required="true"
+                                  ng-trim></textarea>
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.introduction.$touched" ng-messages="recruiterDetailsForm.introduction.$error" ng-if="recruiterDetailsForm.introduction.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message-exp="['minlength','maxlength']">Introduction must be between 1 and 500 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.physicalAddress.$touched && recruiterDetailsForm.physicalAddress.$invalid}">
+                    <label for="physicalAddress" class="control-label">Physical Address</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                        </div>
+                        <input type="text"
+                               name="physicalAddress"
+                               class="form-control "
+                               placeholder="Physical Address"
+                               tabindex="9"
+                               data-ng-model="recruiterDetails.physicalAddress"
+                               ng-minlength="1"
+                               ng-maxlength="150"                               
+                               ng-trim />
+                    </div>
+                        <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.physicalAddress.$touched" ng-messages="recruiterDetailsForm.physicalAddress.$error" ng-if="recruiterDetailsForm.physicalAddress.$touched" role="alert" ng-messages-multiple>                            
+                            <div ng-message-exp="['minlength','maxlength']">Physical address must be between 1 and 150 characters long</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.postalAddress.$touched && recruiterDetailsForm.postalAddress.$invalid}">
+                    <label for="postalAddress" class="control-label">Postal Address</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-envelope"></span>
+                        </div>
+                        <input type="text"
+                               name="postalAddress"
+                               class="form-control "
+                               placeholder="Postal Address"
+                               tabindex="10"
+                               data-ng-model="recruiterDetails.postalAddress"
+                               ng-minlength="1"
+                               ng-maxlength="150"                               
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.postalAddress.$touched" ng-messages="recruiterDetailsForm.postalAddress.$error" ng-if="recruiterDetailsForm.postalAddress.$touched" role="alert" ng-messages-multiple>                        
+                        <div ng-message-exp="['minlength','maxlength']">Postal address must be between 1 and 150 characters long</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.tel.$touched && recruiterDetailsForm.tel.$invalid}">
+                    <label for="tel" class="control-label">Tel</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-phone-alt"></span>
+                        </div>
+                        <input type="text"
+                               name="tel"
+                               class="form-control "
+                               placeholder="Tel" tabindex="11"
+                               data-ng-model="recruiterDetails.tel"
+                               ng-minlength="1"
+                               ng-maxlength="50"                              
+                               ng-trim />
+                    </div>
+                        <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.tel.$touched" ng-messages="recruiterDetailsForm.tel.$error" ng-if="recruiterDetailsForm.tel.$touched" role="alert" ng-messages-multiple>                            
+                            <div ng-message-exp="['minlength','maxlength']">Telephone number must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.mobile.$touched && recruiterDetailsForm.mobile.$invalid}">
+                    <label for="mobile" class="control-label">Mobile</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-phone"></span>
+                        </div>
+                        <input type="text"
+                               name="mobile"
+                               class="form-control "
+                               placeholder="Mobile" tabindex="11"
+                               data-ng-model="recruiterDetails.mobile"
+                               ng-minlength="1"
+                               ng-maxlength="50"                               
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.mobile.$touched" ng-messages="recruiterDetailsForm.mobile.$error" ng-if="recruiterDetailsForm.mobile.$touched" role="alert" ng-messages-multiple>                        
+                        <div ng-message-exp="['minlength','maxlength']">Mobile telephone number must be between 1 and 50 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.email.$touched && recruiterDetailsForm.email.$invalid}">
+                    <label for=" email" class="control-label">Email</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-envelope"></span>
+                        </div>
+                        <input type="text" name="email" class="form-control " placeholder="Enter email" tabindex="1"
+                               data-ng-model="recruiterDetails.email"
+                               ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.email.$touched" ng-messages="recruiterDetailsForm.email.$error" ng-if="recruiterDetailsForm.email.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="email">Please enter valid email</div>
+                        <div ng-message="pattern">Please enter valid email</div>
+                        <div ng-message="required">Please enter email</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.fax.$touched && recruiterDetailsForm.fax.$invalid}">
+                    <label for="fax" class="control-label">Fax</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-fax"></span>
+                        </div>
+                        <input type="text" 
+                               name="fax"
+                               class="form-control "
+                               placeholder="Fax"
+                               tabindex="12"
+                               data-ng-model="recruiterDetails.fax"
+                               ng-minlength="1"
+                               ng-maxlength="50"                              
+                               ng-trim />
+                    </div>
+                        <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.fax.$touched" ng-messages="recruiterDetailsForm.fax.$error" ng-if="recruiterDetailsForm.fax.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message-exp="['minlength','maxlength']">Fax number must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.website.$touched && recruiterDetailsForm.website.$invalid}">
+                    <label for="website" class="control-label">Website</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </div>
+                        <input type="text"
+                               name="website"
+                               class="form-control "
+                               placeholder="Website"
+                               tabindex="13"
+                               data-ng-model="recruiterDetails.website"
+                               ng-minlength="1"
+                               ng-maxlength="50"
+                               ng-trim />
+                    </div>
+                        <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.website.$touched" ng-messages="recruiterDetailsForm.website.$error" ng-if="recruiterDetailsForm.website.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message-exp="['minlength','maxlength']">Website must be between 1 and 50 characters long</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':recruiterDetailsForm.contactPerson.$touched && recruiterDetailsForm.contactPerson.$invalid}">
+                    <label for="contactPerson" class="control-label">Contact Person</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </div>
+                        <input type="text"
+                               name="contactPerson"
+                               class="form-control "
+                               placeholder="Contact Person"
+                               tabindex="8"
+                               data-ng-model="recruiterDetails.contactPerson"
+                               ng-minlength="1"
+                               ng-maxlength="150"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ngfx-slide-in-left="recruiterDetailsForm.contactPerson.$touched" ng-messages="recruiterDetailsForm.contactPerson.$error" ng-if="recruiterDetailsForm.contactPerson.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter contact person name</div>
+                        <div ng-message-exp="['minlength','maxlength']">Contact person name must be between 1 and 150 characters long</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-if="companyLogoFile">
+                    <div> <label for="logo" class="control-label">Company Logo</label></div>
+                    <div><img name="logo" ngf-src="companyLogoFile" width="218" height="100" /></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <button class="btn btn-success" ng-model="companyLogoFile" ngf-select name="file" ngf-pattern="'image/*'">Attach Company Logo</button>
+                    <button class="btn btn-primary" ng-click="companyLogoFile=null" ng-if="companyLogoFile">Clear Logo</button>
+                </div>
+            </div>   
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <button class="btn btn-primary" tabindex="15" ng-click="createRecruiterDetails()">Save</button>
+                    <a class="btn btn-primary" tabindex="16" ui-sref="recruiter.Master">Cancel</a>                   
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

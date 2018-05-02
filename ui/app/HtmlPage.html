@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+</body>
+</html>
+
+<div class="row">
+    <div class="form-group col-sm-6">
+        <ng-checkbox name="addQuestionnaire" ng-model="addQuestionnaire" icon-size="md" label-size="sm" label="Add Questionnaire"> </ng-checkbox>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-6">
+        <sh-checkbox label="Add Questionnaire"
+                     ng-model="addQuestionnaire"
+                     checked-icon-class="fa fa-check-square-o"
+                     un-checked-icon-class="fa fa-square-o">
+        </sh-checkbox>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-sm-6" ng-class="{'has-error':createJobAd.contactPerson.$touched && createJobAd.contactPerson.$invalid}">
+        <label for="contactPerson" class="control-label">Contact Person</label>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-info-sign"></span>
+            </div>
+            <input type="text"
+                   class="form-control"
+                   name="contactPerson"
+                   data-ng-model="jobAd.contactPerson"
+                   ng-minlength="1"
+                   ng-maxlength="150"
+                   ng-required="true"
+                   ng-trim />
+        </div>
+        <div class="help-block" ngfx-slide-in-left="createJobAd.contactPerson.$touched" ng-messages="createJobAd.contactPerson.$error" ng-if="createJobAd.contactPerson.$touched" role="alert" ng-messages-multiple>
+            <div ng-message="required">Please enter contact person</div>
+            <div ng-message-exp="['minlength','maxlength']">Contact person must be between 1 and 50 characters long</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-6" ng-class="{'has-error':createJobAd.contactJobTitle.$touched && createJobAd.contactJobTitle.$invalid}">
+        <label for="contactJobTitle" class="control-label">Contact Job Title</label>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-info-sign"></span>
+            </div>
+            <input type="text"
+                   class="form-control"
+                   name="contactJobTitle"
+                   data-ng-model="jobAd.contactPersonJobTitle"
+                   ng-minlength="1"
+                   ng-maxlength="50"
+                   ng-required="true"
+                   ng-trim />
+        </div>
+        <div class="help-block" ngfx-slide-in-left="createJobAd.contactJobTitle.$touched" ng-messages="createJobAd.contactJobTitle.$error" ng-if="createJobAd.contactJobTitle.$touched" role="alert" ng-messages-multiple>
+            <div ng-message="required">Please enter contact job title</div>
+            <div ng-message-exp="['minlength','maxlength']">Contact job title must be between 1 and 50 characters long</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-6" ng-class="{'has-error':createJobAd.tel.$touched && createJobAd.tel.$invalid}">
+        <label for="tel" class="control-label">Tel</label>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-phone-alt"></span>
+            </div>
+            <input type="text"
+                   class="form-control"
+                   name="tel"
+                   data-ng-model="jobAd.tel"
+                   ng-minlength="1"
+                   ng-maxlength="50"
+                   ng-required="true"
+                   ng-trim />
+        </div>
+        <div class="help-block" ngfx-slide-in-left="createJobAd.tel.$touched" ng-messages="createJobAd.tel.$error" ng-if="createJobAd.tel.$touched" role="alert" ng-messages-multiple>
+            <div ng-message="required">Please enter tel number</div>
+            <div ng-message-exp="['minlength','maxlength']">Tel number must be between 1 and 50 characters long</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-6" ng-class="{'has-error':createJobAd.mobile.$touched && createJobAd.mobile.$invalid}">
+        <label for="mobile" class="control-label">Mobile</label>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-phone"></span>
+            </div>
+            <input type="text"
+                   class="form-control"
+                   name="mobile"
+                   data-ng-model="jobAd.mobile"
+                   ng-minlength="1"
+                   ng-maxlength="50"
+                   ng-required="true"
+                   ng-trim />
+        </div>
+        <div class="help-block" ngfx-slide-in-left="createJobAd.mobile.$touched" ng-messages="createJobAd.mobile.$error" ng-if="createJobAd.mobile.$touched" role="alert" ng-messages-multiple>
+            <div ng-message="required">Please enter mobile number</div>
+            <div ng-message-exp="['minlength','maxlength']">Mobile number must be between 1 and 50 characters long</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-6" ng-class="{'has-error':createJobAd.email.$touched && createJobAd.email.$invalid}">
+        <label for="email" class="control-label">Email</label>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <span class="fa fa-envelope"></span>
+            </div>
+            <input type="email"
+                   class="form-control"
+                   name="email"
+                   data-ng-model="jobAd.email"
+                   ng-minlength="1"
+                   ng-maxlength="50"
+                   ng-required="true"
+                   ng-trim />
+        </div>
+        <div class="help-block" ngfx-slide-in-left="createJobAd.email.$touched" ng-messages="createJobAd.email.$error" ng-if="createJobAd.email.$touched" role="alert" ng-messages-multiple>
+            <div ng-message="required">Please enter email</div>
+            <div ng-message="email">Please enter valid email</div>
+            <div ng-message-exp="['minlength','maxlength']">Email must be between 1 and 50 characters long</div>
+        </div>
+    </div>
+</div>   
+
+
+
+<h2 class="media-heading"><strong>{{jobAd.jobTitle}}</strong><span class="pull-right">{{jobAd.jobLocationTown}} {{jobAd.jobLocationCountry}}</span></h2>
+<h3><strong>{{jobAd.companyName}}</strong><span class="pull-right">Closing Date:{{jobAd.closingDate| date :  "dd/MM/yyyy"}}</span></h3>
+<h4><strong>Job Ref:</strong> {{jobAd.jobREF}}</h4>
+<h4><strong>JobType:</strong>{{jobAd.jobType}}|<strong>JobLevel:</strong> {{jobAd.jobLevel}} Position</h4>
+<h4 ng-show="jobAd.employmentEquityPosition">Employment Equity Position</h4>
+<h4 ng-show="jobAd.selectedDisabilityOption=='Yes'">Position open to candidates with disabilities</h4>
+<h4 ng-show="jobAd.selectedDisabilityOption=='Only'">Position open to candidates with disabilities only</h4>
+<h4 ng-show="jobAd.selectedDisabilityOption=='No'">Position not open to candidates with disabilities</h4>
+<h4 ng-show="jobAd.renumerationMarketRelated==true&&jobAd.salaryNegotiable==false"><strong>{{jobAd.renumerationType}}</strong> Market Related</h4>
+<h4 ng-show="jobAd.renumerationMarketRelated==true&&jobAd.salaryNegotiable==true"><strong>{{jobAd.renumerationType}}</strong> Market Related Negotiable</h4>
+<h4 ng-show="jobAd.renumerationMarketRelated==false&&jobAd.salaryNegotiable==false"><strong>{{jobAd.salaryCurrency}}{{jobAd.minimumSalary}}-{{jobAd.maximumSalary}} {{jobAd.frequency}} {{jobAd.renumerationType}}</strong></h4>
+<h4 ng-show="jobAd.renumerationMarketRelated==false&&jobAd.salaryNegotiable==true"><strong>{{jobAd.salaryCurrency}}{{jobAd.minimumSalary}}-{{jobAd.maximumSalary}} {{jobAd.frequency}} {{jobAd.renumerationType}}</strong> Negotiable</h4>
+<h4><strong>Benefits:</strong> {{jobAd.renumerationBenefits}}</h4>
+<h4><strong>Sector:</strong> {{jobAd.companySector}}</h4>
+<h4><strong>Posted by {{jobAd.companyName}}</strong></h4>        

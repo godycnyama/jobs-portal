@@ -1,0 +1,6 @@
+{
+  "name": "files",
+  "version": "0.0.1",
+  "description": "Files plugin",
+  "main": "index.js"
+}

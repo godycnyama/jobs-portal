@@ -1,0 +1,43 @@
+﻿<div class="container" ng-controller="AdminRecruiterController">
+    <div class="col-sm-10">
+        <h1>Recruiter Details</h1>
+        <button class="btn btn-primary" ng-click="back()"> <span class="glyphicon glyphicon-arrow-left"></span> Back</button>
+        <hr />
+        <div class="media">
+            <div class="pull-left">
+                <img class="media-object" ng-src="{{ recruiterDetails.companyLogo || 'avatar-tiny.jpg' }}" alt="Media Object" width="200" height="100" />
+            </div>
+            <div class="media-body">                            
+                <dl class="dl-horizontal">
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-info-sign"></span> <strong>Recruiter Type</strong></dt>
+                    <dd>{{recruiterDetails.recruiterType}}</dd>                  
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-map-marker"></span> <strong>Physical Address </strong></dt>
+                    <dd>{{recruiterDetails.physicalAddress}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-envelope"></span> <strong>Postal Address</strong></dt>
+                    <dd> {{recruiterDetails.postalAddress}}</dd>                   
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-phone-alt"></span> <strong>Work Tel</strong></dt>
+                    <dd>{{recruiterDetails.tel}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-phone"></span> <strong>Mobile</strong></dt>
+                    <dd>{{recruiterDetails.mobile}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-envelope"></span> <strong>Email</strong></dt>
+                    <dd>{{recruiterDetials.email}}</dd>
+                    <dt style="text-align:left"><span class="fa fa-fax"></span> <strong>Fax</strong></dt>
+                    <dd>{{recruiterDetails.fax}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-globe"></span> <strong>Website</strong></dt>
+                    <dd>{{recruiterDetails.website}}</dd>
+                    <dt style="text-align:left"><span class="glyphicon glyphicon-user"></span> <strong>Contact Person</strong></dt>
+                    <dd>{{recruiterDetails.contactPerson}}</dd>
+                </dl> 
+
+                <hr />
+                <p>
+                    <a class="btn btn-primary" ng-click="back()">Back</a>
+                    <span class="pull-right">                      
+                        <button class="btn btn-primary" ng-click="deleteRecruiter()">Edit Details</button>                       
+                    </span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>

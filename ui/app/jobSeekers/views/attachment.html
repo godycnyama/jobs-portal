@@ -1,0 +1,58 @@
+﻿<div class="container"  ng-controller="AttachmentController">
+    <h1><span class="glyphicon glyphicon-paperclip"></span> Attach Document</h1>
+    <br />
+    <button ng-click="back()" class="btn btn-primary"> <span class="glyphicon glyphicon-arrow-left"></span>Back</button>
+    <div class="row">
+        <div class="col-sm-8">
+            <hr />
+            <form name="attachDocument" role="form">
+                <div class="row">
+                    <div class="form-group col-sm-8">
+                        <button class="btn btn-success" ng-model="attachmentFile"
+                                name="file"
+                                ngf-max-size="2MB"
+                                ngf-select
+                                accept=".doc,.docx,.pdf"
+                                ngf-pattern=".doc,.docx,.pdf"
+                                ngf-model-invalid="errorFile">
+                            Select Document
+                        </button>
+                        <span>{{attachmentFile.name}}</span>
+                        <button class="btn btn-primary" ng-click="attachmentFile = null" ng-show="attachmentFile"><span class="glyphicon glyphicon-trash"></span> Remove</button>
+                    </div>
+                </div>                              
+                <div class="row">
+                    <div class="form-group col-sm-3" ng-class="{'has-error':attachDocument.documentType.$touched && attachDocument.documentType.$invalid}">
+                        <label for="documentType" class="control-label">Document Type</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="fa fa-file-text"></span>
+                            </div>
+                            <select name="documentType" class="form-control" data-ng-model="documentType"
+                                    data-ng-options="documentType for documentType in documentTypeOptions"
+                                    ng-required="true"></select>
+                        </div>
+                            <div class="help-block" ngfx-slide-in-left="attachDocument.documentType.$touched" ng-messages="attachDocument.documentType.$error" ng-if="attachDocument.documentType.$touched" role="alert">
+                                <div ng-message="required">Please  select document type</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div ng-disabled="!attachDocument.$valid" class="form-group col-sm-6">
+                        <button type="submit" class="btn btn-primary" ng-disabled="attachDocument.$invalid" ng-click="uploadAttachment()"><span class="glyphicon glyphicon-upload"></span> Attach</button>
+                        <a class="btn btn-primary" ui-sref="profile.master"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+                    </div>
+                    <div class="progress" ng-show="attachmentFile.progress >= 0">
+                        <div class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuemin="0" aria-valuemax="100" 
+                             style="width:{{attachmentFile.progress}}%" 
+                             ng-bind="attachmentFile.progress + '%'">
+                        </div>
+                    </div>
+                    <span ng-show="attachmentFile.result">Attachment uploaded successfully!</span>
+                    <span class="err" ng-show="errorMessage">{{errorMessage}}</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

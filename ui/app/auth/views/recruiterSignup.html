@@ -1,0 +1,80 @@
+﻿<div class="container" data-ng-controller="RecruiterSignupController">
+    <form role="form" name="signupRecruiterForm" novalidate>
+        <div class="col-sm-8">
+            <h1><span class="fa fa-user-plus"></span> Recruiter Sign Up</h1>
+            <hr />
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':signupRecruiterForm.email.$touched && signupRecruiterForm.email.$invalid}">
+                    <label for=" email" class="control-label">Email</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </div>
+                        <input type="text" name="email" class="form-control " placeholder="Enter email" tabindex="1"
+                               data-ng-model="recruiterSignup.email"
+                               ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                        <div class="help-block" ng-messages="signupRecruiterForm.email.$error" ng-if="signupRecruiterForm.email.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="email">Please enter valid email</div>
+                            <div ng-message="pattern">Please enter valid email</div>
+                            <div ng-message="required">Please enter email</div>                            
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':signupRecruiterForm.password.$touched && signupRecruiterForm.password.$invalid}">
+                    <label for="password" class="control-label">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-lock"></span>
+                        </div>
+                        <input type="password" name="password"
+                               class="form-control "
+                               placeholder="Enter password"
+                               tabindex="2"
+                               data-ng-model="recruiterSignup.password"
+                               ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,10})$/"
+                               ng-required="true"
+                               ng-trim />
+                    </div>
+                    <div class="help-block" ng-messages="signupRecruiterForm.password.$error" ng-if="signupRecruiterForm.password.$touched" role="alert" ng-messages-multiple>
+                        <div ng-message="required">Please enter password</div>
+                        <div ng-message="pattern">Password must contain at least 1 lowercase alphabetical character,1 uppercase alphabetical character,1 numeric character,1 special character (!,@,#,$,%,&,*),and must be between 6-10 characters long</div>                        
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" ng-class="{'has-error':signupRecruiterForm.confirmPassword.$touched && signupRecruiterForm.confirmPassword.$invalid}">
+                    <label for="confirmPassword" class="control-label">Confirm Password</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="fa fa-lock"></span>
+                        </div>
+                        <input type="password"
+                               name="confirmPassword"
+                               class="form-control "
+                               placeholder="Confirm password"
+                               tabindex="3"
+                               data-ng-model="confirmPassword"                               
+                               ng-required="true"
+                               ng-trim
+                               match="signupRecruiterForm.password" />
+                    </div>
+                        <div class="help-block" ng-messages="signupRecruiterForm.confirmPassword.$error" ng-if="signupRecruiterForm.confirmPassword.$touched" role="alert" ng-messages-multiple>
+                            <div ng-message="required">Please confirm password</div>
+                            <div ng-message="match">Password mismatch,confirm password must match password</div>                            
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <button class="btn btn-primary" tabindex="15" ng-click="save()">Sign Up</button>
+                    <a tabindex="16" ui-sref="auth.signin">Sign In</a>                   
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
